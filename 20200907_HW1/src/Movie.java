@@ -35,7 +35,7 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie: " +
-                name  +
+                name +
                 ", genre: " + genre +
                 ", duration: " + duration +
                 ", releaseYear: " + releaseYear;

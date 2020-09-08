@@ -6,8 +6,9 @@ public class Main {
         System.out.println(movie1.toString());
         System.out.println(movie2.toString());
         System.out.println(movie3.toString());
+        movie3.movieStart();
         Movie.turnOffMobileDevices();
         Movie.lightsOff();
-        movie3.movieStart();
+
     }
 }
