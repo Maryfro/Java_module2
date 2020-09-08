@@ -8,5 +8,6 @@ public class Main {
         System.out.println(movie3.toString());
         Movie.turnOffMobileDevices();
         Movie.lightsOff();
+        movie3.movieStart();
     }
 }

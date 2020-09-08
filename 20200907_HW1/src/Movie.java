@@ -35,8 +35,8 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie: " +
-                name + '\'' +
-                ", genre:" + genre + '\'' +
+                name  +
+                ", genre: " + genre +
                 ", duration: " + duration +
                 ", releaseYear: " + releaseYear;
     }
@@ -47,5 +47,9 @@ public class Movie {
 
     public static void lightsOff() {
         System.out.println("Now it's dark, the movie can go on");
+    }
+
+    public void movieStart(){
+        System.out.println("the movie starts at 15:00");
     }
 }
