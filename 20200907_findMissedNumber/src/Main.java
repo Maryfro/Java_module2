@@ -21,8 +21,10 @@ public class Main {
         int sum = 0, sumI = 0;
         for (int i = 0; i < input.length; i++) {
             sum += input[i];
-            sumI = sum + (i + 1);
+            sumI += (i + 1);
         }
+        sumI += input.length + 1;
+        
         return sumI - sum;
     }
 
