@@ -7,6 +7,11 @@ public class UserInteraction {
 
     public static double getParameter() {
         System.out.println("Enter a number, please");
+        while(scanner.hasNextDouble()){
+            System.out.println("This is not a number, enter a number please");
+            scanner.next();
+            scanner.hasNextDouble();
+        }
         return scanner.nextDouble();
     }
 

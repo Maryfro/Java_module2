@@ -11,20 +11,21 @@ public class Main {
     }
 
     public static void greeting(String[] names) {
-        int found = 0;
-        String inputName = "";
+        boolean found = false;
         Scanner scanner = new Scanner(System.in);
         System.out.println("What is your name?");
-        inputName = scanner.next();
+        String inputName = scanner.next();
         for (int i = 0; i < names.length; i++) {
             if (names[i].equals(inputName)) {
-                found++;
+                found = true;
                 System.out.println("Hello, " + names[i]);
+                break;
             }
         }
-        if (found == 0) {
+        if (!found) {
             System.out.println("Sorry, we don't know each other.");
         }
+        scanner.close();
     }
 
 
