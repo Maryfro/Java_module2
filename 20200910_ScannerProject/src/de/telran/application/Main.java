@@ -1,6 +1,7 @@
 package de.telran.application;
 
 import de.telran.data.ArrayManipulation;
+import de.telran.data.UserInteraction;
 
 import static de.telran.data.UserInteraction.*;
 
@@ -12,7 +13,8 @@ public class Main {
         ArrayManipulation.fillArray1(myArray);
         int numberToDelete = getNumberToDelete();
         boolean check = ArrayManipulation.isNumberToDeleteInArray(myArray, numberToDelete);
-        ArrayManipulation.printResult(myArray, check, numberToDelete);
+        UserInteraction.printResult(myArray, check, numberToDelete);
         closeScanner();
     }
+
 }
