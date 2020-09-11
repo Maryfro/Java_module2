@@ -19,6 +19,7 @@ public class UserInteraction {
         return scanner.nextInt();
     }
 
+
     public static void closeScanner(){
         scanner.close();
     }

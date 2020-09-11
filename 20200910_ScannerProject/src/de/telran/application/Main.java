@@ -15,4 +15,5 @@ public class Main {
         ArrayManipulation.printResult(myArray, check, numberToDelete);
         closeScanner();
     }
+
 }
