@@ -1,12 +1,16 @@
 package de.telran.data;
 
+import java.util.Objects;
+
 public class Person {
     private String name;
     private int age;
+    private double height;
 
-    public Person(String name, int age) {
+    public Person(String name, int age, double height) {
         this.name = name;
         this.age = age;
+        this.height = height;
     }
 
     public String getName() {
@@ -21,6 +25,14 @@ public class Person {
         return age;
     }
 
+    public double getHeight() {
+        return height;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
     public void setAge(int age) {
         if (age > 0 && age < 110) {
             this.age = age;
@@ -30,9 +42,24 @@ public class Person {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Person person = (Person) o;
+        return age == person.age &&
+                name.equals(person.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, age);
+    }
+
+    @Override
     public String toString() {
         return name +
-                ", age: " + age;
+                ", age: " + age
+                + ", height: " + height;
     }
 
     public static void display(Person[] group) {
@@ -41,7 +68,106 @@ public class Person {
         }
     }
 
-    public static Person findOldestPerson(Person[] group, int maxAge) {
+    private int compareToPersonByHeight(Person p) {
+        if (this.height > p.height) {
+            return 1;
+        } else if (this.height < p.height) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    private static int comparePersonByAge(Person p1, Person p2) {
+        if (p1.age > p2.age) {
+            return 1;
+        } else if (p1.age < p2.age) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void sortPersonByHeight(Person[] group) {
+        for (int i = 0; i < group.length; i++) {
+            for (int j = 0; j < (group.length - 1) - i; j++) {
+                if (group[j].compareToPersonByHeight(group[j + 1]) > 0) {
+                    Person temp = group[j + 1];
+                    group[j + 1] = group[j];
+                    group[j] = temp;
+                }
+            }
+        }
+    }
+
+    private int compareToPersonByAge(Person p) {
+        if (this.age > p.age) {
+            return 1;
+        } else if (this.age < p.age) {
+            return -1;
+        } else {
+            return 0;
+        }
+    }
+
+    public static void sortPersonByAge1(Person[] group) {
+        for (int i = 0; i < group.length; i++) {
+            for (int j = 0; j < (group.length - 1) - i; j++) {
+                if (group[j].compareToPersonByAge(group[j + 1]) < 0) {
+                    Person temp = group[j + 1];
+                    group[j + 1] = group[j];
+                    group[j] = temp;
+                }
+            }
+        }
+    }
+
+    public static void sortPersonByAge(Person[] group) {
+        for (int i = 0; i < group.length; i++) {
+            for (int j = 0; j < (group.length - 1) - i; j++) {
+                if (comparePersonByAge(group[j], group[j + 1]) > 0) {
+                    Person temp = group[j + 1];
+                    group[j + 1] = group[j];
+                    group[j] = temp;
+                }
+            }
+        }
+    }
+
+    public static void sortPersonByName(Person[] group) {
+        for (int i = 0; i < group.length; i++) {
+            for (int j = 0; j < (group.length - 1) - i; j++) {
+                if (group[j].name.compareTo(group[j + 1].name) > 0) {
+                    Person temp = group[j + 1];
+                    group[j + 1] = group[j];
+                    group[j] = temp;
+                }
+            }
+        }
+    }
+
+
+    public static Person findOldestPerson1(Person[] group) {
+        Person oldestPerson = group[0];
+        for (int i = 0; i < group.length; i++) {
+            if (group[i].getAge() > oldestPerson.getAge()) {
+                oldestPerson = group[i];
+            }
+        }
+        return oldestPerson;
+    }
+
+    public static Person findLongestName1(Person[] group) {
+        Person n = group[0];
+        for (int i = 0; i < group.length; i++) {
+            if (group[i].getName().length() > n.getName().length()) {
+                n = group[i];
+            }
+        }
+        return n;
+    }
+
+/*    public static Person findOldestPerson(Person[] group, int maxAge) {
         Person p = group[0];
         for (int i = 0; i < group.length; i++) {
             if(group[i].getAge() == maxAge){
@@ -58,9 +184,9 @@ public class Person {
             max = Math.max(max, a);
         }
         return max;
-    }
+    }*/
 
-    public static Person findLongestName(Person[] group, int longestName) {
+ /*   public static Person findLongestName(Person[] group, int longestName) {
         Person n = group[0];
         for (int i = 0; i < group.length; i++) {
             if(group[i].getName().length() == longestName){
@@ -78,5 +204,5 @@ public class Person {
         }
         return max;
 
-    }
+    }*/
 }
