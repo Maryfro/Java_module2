@@ -47,12 +47,13 @@ public class Person {
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
         return age == person.age &&
-                name.equals(person.name);
+                Double.compare(person.height, height) == 0 &&
+                Objects.equals(name, person.name);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, age);
+        return Objects.hash(name, age, height);
     }
 
     @Override
