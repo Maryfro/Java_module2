@@ -72,10 +72,8 @@ public class Library {
     public Book findOldestBook() {
         Book oldestBook = books[0];
         for (int i = 0; i < size; i++) {
-            int max = 0;
-            if(books[max].getYearOfIssue() > books[i].getYearOfIssue()){
-                max = oldestBook.getYearOfIssue();
-                oldestBook = books[max];
+            if (oldestBook.getYearOfIssue() > books[i].getYearOfIssue()) {
+                oldestBook = books[i];
             }
         }
         return oldestBook;

@@ -7,7 +7,7 @@ public class App {
     public static void main(String[] args) {
         Book book1 = new Book("War and peace", "Leo Tolstoy", 1865, 2345);
         Book book2 = new Book("The Shining", "Steven King", 1977, 765);
-        Book book3 = new Book("The Idiot", "Fedor Dostoevsky", 1869, 1276);
+        Book book3 = new Book("The Idiot", "Fedor Dostoevsky", 1861, 1276);
         Book book4 = new Book("Catcher in the rye", "Jerome Salinger", 1951, 372);
         Library myLibrary = new Library(100);
         //System.out.println(myLibrary.getSize());
