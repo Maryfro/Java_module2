@@ -21,23 +21,20 @@ public class App {
         Cinema[] cinemas1 = {cinema1, cinema2};
 
 
-        Movie movie1 = new Movie("Avengers", LocalDate.of(2020, 05, 05),
+        Movie movie1 = new Movie("Avengers", LocalDate.of(2020, 5, 5),
                 Genre.DRAMA, cinemas);
-        Movie movie2 = new Movie("Vertigo", LocalDate.of(2020, 05, 10),
+        Movie movie2 = new Movie("Vertigo", LocalDate.of(2020, 5, 10),
                 Genre.THRILLER, cinemas);
-        Movie movie3 = new Movie("Frozen 2", LocalDate.of(2020, 06, 01),
+        Movie movie3 = new Movie("Frozen 2", LocalDate.of(2020, 6, 1),
                 Genre.ADVENTURE, cinemas1);
-        Movie movie4 = new Movie("The Gentelmen", LocalDate.of(2020, 01, 01),
+        Movie movie4 = new Movie("The Gentlemen", LocalDate.of(2020, 1, 1),
                 Genre.CRIME, cinemas1);
-        Movie movie5 = new Movie("American Pie", LocalDate.of(2020, 05, 05),
+        Movie movie5 = new Movie("American Pie", LocalDate.of(2020, 5, 5),
                 Genre.COMEDY, cinemas);
-        Movie movie6 = new Movie("Shape of water", LocalDate.of(2020, 01, 01),
+        Movie movie6 = new Movie("Shape of water", LocalDate.of(2020, 1, 1),
                 Genre.DRAMA, cinemas);
-        Movie movie7 = new Movie("Jojo Rabbit", LocalDate.of(2020,05,05),
+        Movie movie7 = new Movie("Jojo Rabbit", LocalDate.of(2020, 5, 5),
                 Genre.COMEDY, cinemas);
-        Movie[] movies = {movie1, movie2, movie3, movie4, movie5, movie6, movie7};
-
-
 
         Schedule schedule = new Schedule(50);
         schedule.addMovie(movie1);
@@ -47,21 +44,18 @@ public class App {
         schedule.addMovie(movie5);
         schedule.addMovie(movie6);
         schedule.addMovie(movie7);
-        // schedule.displayMovies();
-      // schedule.displayMoviesByCinema("Star");
-        schedule.displayMoviesByGenre("Babylon", Genre.COMEDY);
-        schedule.displayMoviesByDate("Kosmos", LocalDate.of(2020, 02, 01));
+        schedule.displayMovies();
         System.out.println("-------------------------");
-        schedule.displayMoviesByDate("Kosmos", LocalDate.of(2020, 01, 01));
+        schedule.displayMoviesByCinema("Star");
         System.out.println("-------------------------");
-        System.out.println("display movie by date");
-        schedule.displayMoviesByDate1(movies, LocalDate.of(2020, 02, 05));
+        System.out.println("display movie by date " + LocalDate.of(2020, 2, 5));
+        schedule.displayMoviesByDate(LocalDate.of(2020, 2, 5));
         System.out.println("-------------------------");
-        System.out.println("display movie by date");
-        schedule.displayMoviesByDate1(movies, LocalDate.of(2020, 05, 05));
+        System.out.println("display movie by date " + LocalDate.of(2020, 5, 5));
+        schedule.displayMoviesByDate(LocalDate.of(2020, 5, 5));
         System.out.println("-------------------------");
-        System.out.println("display movie by genre");
-        schedule.displayMoviesByGenre1(movies, Genre.DRAMA);
+        System.out.println("display movie by genre " + Genre.DRAMA);
+        schedule.displayMoviesByGenre(Genre.DRAMA);
 
     }
 }
