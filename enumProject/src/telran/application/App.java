@@ -13,11 +13,11 @@ public class App {
         System.out.println(DaysOfWeek.WEDNESDAY.getTitle());*/
       //  DaysOfWeek.THURSDAY.sayHello();
        // monday.sayHello();
-        DaysOfWeek[] week = {DaysOfWeek.MONDAY, DaysOfWeek.TUESDAY, DaysOfWeek.WEDNESDAY, DaysOfWeek.THURSDAY,
-                DaysOfWeek.FRIDAY, DaysOfWeek.SATURDAY, DaysOfWeek.SUNDAY};
-        Schedule schedule1 = new Schedule(week);
-        System.out.println("Schedule for one week ");
-        schedule1.wakeUp();
+        Schedule schedule1 = new Schedule();
+        System.out.print("On " + DaysOfWeek.FRIDAY.getTitle() + " you have to");
+        schedule1.wakeUp(DaysOfWeek.FRIDAY);
+        System.out.print("On " + DaysOfWeek.SUNDAY.getTitle() + " you can");
+        schedule1.wakeUp(DaysOfWeek.SUNDAY);
         System.out.println("--------------------");
         System.out.println("Menu of the week ");
         schedule1.displayMenu();
