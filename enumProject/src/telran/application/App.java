@@ -20,6 +20,6 @@ public class App {
         schedule1.wakeUp();
         System.out.println("--------------------");
         System.out.println("Menu of the week ");
-        schedule1.getMenu();
+        schedule1.displayMenu();
     }
 }
