@@ -110,10 +110,15 @@ public class Bank {
     }
 
     public String[] getClientsPerGender(Gender gender) {
-        String[] clientsPerGender = new String[size];
+        int newSize = countClientsPerGender(gender);
+        String[] clientsPerGender = new String[newSize];
         for (int i = 0; i < size; i++) {
-            if (accounts[i].getClient().getGender().equals(gender)) {
-                clientsPerGender[i] = accounts[i].getClient().toStringName();
+            if (accounts[i].getClient().getGender().equals(gender) && accounts[i] != null) {
+                clientsPerGender[newSize - 1] = accounts[i].getClient().toStringName();
+                newSize--;
+                if (newSize == 0) {
+                    break;
+                }
             }
         }
         return clientsPerGender;
