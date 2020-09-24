@@ -53,8 +53,10 @@ public class App {
         System.out.println(myBank.countClientsPerGender(Gender.FEMALE));
         System.out.println("-------------------");
         myBank.displayClientsPerGender(Gender.FEMALE);
-        System.out.println(Arrays.toString(myBank.getClientsPerGender(Gender.FEMALE)));
-        System.out.println(Arrays.toString(myBank.getClientsPerGender(Gender.MALE)));
+       // System.out.println(Arrays.toString(myBank.getClientsPerGender(Gender.FEMALE)));
+        //System.out.println(Arrays.toString(myBank.getClientsPerGender(Gender.MALE)));
+        Person.displayPersons(myBank.getClientsPerGender(Gender.MALE));
+
 
     }
 

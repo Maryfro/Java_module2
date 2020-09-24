@@ -2,6 +2,7 @@ package telran.dao;
 
 import telran.data.BankAccount;
 import telran.data.Gender;
+import telran.data.Person;
 
 
 public class Bank {
@@ -109,17 +110,13 @@ public class Bank {
         }
     }
 
-    public String[] getClientsPerGender(Gender gender) {
-        int newSize = countClientsPerGender(gender);
+    public Person[] getClientsPerGender(Gender gender) {
         int newIndex = 0;
-        String[] clientsPerGender = new String[newSize];
+        Person[] clientsPerGender = new Person[countClientsPerGender(gender)];
         for (int i = 0; i < size; i++) {
-            if (accounts[i].getClient().getGender().equals(gender) && accounts[i] != null) {
-                clientsPerGender[newIndex] = accounts[i].getClient().toStringName();
+            if (accounts[i].getClient().getGender().equals(gender)) {
+                clientsPerGender[newIndex] = accounts[i].getClient();
                 newIndex++;
-                if (newIndex == newSize) {
-                    break;
-                }
             }
         }
         return clientsPerGender;

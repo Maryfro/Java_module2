@@ -71,4 +71,10 @@ public class Person {
     public String toStringName() {
         return "Client " + firstName + " " + lastName;
     }
+
+    public static void displayPersons(Person[] clients) {
+        for (Person p : clients) {
+            System.out.println(p.toStringName());
+        }
+    }
 }
