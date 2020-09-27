@@ -25,8 +25,15 @@ public class Date {
         return false;
     }
 
-    public boolean checkDay() {
+    public boolean checkDayFirstHalf() {
         if ((day <= 30 && month % 2 == 0) || (day <= 31 && month % 2 != 0)) {
+            return true;
+        }
+        return false;
+    }
+
+    public boolean checkDaySecondHalf() {
+        if ((day <= 31 && month % 2 == 0) || (day <= 30 && month % 2 != 0)) {
             return true;
         }
         return false;
@@ -55,9 +62,11 @@ public class Date {
 
     public boolean checkDate() {
         if (month == 2) {
-            return checkYear() && checkFebruary() && checkDay();
-        } else {
-            return checkYear() && checkMonth() && checkDay();
+            return checkYear() && checkFebruary();
+        } else if (month < 8) {
+            return checkYear() && checkDayFirstHalf();
+        }else {
+            return checkYear() && checkMonth() && checkDaySecondHalf();
         }
     }
 }
