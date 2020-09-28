@@ -5,6 +5,7 @@ import telran.data.Post;
 import telran.data.User;
 import telran.data.UserAdmin;
 
+import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -99,7 +100,7 @@ public class Forum {
     }
 
     public void removePost(Post post, Scanner scanner) {
-       if (admin.checkPassword(scanner)) {
+        if (admin.checkPassword(scanner)) {
             boolean checked = false;
             for (int i = 0; i < size; i++) {
                 if (posts[i].equals(post)) {
@@ -127,6 +128,24 @@ public class Forum {
     public void displayForum() {
         for (int i = 0; i < size; i++) {
             System.out.println(posts[i]);
+        }
+    }
+
+    public Post getPostWithMaxLikes() {
+        Post maxLikes = posts[0];
+        for (int i = 0; i < size; i++) {
+            if (maxLikes.getLikes() < posts[i].getLikes()) {
+                maxLikes = posts[i];
+            }
+        }
+        return maxLikes;
+    }
+
+    public static void displayNonNull(Object[] arr) {
+        for (int i = 0; i < arr.length; i++) {
+            if (!(arr[i] == null)) {
+                System.out.println(arr[i] + " ");
+            }
         }
     }
 }
