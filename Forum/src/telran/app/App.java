@@ -5,7 +5,6 @@ import telran.data.Post;
 import telran.data.User;
 import telran.data.UserAdmin;
 
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class App {
@@ -18,7 +17,7 @@ public class App {
         Post post2 = new Post(user2, "How to become a millionaire", "You have to work hard as well");
         Post post3 = new Post(admin, "How to become a billionaire?", "You have to work hard as well");
 
-        Forum forum = new Forum(20);
+        Forum forum = new Forum(20, "123");
         forum.addPost(post1);
         forum.addPost(post2);
         forum.addPost(post3);
@@ -34,11 +33,13 @@ public class App {
         forum.updatePostByAdmin(post3.getPostID(), scanner);
         forum.updatePostByAdmin(15, scanner);
         System.out.println("-------------------");*/
-        forum.removePost(post1, scanner);
+        /*forum.removePost(post1, scanner, admin);
         System.out.println("-------------------");
         forum.displayForum();
+        */
+        forum.updatePostByUserAdmin(post3.getPostID(), scanner, admin);
+        forum.updatePostByAdmin(post2.getPostID(), scanner);
+
         scanner.close();
-
-
     }
 }
