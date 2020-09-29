@@ -20,6 +20,10 @@ public class Forum {
         this.admin = new Admin(password);
     }
 
+    public Post[] getPosts() {
+        return posts;
+    }
+
     public int getSize() {
         return size;
     }
@@ -142,10 +146,16 @@ public class Forum {
     }
 
     public static void displayNonNull(Object[] arr) {
-        for (int i = 0; i < arr.length; i++) {
+       /* for (int i = 0; i < arr.length; i++) {
             if (!(arr[i] == null)) {
-                System.out.println(arr[i] + " ");
+                System.out.println(arr[i]);
+            }*/
+
+        for (Object o : arr) {
+            if (o != null) {
+                System.out.println(o);
             }
         }
     }
 }
+

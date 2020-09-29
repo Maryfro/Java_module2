@@ -64,7 +64,9 @@ public class App {
         System.out.println("--------");
         Forum.displayNonNull(users);
         System.out.println("--------");
-        //Forum.displayNonNull(forums);
+        Forum.displayNonNull(forums);
+        System.out.println("--------");
+        Forum.displayNonNull(forum.getPosts());
 
     }
 }
