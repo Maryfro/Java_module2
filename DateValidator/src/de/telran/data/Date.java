@@ -11,35 +11,23 @@ public class Date {
         this.day = day;
     }
 
-    public boolean checkYear() {
-        if (year > 0) {
-            return true;
-        }
-        return false;
+    private boolean checkYear() {
+        return year > 0;
     }
 
-    public boolean checkMonth() {
-        if (month > 0 && month <= 12) {
-            return true;
-        }
-        return false;
+    private boolean checkMonth() {
+        return month > 0 && month <= 12;
     }
 
-    public boolean checkDayFirstHalf() {
-        if ((day <= 30 && month % 2 == 0) || (day <= 31 && month % 2 != 0)) {
-            return true;
-        }
-        return false;
+    private boolean checkDayFirstHalf() {
+        return (day <= 30 && month % 2 == 0) || (day <= 31 && month % 2 != 0);
     }
 
-    public boolean checkDaySecondHalf() {
-        if ((day <= 31 && month % 2 == 0) || (day <= 30 && month % 2 != 0)) {
-            return true;
-        }
-        return false;
+    private boolean checkDaySecondHalf() {
+        return (day <= 31 && month % 2 == 0) || (day <= 30 && month % 2 != 0);
     }
 
-    public boolean checkFebruary() {
+    private boolean checkFebruary() {
         if (day <= 28 && !findLeapYear(year)) {
             return true;
         } else if (day <= 29 && findLeapYear(year)) {
@@ -65,7 +53,7 @@ public class Date {
             return checkYear() && checkFebruary();
         } else if (month < 8) {
             return checkYear() && checkDayFirstHalf();
-        }else {
+        } else {
             return checkYear() && checkMonth() && checkDaySecondHalf();
         }
     }
