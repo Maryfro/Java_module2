@@ -32,7 +32,7 @@ public class App {
         System.out.println("-------------------");
         Shape.displayArr(Shape.getShapesByShape(shapes, "right triangle"));
         System.out.println("-------------------");
-        Shape.displayArr(Shape.getShapesByShape(shapes, "equilateral triangle"));
+        Shape.displayArr(Shape.getShapesByShape(shapes, "Triangle"));
 
     }
 
