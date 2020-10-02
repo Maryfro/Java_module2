@@ -22,7 +22,7 @@ public class Main {
         int[] nums = {1, 2, 3};
         sb2.append(5).append("!!!").append(Arrays.toString(nums)).append(true);
         System.out.println(sb2);
-        String s = new String(sb2);
+        StringBuffer s = new StringBuffer(sb2);
         System.out.println(sb2.reverse());
         System.out.println(s);
         System.out.println("----------");

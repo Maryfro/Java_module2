@@ -4,6 +4,8 @@ package telran.app;
 public class CountLetters {
     public static void main(String[] args) {
         System.out.println(printRepeatChar("aaabbcdddd"));
+        System.out.println(printRepeatChar("wwwggkiii"));
+        printRepeatCharSolution("wwwggkiii");
         StringBuffer sb = new StringBuffer("aaabbcdddd");
         System.out.println("------------");
         printRepeatChar(sb);
@@ -51,6 +53,23 @@ public class CountLetters {
                 i = 0;
             }
         }
+        System.out.println(output);
+    }
+
+    private static void printRepeatCharSolution(String input) {
+        int count = 1;
+        char c = input.charAt(0);
+        StringBuffer output = new StringBuffer();
+        for (int i = 1; i < input.length(); i++) {
+            if (input.charAt(i) == c) {
+                count++;
+            } else {
+                output = output.append(c).append(count);
+                c = input.charAt(i);
+                count = 1;
+            }
+        }
+        output = output.append(c).append(count);
         System.out.println(output);
     }
 }
