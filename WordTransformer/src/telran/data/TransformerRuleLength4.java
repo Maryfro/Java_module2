@@ -1,6 +1,6 @@
 package telran.data;
 
-public class TransformerRuleLength4 extends TransformerRuleLength3{
+public class TransformerRuleLength4 implements Transformable {
     @Override
     public boolean checkLength(String input) {
         return input.length()==4;

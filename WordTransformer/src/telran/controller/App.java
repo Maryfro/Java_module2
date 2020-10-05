@@ -1,9 +1,6 @@
 package telran.controller;
 
-import telran.data.TransformerRuleLength3;
-import telran.data.TransformerRuleLength4;
-import telran.data.TransformerRulesStars;
-import telran.data.WordTransformer;
+import telran.data.*;
 
 public class App {
     public static void main(String[] args) {
@@ -11,12 +8,19 @@ public class App {
         //System.out.println(WordTransformer.transformWord1((" sERl WEk SErI jhg"), 2));
 
         TransformerRuleLength3 tr3 = new TransformerRuleLength3();
-        TransformerRuleLength3 tr4 = new TransformerRuleLength4();
-
+        TransformerRuleLength4 tr4 = new TransformerRuleLength4();
+        Transformable tr6 = new TransformerRulesLength6();
 
         System.out.println(WordTransformer.WordTransformNew("asd sdf fdg", tr3));
         System.out.println(WordTransformer.WordTransformNew("asd ASDF GHGF sdf fdg", tr4));
-        System.out.println(WordTransformer.WordTransformNew("asd ASDF GHGFdf sdf fdg", new TransformerRulesStars()));
+        System.out.println(WordTransformer.WordTransformNew("asd ASDF GHGFdf sdf fdg", tr6));
+
+       /* System.out.println("---------------------------------");
+
+        Transformable[] transformables = {tr3, tr4, tr6};
+        System.out.println(WordTransformer.WordTransformAllActions("asd sdf fdg", transformables));
+        System.out.println(WordTransformer.WordTransformAllActions("asd ASDF GHGF sdf fdg", transformables));
+        System.out.println(WordTransformer.WordTransformAllActions("asd ASDF GHGFdf sdf fdg", transformables));*/
 
     }
 }
