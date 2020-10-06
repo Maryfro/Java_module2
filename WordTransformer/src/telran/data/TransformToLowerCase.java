@@ -1,6 +1,6 @@
 package telran.data;
 
-public class TransformerRuleLength4 extends TransformerRuleLength3{
+public class TransformToLowerCase implements WordsChecker {
     @Override
     public boolean checkLength(String input) {
         return input.length()==4;

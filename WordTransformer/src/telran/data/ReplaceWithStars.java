@@ -1,6 +1,6 @@
 package telran.data;
 
-public class TransformerRulesStars extends TransformerRuleLength3 {
+public class ReplaceWithStars implements WordsChecker {
     @Override
     public boolean checkLength(String input) {
         return input.length() == 6;
@@ -8,6 +8,6 @@ public class TransformerRulesStars extends TransformerRuleLength3 {
 
     @Override
     public String action(String input) {
-        return input.replaceAll(input, "******");
+        return input.replaceAll(".", "*");
     }
 }
