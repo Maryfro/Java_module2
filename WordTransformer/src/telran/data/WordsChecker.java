@@ -1,6 +1,6 @@
 package telran.data;
 
-public interface Transformable {
+public interface WordsChecker {
 
     boolean checkLength(String input);
 

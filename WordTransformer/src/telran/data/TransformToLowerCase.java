@@ -1,13 +1,13 @@
 package telran.data;
 
-public class TransformerRulesLength6 implements Transformable {
+public class TransformToLowerCase implements WordsChecker {
     @Override
     public boolean checkLength(String input) {
-        return input.length() == 6;
+        return input.length()==4;
     }
 
     @Override
     public String action(String input) {
-        return input.replaceAll(input, "******");
+        return input.toLowerCase();
     }
 }
