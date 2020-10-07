@@ -11,8 +11,8 @@ public class App {
         TransformToLowerCase tr4 = new TransformToLowerCase();
         WordsChecker tr6 = new ReplaceWithStars();
 
-        System.out.println(WordsTransformer.WordTransformNew("asd sdf fdg", tr3));
-        System.out.println(WordsTransformer.WordTransformNew("asd ASDF GHGF sdf fdg", tr4));
+        System.out.println(WordsTransformer.WordTransformNew("asd ASDF GHGFdf sdf fdg", tr3));
+        System.out.println(WordsTransformer.WordTransformNew("asd ASDF GHGFdf sdf fdg", tr4));
         System.out.println(WordsTransformer.WordTransformNew("asd ASDF GHGFdf sdf fdg", tr6));
 
         System.out.println("---------------------------------");
