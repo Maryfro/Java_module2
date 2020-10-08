@@ -1,54 +1,6 @@
 import java.util.Arrays;
 
 public class Exercise {
-    public static void main(String[] args) {
-
-        int[] a = {6, 2, 5, 3};
-        int[] b = {1, 2};
-        int[] c = {1};
-        System.out.println(Arrays.toString(shiftLeft(a))); //→ [2, 5, 3, 6]
-        System.out.println(Arrays.toString(shiftLeft(b))); //→ [2, 1]
-        System.out.println(Arrays.toString(shiftLeft(c))); //→  [1]
-        System.out.println("-------------------------------------");
-        System.out.println(wordIsPalindrom("НАГАН"));  // -> true;
-        System.out.println(wordIsPalindrom("ШАЛАШ"));  // -> true;
-        System.out.println(wordIsPalindrom("ЦВЕТОК"));  // -> false;
-        System.out.println("-------------------------------------");
-        System.out.println(stringIsPalindrom("А РОЗА УПАЛА НА ЛАПУ АЗОРА"));  // -> true;
-        System.out.println(stringIsPalindrom("ДОБРЫЙ ДЕНЬ"));  // -> false;
-        System.out.println("-------------------------------------");
-        int[] arr = new int[10];
-        System.out.println(Arrays.toString(fillArrayWithZerosAndOnes(arr, 0, 1)));
-        System.out.println("-------------------------------------");
-        int[] numbers = new int[5];
-        System.out.println(Arrays.toString(fillArrayWithArithmeticProgression(5, 2, numbers))); // -> {5,7,9,11,13};
-        System.out.println("-------------------------------------");
-        int[] array = {1, 15, 2, 45, 7};
-        System.out.println(sumMaxAndMin(array));
-        System.out.println("-------------------------------------");
-        int[] a1 = {1, 2, 3};
-        int[] a2 = {7, 3};
-        int[] a3 = {7, 3, 2};
-        int[] a4 = {1, 3};
-        System.out.println(commonEnd(a1, a2));  //→ true
-        System.out.println(commonEnd(a1, a3)); // → false
-        System.out.println(commonEnd(a1, a4)); // → true
-        System.out.println("-------------------------------------");
-        int[] b1 = {0, 5, 0, 3};
-        int[] b2 = {0, 4, 0, 3};
-        int[] b3 = {0, 1, 0};
-        System.out.println(Arrays.toString(zeroMax(b1)));// →[5, 5, 3, 3]
-        System.out.println(Arrays.toString(zeroMax(b2)));// →[3, 4, 3, 3]
-        System.out.println(Arrays.toString(zeroMax(b3)));// →[1, 1, 0]
-        System.out.println("-------------------------------------");
-        System.out.println(nonStart("Hello", "There")); //→"ellohere"
-        System.out.println(nonStart("java", "code")); // →"avaode"
-        System.out.println(nonStart("shotl", "java")); //→”hotlava"
-        System.out.println("-------------------------------------");
-        System.out.println(middleTwo("string"));// →"ri"
-        System.out.println(middleTwo("code")); // →”od"
-        System.out.println(middleTwo("Practice")); // → “ct"
-    }
 
     public static String middleTwo(String str) {
         return str.substring(str.length() / 2 - 1, str.length() / 2 + 1);
@@ -126,5 +78,54 @@ public class Exercise {
         return result;
     }
 
+    /*public static void main(String[] args) {
+
+        int[] a = {6, 2, 5, 3};
+        int[] b = {1, 2};
+        int[] c = {1};
+        System.out.println(Arrays.toString(shiftLeft(a))); //→ [2, 5, 3, 6]
+        System.out.println(Arrays.toString(shiftLeft(b))); //→ [2, 1]
+        System.out.println(Arrays.toString(shiftLeft(c))); //→  [1]
+        System.out.println("-------------------------------------");
+        System.out.println(wordIsPalindrom("НАГАН"));  // -> true;
+        System.out.println(wordIsPalindrom("ШАЛАШ"));  // -> true;
+        System.out.println(wordIsPalindrom("ЦВЕТОК"));  // -> false;
+        System.out.println("-------------------------------------");
+        System.out.println(stringIsPalindrom("А РОЗА УПАЛА НА ЛАПУ АЗОРА"));  // -> true;
+        System.out.println(stringIsPalindrom("ДОБРЫЙ ДЕНЬ"));  // -> false;
+        System.out.println("-------------------------------------");
+        int[] arr = new int[10];
+        System.out.println(Arrays.toString(fillArrayWithZerosAndOnes(arr, 0, 1)));
+        System.out.println("-------------------------------------");
+        int[] numbers = new int[5];
+        System.out.println(Arrays.toString(fillArrayWithArithmeticProgression(5, 2, numbers))); // -> {5,7,9,11,13};
+        System.out.println("-------------------------------------");
+        int[] array = {1, 15, 2, 45, 7};
+        System.out.println(sumMaxAndMin(array));
+        System.out.println("-------------------------------------");
+        int[] a1 = {1, 2, 3};
+        int[] a2 = {7, 3};
+        int[] a3 = {7, 3, 2};
+        int[] a4 = {1, 3};
+        System.out.println(commonEnd(a1, a2));  //→ true
+        System.out.println(commonEnd(a1, a3)); // → false
+        System.out.println(commonEnd(a1, a4)); // → true
+        System.out.println("-------------------------------------");
+        int[] b1 = {0, 5, 0, 3};
+        int[] b2 = {0, 4, 0, 3};
+        int[] b3 = {0, 1, 0};
+        System.out.println(Arrays.toString(zeroMax(b1)));// →[5, 5, 3, 3]
+        System.out.println(Arrays.toString(zeroMax(b2)));// →[3, 4, 3, 3]
+        System.out.println(Arrays.toString(zeroMax(b3)));// →[1, 1, 0]
+        System.out.println("-------------------------------------");
+        System.out.println(nonStart("Hello", "There")); //→"ellohere"
+        System.out.println(nonStart("java", "code")); // →"avaode"
+        System.out.println(nonStart("shotl", "java")); //→”hotlava"
+        System.out.println("-------------------------------------");
+        System.out.println(middleTwo("string"));// →"ri"
+        System.out.println(middleTwo("code")); // →”od"
+        System.out.println(middleTwo("Practice")); // → “ct"
+    }
+*/
 
 }
