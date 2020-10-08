@@ -24,7 +24,6 @@ public class WordsTransformerTest {
         Assert.assertNotNull(WordsTransformer.WordTransformNew(input, wc1));
         Assert.assertNotNull(WordsTransformer.WordTransformNew(input, wc2));
         Assert.assertNotNull(WordsTransformer.WordTransformNew(input, wc3));
-        assertNotSame(input, WordsTransformer.WordTransformNew(input, wc1));
     }
 
     @Test
