@@ -58,16 +58,6 @@ public class ExerciseTest {
     }
 
     @Test
-    public void testShiftLeft() {
-        int[] a = {6, 2, 5, 3};
-        int[] b = {1, 2};
-        int[] c = {1};
-        assertArrayEquals(new int[]{2, 5, 3, 6}, Exercise.shiftLeft(a));
-        assertArrayEquals(new int[]{2, 1}, Exercise.shiftLeft(b));
-        assertArrayEquals(new int[]{1}, Exercise.shiftLeft(c));
-    }
-
-    @Test
     public void testShiftLeft1() {
         int[] a = {6, 2, 5, 3};
         assertArrayEquals(new int[]{2, 5, 3, 6}, Exercise.shiftLeft(a));
