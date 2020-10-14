@@ -1,6 +1,5 @@
 package telran;
 
-
 import java.util.Arrays;
 
 public class Category {
@@ -29,7 +28,6 @@ public class Category {
             System.out.println(name);
         }
     }
-
 
     @Override
     public String toString() {

@@ -9,26 +9,28 @@ public class App {
                 {new Product("chair", 100, 5.0), new Product("couch", 555, 3.9)});
         Category clothes = new Category("clothes", new Product[]
                 {new Product("sweater", 30, 4.3), new Product("jeans", 57.99, 4.0)});
-        User user1 = new User("user1", "password", new Basket(10));
-        User user2 = new User("user2", "123", new Basket(10));
+        User user1 = new User();
+        User user2 = new User();
         // аутентификация пользователя. Пользователь вводит логин-пароль с клавиатуры.
-        //  user1.checkLogin();
-        //user2.checkPassword();
+        user1.checkAuthentication(new Login());
+        user1.checkAuthentication(new Password());
+        user2.checkAuthentication(new Login());
+        user2.checkAuthentication(new Password());
         System.out.println("-----------------");
         // просмотр списка товаров определенного каталога
-         Category.displayProductsByCategory(toys);
-         Category.displayProductsByCategory(furniture);
+        Category.displayProductsByCategory(toys);
+        Category.displayProductsByCategory(furniture);
         System.out.println("-----------------");
-          // просмотр списка каталогов товаров
+        // просмотр списка каталогов товаров
         String[] categories = {toys.getName(), furniture.getName(), clothes.getName()};
         Category.displayCategories(categories);
         System.out.println("-----------------");
         // выбор товара в корзину
-        user2.basket.addProductToBasket(teddy);
-        user1.basket.addProductToBasket(barbie);
+        user1.basket.addProductToBasket(teddy);
+        user2.basket.addProductToBasket(barbie);
         System.out.println("-----------------");
         //покупка товаров, находящихся в корзине.
-        user2.basket.buyProductFromBasket(teddy);
         user1.basket.buyProductFromBasket(teddy);
+        user2.basket.buyProductFromBasket(teddy);
     }
 }

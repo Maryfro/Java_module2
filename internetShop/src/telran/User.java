@@ -3,44 +3,25 @@ package telran;
 import java.util.Scanner;
 
 public class User {
-    private String login;
-    private String password;
-    Basket basket;
-
-    public User(String login, String password, Basket basket) {
-        this.login = login;
-        this.password = password;
-        this.basket = basket;
+    Basket basket = new Basket(10);
+    interface Authentication{
     }
 
-    public boolean checkLogin() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter login please");
-        String userLogin = scanner.nextLine();
-        if (userLogin.equalsIgnoreCase(login)) {
-            System.out.println("login is correct");
-            return true;
-        } else {
-            System.out.println("your login is not correct, we cannot find you in our system");
-            scanner.close();
-            return false;
-        }
-    }
-
-    public boolean checkPassword() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter password please");
-        String userPassword = scanner.nextLine();
-        scanner.close();
-        if (userPassword.equalsIgnoreCase(password)) {
-            System.out.println("password is correct");
-            return true;
-        } else {
-            System.out.println("your password is not correct, we cannot verify you in our system");
-            return false;
-        }
-    }
+     boolean checkAuthentication(Authentication authentication){
+         Scanner scanner = new Scanner(System.in);
+         System.out.println("Enter " + authentication.getClass().getSimpleName() +" please");
+         String userInput = scanner.nextLine();
+         if (userInput.equalsIgnoreCase(authentication.toString())) {
+             System.out.println(authentication.getClass().getSimpleName() + " is correct");
+             return true;
+         } else {
+             System.out.println("your " + authentication.getClass().getSimpleName()
+                     + " is not correct, we cannot find you in our system");
+             return false;
+         }
+     }
 }
+
 
 
 
