@@ -57,13 +57,14 @@ public class ArrayList<E> implements CustomList<E> {
         return false;
     }
 
-    public int indexOf(E e){
+    public int indexOf(E e) {
         int index = 0;
         for (int i = 0; i < size; i++) {
-            if(source[i].equals(e)){
+            if (source[i].equals(e)) {
                 index = i;
             }
         }
-        return index;
+        if (index > 0) return index;
+        else return -1;
     }
 }

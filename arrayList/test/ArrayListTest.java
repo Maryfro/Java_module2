@@ -2,7 +2,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import telran.ArrayList;
 
-public class ArrayListTeat {
+public class ArrayListTest {
 
     @Test
     public void testSizeZero() {

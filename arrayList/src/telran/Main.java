@@ -7,7 +7,10 @@ public class Main {
         int[] nums = {1, 2, 3, 4};
         ArrayList<Integer> numbers = new ArrayList<Integer>();
         numbers.add(1);
-        numbers.removeById(0);
+        numbers.add(2);
+        numbers.add(3);
+        numbers.add(4);
+        numbers.removeById(1);
         System.out.println(numbers.size());
 
         ArrayList<String> list = new ArrayList<String>();
@@ -15,5 +18,13 @@ public class Main {
         ArrayList<Person> persons = new ArrayList<Person>();
         persons.add(p1);
         System.out.println(persons.size());
+
+        LinkedList <Integer> digits = new LinkedList<>();
+        digits.add(1);
+        digits.add(2);
+        digits.add(3);
+        digits.removeById(1);
+       // digits.removeById(0);
+       // System.out.println(digits.get(0).intValue());
     }
 }
