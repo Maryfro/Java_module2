@@ -1,4 +1,7 @@
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class Exercise {
 
@@ -14,10 +17,24 @@ public class Exercise {
         int temp = 0;
         for (int i = nums.length - 1; i >= 0; i--) {
             if (nums[i] % 2 != 0) {
-                temp = nums[i];
-            }
-            if (nums[i] == 0) {
+                temp = Math.max(temp, nums[i]);
+            } else if (nums[i] == 0) {
                 nums[i] = temp;
+            }
+        }
+        return nums;
+    }
+
+    public static int[] zeroMax1(int[] nums) { //  int[] b1 = {0, 5, 0, 3};
+        for (int i = 0; i < nums.length - 1; i++) {
+            if (nums[i] == 0) {
+                int max = nums[i + 1];
+                for (int j = 0; j < nums.length && nums[j] != 0; j++) {
+                    if (nums[j] % 2 != 0 && nums[j] > max) {
+                        max = nums[j];
+                    }
+                }
+                nums[i] = max;
             }
         }
         return nums;
@@ -40,6 +57,11 @@ public class Exercise {
         return max + min;
     }
 
+    public static int sumMaxAndMinList(Integer[] arr) {
+        List<Integer> list = Arrays.asList(arr);
+        return Collections.max(list) + Collections.min(list);
+    }
+
     public static int[] fillArrayWithArithmeticProgression(int start, int diff, int[] arr) {
         arr[0] = start;
         for (int i = 1; i < arr.length; i++) {
@@ -49,15 +71,37 @@ public class Exercise {
         return arr;
     }
 
-    public static int[] fillArrayWithZerosAndOnes(int[] arr, int a, int b) {
+    public static List<Integer> fillArrayWithArithmeticProgression1(int start, int diff, int size) {
+        List<Integer> list = new ArrayList<>();
+        while (size > 0) {
+            list.add(start);
+            start += diff;
+            size--;
+        }
+        return list;
+    }
+
+    public static int[] fillArrayWithZerosAndOnes(int n) {
+        int[] arr = new int[n];
         for (int i = 0; i < arr.length; i++) {
-            if (i % 2 == 0) {
-                arr[i] = a;
-            } else {
-                arr[i] = b;
+            if (i % 2 != 0) {
+                arr[i] = 1;
             }
         }
         return arr;
+    }
+
+    public static List<Integer> fillArrayWithZerosAndOnes1(int n) {
+        List<Integer> list = new ArrayList<>();
+        while (n > 0) {
+            if (n == 1) {
+                list.add(0);
+                return list;
+            }
+            Collections.addAll(list, 0, 1);
+            n -= 2;
+        }
+        return list;
     }
 
     public static boolean stringIsPalindrom(String input) {
@@ -66,10 +110,25 @@ public class Exercise {
     }
 
     public static boolean wordIsPalindrom(String input) {
-        return new StringBuffer(input).reverse().toString().equals(input);
+        if (input.length() == 1) {
+            return true;
+        } else {
+            if (input.substring(0, 1).equals(input.substring(input.length() - 1))) {
+                if (input.length() == 2) {
+                    return true;
+                }
+                return wordIsPalindrom(input.substring(1, input.length() - 1));
+            } else {
+                return false;
+            }
+        }
+        //return new StringBuffer(input).reverse().toString().equals(input);
     }
 
     public static int[] shiftLeft(int[] arr) {
+        if (arr.length < 1) {
+            return arr;
+        }
         int[] result = new int[arr.length];
         for (int i = 1; i < result.length; i++) {
             result[i - 1] = arr[i];
@@ -78,9 +137,28 @@ public class Exercise {
         return result;
     }
 
-    /*public static void main(String[] args) {
+    public static void main(String[] args) {
+        System.out.println(wordIsPalindrom("шалаш"));
+        System.out.println(wordIsPalindrom("шапка"));
+        System.out.println(wordIsPalindrom("abba"));
 
-        int[] a = {6, 2, 5, 3};
+        System.out.println("--------");
+        System.out.println(Arrays.toString(fillArrayWithZerosAndOnes(7)));
+        System.out.println(fillArrayWithZerosAndOnes1(7));
+        System.out.println("--------");
+
+        System.out.println(fillArrayWithArithmeticProgression1(3, 3, 5));
+        System.out.println("--------");
+        Integer[] a = {6, 2, 5, 3};
+        System.out.println(sumMaxAndMinList(a));
+
+        System.out.println("---------");
+
+        int[] b1 = {0, 5, 0, 3};
+        int[] b2 = {0, 4, 0, 3};
+        int[] b3 = {0, 1, 0};
+        System.out.println(Arrays.toString(zeroMax1(b1)));
+       /* int[] a = {6, 2, 5, 3};
         int[] b = {1, 2};
         int[] c = {1};
         System.out.println(Arrays.toString(shiftLeft(a))); //→ [2, 5, 3, 6]
@@ -127,5 +205,5 @@ public class Exercise {
         System.out.println(middleTwo("Practice")); // → “ct"
     }
 */
-
+    }
 }

@@ -101,11 +101,11 @@ public class ExerciseTest {
         assertFalse(Exercise.stringIsPalindrom("ДОБРЫЙ ДЕНЬ"));
     }
 
-    @Test
+   /* @Test
     public void testFillArraysWithZerosAndOnes() {
         assertArrayEquals(new int[]{0, 1, 0, 1, 0, 1, 0, 1, 0, 1},
                 Exercise.fillArrayWithZerosAndOnes(new int[10], 0, 1));
-    }
+    }*/
 
     @Test
     public void testFillArrayWithArithmeticProgression() {
