@@ -25,7 +25,7 @@ public class Exercise {
         return nums;
     }
 
-    public static int[] zeroMax1(int[] nums) { //  int[] b1 = {0, 5, 0, 3};
+    public static int[] zeroMax1(int[] nums) { //  int[] b1 = {0, 5, 0, 3}; exp. [5, 5, 3, 3]
         for (int i = 0; i < nums.length - 1; i++) {
             if (nums[i] == 0) {
                 int max = nums[i + 1];
@@ -158,6 +158,8 @@ public class Exercise {
         int[] b2 = {0, 4, 0, 3};
         int[] b3 = {0, 1, 0};
         System.out.println(Arrays.toString(zeroMax1(b1)));
+
+
        /* int[] a = {6, 2, 5, 3};
         int[] b = {1, 2};
         int[] c = {1};
