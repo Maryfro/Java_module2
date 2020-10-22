@@ -1,7 +1,13 @@
 package de.telran.application;
 
 import de.telran.dao.Library;
+import de.telran.dao.MyLibrary;
 import de.telran.data.Book;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 
 public class App {
     public static void main(String[] args) {
@@ -9,7 +15,7 @@ public class App {
         Book book2 = new Book("The Shining", "Steven King", 1977, 765);
         Book book3 = new Book("The Idiot", "Fedor Dostoevsky", 1861, 1276);
         Book book4 = new Book("Catcher in the rye", "Jerome Salinger", 1951, 372);
-        Library myLibrary = new Library(100);
+        Library myLibrary = new Library(10);
         //System.out.println(myLibrary.getSize());
         myLibrary.addBook(book1);
         myLibrary.addBook(book2);
@@ -35,6 +41,17 @@ public class App {
         System.out.println("---------------------");
         System.out.println("The oldest book");
         System.out.println(myLibrary.findOldestBook());
+
+        System.out.println("---------------------");
+
+        MyLibrary myLibrary1 = new MyLibrary();
+        Collections.addAll(myLibrary1.getMyLibrary(), myLibrary.getBooks());
+       // System.out.println(myLibrary1.getMyLibrary());
+        for (Book b: myLibrary1.getMyLibrary()) {
+            if(b!=null)
+            System.out.println(b);
+        }
+
 
     }
 }

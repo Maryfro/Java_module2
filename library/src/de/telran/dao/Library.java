@@ -11,6 +11,10 @@ public class Library {
         size = 0;
     }
 
+    public Book[] getBooks() {
+        return books;
+    }
+
     public int getSize() {
         return size;
     }
