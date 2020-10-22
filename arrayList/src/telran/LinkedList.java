@@ -71,15 +71,22 @@ public class LinkedList<E> implements CustomList<E> {
         if (index >= size || index < 0) {
             throw new IndexOutOfBoundsException();
         }
-       /* if (index == 0){
+        if (index == 0) {
             first = first.next;
             first.prev = null;
             size--;
-        }*/
-            Node<E> ret = getNodeIntIndex(index);
-            ret.prev.next = ret.next;
-            ret.next.prev = ret.prev;
+            return (E) first.value;
+        }
+        if (index == size - 1) {
+            last = last.prev;
+            last.next = null;
             size--;
+            return (E) last.value;
+        }
+        Node<E> ret = getNodeIntIndex(index);
+        ret.prev.next = ret.next;
+        ret.next.prev = ret.prev;
+        size--;
         return (E) ret.value;
 
     }
