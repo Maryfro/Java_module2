@@ -29,12 +29,12 @@ public class Exercise {
         for (int i = 0; i < nums.length - 1; i++) {
             if (nums[i] == 0) {
                 int max = nums[i + 1];
-                for (int j = 0; j < nums.length && nums[j] != 0; j++) {
+                for (int j = i + 1; j < nums.length && nums[j] != 0; j++) {
                     if (nums[j] % 2 != 0 && nums[j] > max) {
                         max = nums[j];
                     }
                 }
-                nums[i] = max;
+                if (max % 2 != 0) nums[i] = max;
             }
         }
         return nums;
@@ -157,7 +157,9 @@ public class Exercise {
         int[] b1 = {0, 5, 0, 3};
         int[] b2 = {0, 4, 0, 3};
         int[] b3 = {0, 1, 0};
-        System.out.println(Arrays.toString(zeroMax1(b1)));
+        System.out.println(Arrays.toString(zeroMax(b1)));
+         System.out.println(Arrays.toString(zeroMax(b2)));
+        System.out.println(Arrays.toString(zeroMax(b3)));
 
 
        /* int[] a = {6, 2, 5, 3};
