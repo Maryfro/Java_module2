@@ -54,7 +54,7 @@ public class LinkedListTest {
         list2.add("Hello");
         list2.add("world");
         list2.add("java");
-        Assert.assertEquals("world", list2.removeById(1));
+        Assert.assertEquals("Hello", list2.removeById(0));
     }
 
     @Test
