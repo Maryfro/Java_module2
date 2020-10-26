@@ -24,11 +24,14 @@ public class CollectionIssue {
         List<String> four = new ArrayList<>();
         Collections.addAll(four, "dd", "ff", "ee");
         System.out.println("loop version: " + isLoopVersion(one, two));
+        System.out.println(isLoopVersion2(one, two));
         System.out.println("loop version: " + isLoopVersion(three, four));
+        System.out.println(isLoopVersion2(three, four));
         System.out.println("--------------");
         List<String> names = new ArrayList<>();
-        Collections.addAll(names, "Ivan", "Maria", "Stephan", "John", "Amalia");
+        Collections.addAll(names, "Ivan", "Maria", "Stephan", "John", "John", "Amalia");
         System.out.println("names longer than 4 characters " + namesLongerThanFourCharacters(names));
+        System.out.println(namesLongerThanFourCharacters2(names));
         System.out.println("--------------");
         List<Integer> listOne = new ArrayList<>();
         Collections.addAll(listOne, 1, 2, 3, 4);
@@ -40,7 +43,7 @@ public class CollectionIssue {
         Collections.addAll(persons, new Person("Mary Poppins", new Address("Baker Street", 33)),
                 new Person("Charlie Chaplin", new Address("Mon Martre", 2)),
                 new Person("Arnold Schwarznegger", new Address("Orange County", 8)));
-        System.out.println("get addresses by persons " + getAddresses(persons));
+        System.out.println("get addresses by persons " + Person.getAddresses(persons));
     }
 
     private static List<Integer> fillListWithIntegers(int size) {
@@ -74,6 +77,7 @@ public class CollectionIssue {
         for (int i = 0; i < listInteger.size(); i++) {
             output.add(listInteger.get(listInteger.size() - 1 - i));
         }
+      //  Collections.reverse(listInteger);
         return output;
     }
 
@@ -93,41 +97,66 @@ public class CollectionIssue {
         return one.equals(temp);
     }
 
+    private static boolean isLoopVersion2(List<String> one, List<String> two) {
+        if (one.size() != two.size()) {
+            return false;
+        }
+        for (int i = 0; i < one.size(); i++) {
+            Collections.rotate(one, 1);
+            if(one.equals(two)){
+                return true;
+            }
+        }
+        return false;
+    }
+
     //Есть список с именами: Ivan, Maria, Stephan, John, Amalia. Написать функцию,
     //которая вернет список, в котором не содержатся имена исходного списка длиной 4.
     private static List<String> namesLongerThanFourCharacters(List<String> list) {
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i).length() == 4) {
-                list.remove(list.get(i));
+        Iterator<String> iterator = list.iterator();
+        while (iterator.hasNext()) {
+            if (iterator.next().length() == 4) {
+                iterator.remove();
             }
         }
         return list;
     }
+
+    private static List<String> namesLongerThanFourCharacters2(List<String> list) {
+        Iterator<String> iterator = list.iterator();
+        for (String s : list) {
+            if (iterator.next().length() == 4) {
+                iterator.remove();
+            }
+        }
+        return list;
+    }
+
+    private static List<String> namesLongerThanFourCharacters1(List<String> list) {
+        List<String> output = new ArrayList<>();
+        for (String s : list) {
+            if (s.length() != 4) {
+                output.add(s);
+            }
+        }
+        return output;
+    }
+
 
     //Есть два списка одинаковой длины с числами. Написать функцию, которая вернет список с элементами Yes или No, где значение
     // на i-том месте зависит оттого, равны ли элементы двух списков под номером i.
     private static List<String> compareTwoLists(List<Integer> one, List<Integer> two) {
         List<String> output = new ArrayList<>();
         for (int i = 0; i < one.size(); i++) {
-            if (one.get(i).intValue() == two.get(i).intValue()) {
+            output.add(one.get(i) == two.get(i) ? "Yes" : "No");
+            /*if (one.get(i).intValue() == two.get(i).intValue()) {
                 output.add("Yes");
             } else {
                 output.add("No");
-            }
+            }*/
         }
         return output;
     }
-
-    //Есть два класса: Address с полями улица и номер дома и Person с полями имя и Address. Нужно написать
-    // функцию:List<Address> getAddresses(List<Person> persons) то есть по списку persons возвращать список их адресов
-    private static List<Address> getAddresses(List<Person> persons) {
-        List<Address> addresses = new ArrayList<>();
-        for (Person person : persons) {
-            addresses.add(person.getAddress());
-        }
-        return addresses;
-    }
-
 }
 
 
