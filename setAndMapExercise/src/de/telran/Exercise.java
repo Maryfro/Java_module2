@@ -6,6 +6,7 @@ public class Exercise {
     public static void main(String[] args) {
         System.out.println(removeDuplicates(new ArrayList<>(Arrays.asList(1, 2, 3, 3, 4, 5, 6, 4))));
         System.out.println(getDuplicates(new ArrayList<>(Arrays.asList(1, 2, 3, 3, 4, 5, 6, 4))));
+        System.out.println(getDuplicates1(new ArrayList<>(Arrays.asList(1, 2, 3, 3, 4, 5, 6, 4))));
         System.out.println("--------------------------");
         Map<String, String> map = new HashMap<>();
         map.put("a", "Hi");
@@ -21,18 +22,26 @@ public class Exercise {
         System.out.println(wordMultiple(new String[]{"a", "b", "a", "c", "b"}));
         System.out.println(wordMultiple(new String[]{"c", "b", "a"}));
         System.out.println(wordMultiple(new String[]{"c", "c", "c", "c"}));
+        System.out.println(wordMultiple1(new String[]{"c", "c", "c", "c"}));
         System.out.println("--------------------------");
         Set<String> dictionary = new HashSet<>();
         Collections.addAll(dictionary, "anna", "ivan", "naan", "vani", "piotr", "navi");
         System.out.println(getAnagrams(dictionary, "vani"));
         System.out.println(getAnagrams(dictionary, "anna"));
         System.out.println(getAnagrams(dictionary, "piotr"));
+        System.out.println("-----------------------------");
+        Anagram anagram = new Anagram(new String[] {"anna", "ivan", "naan", "vani", "piotr", "navi"});
+        anagram.createMap();
+        System.out.println(anagram.getMap());
+        System.out.println(anagram.getAnagrams("sam"));
+        System.out.println(anagram.getAnagrams("anna"));
+
     }
 
-    private static List<Integer> removeDuplicates(List<Integer> input) {
-        Set<Integer> temp = new HashSet<>();
+    private static <E> List<E> removeDuplicates(List<E> input) {
+        Set<E> temp = new HashSet<>();
         temp.addAll(input);
-        List<Integer> output = new ArrayList<>();
+        List<E> output = new ArrayList<>();
         output.addAll(temp);
         return output;
     }
@@ -47,19 +56,37 @@ public class Exercise {
         return copy;
     }
 
+    private static <E> List<E> getDuplicates1(List<E> input) {
+        Set<E> temp = new HashSet<>();
+        List<E> copy = new ArrayList<>();
+        for (E i : input) {
+            if (!temp.add(i)) {
+                copy.add(i);
+            }
+        }
+        return copy;
+    }
+
     private static Map<String, String> mapAB(Map<String, String> map) {
         if (map.size() > 1) {
             List<String> keySet = new ArrayList<>();
             keySet.addAll(map.keySet());
             List<String> values = new ArrayList<>();
             values.addAll(map.values());
-            String newKey = "";
-            String newValue = "";
-            for (int i = 0; i < map.size(); i++) {
+            String newKey = keySet.get(0) + keySet.get(1);
+            String newValue = values.get(0) + values.get(1);
+            /*for (int i = 0; i < map.size(); i++) {
                 newKey += keySet.get(i);
                 newValue += values.get(i);
-            }
+            }*/
             map.put(newKey, newValue);
+        }
+        return map;
+    }
+
+    private static Map<String, String> mapAB1(Map<String, String> map) {
+        if (map.containsKey("a") && map.containsKey("b")) {
+            map.put("ab", map.get("a") + map.get("b"));
         }
         return map;
     }
@@ -71,6 +98,18 @@ public class Exercise {
         }
         return map;
     }
+
+    private static Map<String, Boolean> wordMultiple1(String[] strings) {
+        Map<String, Boolean> map = new HashMap<>();
+        int count;
+        List<String> list = new ArrayList<>(Arrays.asList(strings));
+        for (String s : strings) {
+            count = Collections.frequency(list, s);
+            map.put(s, count > 1);
+        }
+        return map;
+    }
+
 
     private static Map<String, Set<String>> getAnagrams(Set<String> dictionary, String word) {
         Map<String, Set<String>> map = new HashMap<>();
