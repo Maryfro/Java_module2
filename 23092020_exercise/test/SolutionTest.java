@@ -31,4 +31,18 @@ class SolutionTest {
         Assert.assertEquals(4, res);
     }
 
+    @Test
+    public void squaredNumberWithOne(){
+        Solution s = new Solution();
+        int res = s.squaredNumber(1);
+        Assert.assertEquals(1, res);
+    }
+
+    @Test
+    public void squaredNumberWithMax(){
+        Solution s = new Solution();
+        int res = s.squaredNumber(12);
+        Assert.assertEquals(144, res);
+    }
+
 }
