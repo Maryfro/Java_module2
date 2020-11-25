@@ -43,16 +43,11 @@ public class ArrayIntegerList implements IntegerList {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException();
         int res = get(index);
-       source[index] = source[source.length-1];
-        decreaseCapacity(index);
+        System.arraycopy(source, index + 1, source, index, size - index - 1);
+        source[size--] = 0;
         return res;
     }
 
-   void decreaseCapacity(int index) {
-         int newCapacity = source.length -1;
-         int[] newSource = new int[newCapacity];
-         System.arraycopy(source, index,  newSource, index, newCapacity - index);
-    }
 
     @Override
     public int size() {

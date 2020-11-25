@@ -37,6 +37,12 @@ class ArrayIntegerListTest {
     }
 
     @org.junit.jupiter.api.Test
+    void test_removeById() {
+        list.removeById(1);
+        assertEquals(3, list.get(1));
+    }
+
+    @org.junit.jupiter.api.Test
     void test_set() {
         list.set(0, 10);
         assertEquals(10, list.get(0));
