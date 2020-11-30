@@ -25,11 +25,11 @@ public class LoanIssuer {
 
     public boolean toIssue(LoanConsumer lc) {
          if (!(isKind || isLazy)) {
-            return lc.getAge() >= 18 && lc.getAge() < 50 && lc.getIncome() > 20000;
+            return lc.getAge() >= 18 && lc.getAge() < 50 && lc.getIncome() >= 20000;
         } else if (isKind && !isLazy) {
-            return lc.getAge() >= 18 && lc.getAge() < 70 && lc.getIncome() > 20000;
+            return lc.getAge() >= 18 && lc.getAge() < 70 && lc.getIncome() >= 20000;
         }
-        return lc.getAge() >= 18 && lc.getIncome() > 20000;
+        return lc.getAge() >= 18 && lc.getIncome() >= 20000;
 
     }
 
