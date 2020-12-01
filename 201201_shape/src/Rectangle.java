@@ -1,4 +1,4 @@
-public class Rectangle extends Shape{
+public class Rectangle extends Shape {
     private int height;
     private int width;
 
@@ -13,7 +13,11 @@ public class Rectangle extends Shape{
     public void draw() {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                System.out.print(symbol);
+                if (i > 0 && j > 0 && j < height && i < height - 1)
+                    System.out.print(" ");
+                else
+                    System.out.print(symbol);
+
             }
             System.out.println();
         }
