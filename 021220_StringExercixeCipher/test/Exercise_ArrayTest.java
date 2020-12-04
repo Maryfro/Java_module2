@@ -18,7 +18,12 @@ class Exercise_ArrayTest {
     }
     @Test
     void countRepeatedNumbers_severalNumbers() {
-        assertEquals(4, arr.countRepeatedNumbers(new int[]{5, -3,  -3, -3, -3}));
+        assertEquals(1, arr.countRepeatedNumbers(new int[]{5, 1,  5, 1, 1}));
+    }
+
+    @Test
+    void countRepeatedNumbers_severalDiffNumbers() {
+        assertEquals(6, arr.countRepeatedNumbers(new int[]{5, 6,  6, 2, -3}));
     }
 
 
@@ -33,13 +38,24 @@ class Exercise_ArrayTest {
     }
 
     @Test
-    void findSwitchingSequence_severalNumbers() {
+    void findSwitchingSequence_noRepeatingNumbers() {
+        assertEquals(2, arr.findSwitchingSequence(new int[]{1, 2, 3, 4, 5, 6}));
+    }
+
+
+    @Test
+    void findSwitchingSequence_severalNumbers_borders() {
         assertEquals(5, arr.findSwitchingSequence(new int[]{5, -3, 5, -3, 5}));
     }
 
-    @Ignore
+    @Test
+    void findSwitchingSequence_severalNumbers_notBorders() {
+        assertEquals(3, arr.findSwitchingSequence(new int[]{1, -3, 5, -3, 6}));
+    }
+
+    @Test
     void findSwitchingSequence_severalEqualNumbers() {
         assertEquals(1, arr.findSwitchingSequence(new int[]{-3, -3, -3, -3, -3}));
     }
-    //TODO fix this case: expected return 1, actual: 2;
+
 }

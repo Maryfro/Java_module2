@@ -28,5 +28,20 @@ class ExerciseMapTest {
         assertEquals(3, map.findOddNumber(new int[]{1,3,1,3,3}));
     }
 
+    @Test
+    void findOddNumber_multipleNumbers_severalOccurrences_OddNumberInTheMiddle() {
+        assertEquals(5, map.findOddNumber(new int[]{10, -9, 5, 10, -9}));
+    }
+
+    @Test
+    void findOddNumber_multipleNumbers_severalOccurrences_OddNumberFirst() {
+        assertEquals(10, map.findOddNumber(new int[]{10, -9, -9, 5, 5}));
+    }
+
+    @Test
+    void findOddNumber_multipleNumbers_severalOccurrences_OddNumberLast() {
+        assertEquals(5, map.findOddNumber(new int[]{10, -9, -9, 10, 5}));
+    }
+
 
 }
