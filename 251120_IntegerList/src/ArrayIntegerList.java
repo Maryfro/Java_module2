@@ -1,15 +1,17 @@
+import java.util.Arrays;
+import java.util.Objects;
 
-public class ArrayIntegerList implements IntegerList {
+public class ArrayIntegerList<T> implements IntegerList<T> {
     private final static int INITIAL_CAPACITY = 16;
     private int size;
-    int[] source;
+    Object[] source;
 
     public ArrayIntegerList() {
-        source = new int[INITIAL_CAPACITY];
+        source = new Object[INITIAL_CAPACITY];
     }
 
     @Override
-    public void addLast(int element) {
+    public void addLast(T element) {
         if (size == source.length) {
             increaseCapacity();
         }
@@ -18,20 +20,20 @@ public class ArrayIntegerList implements IntegerList {
 
     void increaseCapacity() {
         int newCapacity = source.length * 2;
-        int[] newSource = new int[newCapacity];
+        Object[] newSource = new Object[newCapacity];
         System.arraycopy(source, 0, newSource, 0, source.length);
         source = newSource;
     }
 
     @Override
-    public int get(int index) {
+    public T get(int index) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException();
-        return source[index];
+        return (T) source[index];
     }
 
     @Override
-    public int set(int index, int value) {
+    public T set(int index, T value) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException();
         source[index] = value;
@@ -39,12 +41,13 @@ public class ArrayIntegerList implements IntegerList {
     }
 
     @Override
-    public int removeById(int index) {
+    public T removeById(int index) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException();
-        int res = get(index);
+        T res = (T) source[index];
         System.arraycopy(source, index + 1, source, index, size - index - 1);
-        source[size--] = 0;
+        source[size - 1] = null;
+        size--;
         return res;
     }
 
@@ -52,5 +55,51 @@ public class ArrayIntegerList implements IntegerList {
     @Override
     public int size() {
         return size;
+    }
+
+    @Override
+    public void clear() {
+        for (int i = 0; i < size; i++)
+            source[i] = null;
+        size = 0;
+    }
+
+    @Override
+    public boolean remove(T obj) {
+        for (int i = 0; i < size; i++) {
+            // if (source[i].equals(obj)) {
+            if (this.contains(obj)) {
+                System.arraycopy(source, i + 1, source, i, size - i - 1);
+                source[size--] = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean contains(T obj) {
+        for (int i = 0; i < size; i++) {
+            if (source[i].equals(obj)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ArrayIntegerList<?> that = (ArrayIntegerList<?>) o;
+        return size == that.size &&
+                Arrays.equals(source, that.source);
+    }
+
+    @Override
+    public int hashCode() {
+        int result = Objects.hash(size);
+        result = 31 * result + Arrays.hashCode(source);
+        return result;
     }
 }

@@ -1,17 +1,17 @@
-public interface IntegerList {
+public interface IntegerList<T>  {
 
     /**
      * adds the element to the list
      * @param element  - to add
      */
-    void addLast(int element);
+    void addLast(T element);
 
     /**
      *
      * @param index - index of element to return
      * @return element by index
      */
-    int get(int index);
+    T get(int index);
 
     /**
      * sets the value to the index place
@@ -19,18 +19,35 @@ public interface IntegerList {
      * @param value the value of the removed element
      * @return
      */
-    int set(int index, int value);
+    T set(int index, T value);
 
     /**
      * removes the element by index
      * @param index the index of the element to remove
      * @return the value of the removed element
      */
-    int removeById(int index);
+    T removeById(int index);
 
     /**
      *
      * @return the size of 'this'
      */
     int size();
+
+    void clear();
+
+    /**
+     * Method removes object if there is an element in list, which equals to the obj. The method must remove
+     * only first such element.
+     * @param obj
+     * @return true if obj was found and removed and false otherwise.
+     */
+    boolean remove(T obj);
+
+    /**
+     *
+     * @param obj to check
+     * @return true if the object is present in the list (according to method equals)
+     */
+    boolean contains(T obj);
 }
