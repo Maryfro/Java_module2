@@ -44,9 +44,7 @@ public class Exercise_Array {
         int num = arr[0];
         int count = 2;
         for (int i = 1; i < arr.length - 1; i++) {
-            if (num == arr[i])
-                return count - 1;
-            if (num == arr[i + 1] && num != arr[i])
+            if (num == arr[i + 1])
                 count++;
             num = arr[i];
         }

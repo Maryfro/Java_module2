@@ -55,7 +55,7 @@ class Exercise_ArrayTest {
 
     @Test
     void findSwitchingSequence_severalEqualNumbers() {
-        assertEquals(1, arr.findSwitchingSequence(new int[]{-3, -3, -3, -3, -3}));
+        assertEquals(5, arr.findSwitchingSequence(new int[]{-3, -3, -3, -3, -3}));
     }
 
 }
