@@ -1,11 +1,13 @@
+import jdk.nashorn.internal.ir.annotations.Ignore;
+import org.junit.jupiter.api.Test;
 
 import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class ArrayIntegerListTest {
-    ArrayIntegerList<Integer> list = new ArrayIntegerList();
-    ArrayIntegerList<String> listString = new ArrayIntegerList();
+class OurLinkedListTest {
+    OurLinkedList<Integer> list = new OurLinkedList<>();
+    OurLinkedList<String> listString = new OurLinkedList();
 
 
     @org.junit.jupiter.api.Test
@@ -58,28 +60,6 @@ class ArrayIntegerListTest {
 
     }
 
-    @org.junit.jupiter.api.Test
-    void test_addLast_maxCapacity() {
-        list.addLast(1);
-        list.addLast(2);
-        list.addLast(3);
-        for (int i = 3; i < 17; i++) {
-            list.addLast(i);
-        }
-        assertEquals(17, list.size());
-    }
-
-    @org.junit.jupiter.api.Test
-    void test_addLast_maxCapacity1() {
-        list.addLast(1);
-        list.addLast(2);
-        list.addLast(3);
-        for (int i = 3; i < 18; i++) {
-            list.addLast(i);
-        }
-        assertEquals(18, list.size());
-        // assertEquals(32, list.source.length);
-    }
 
     @org.junit.jupiter.api.Test
     void test_get_nonNegativeElement() {
@@ -99,27 +79,36 @@ class ArrayIntegerListTest {
         });
     }
 
+
     @org.junit.jupiter.api.Test
-    void test_removeById_LastIndex() {
-        list.addLast(1);
-        list.addLast(2);
-        list.addLast(3);
-        list.removeById(2);
-        assertThrows(IndexOutOfBoundsException.class, () -> {
-            list.get(2);
-        });
+    public void testRemoveById_addCapacityNumberElementsAndRemoveFirst_correct() {
+
+        for (int i = 0; i < 16; i++) {
+            list.addLast(i);
+        }
+
+        assertEquals(0, list.removeById(0));
+        assertEquals(15, list.size());
+
+        for (int i = 0; i < list.size(); i++) {
+          assertEquals(1 + i, list.get(i));
+        }
+
+        assertThrows(IndexOutOfBoundsException.class, () -> list.get(15));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.set(15, 111));
+        assertThrows(IndexOutOfBoundsException.class, () -> list.removeById(15));
     }
 
     @org.junit.jupiter.api.Test
-    void test_removeById_IndexZero() {
-        list.addLast(1);
-        list.addLast(2);
-        list.addLast(3);
-        //assertEquals(1, list.removeById(0));
-
-        for (int i = 0; i < list.size(); i++) {
-            assertEquals(i + 1, list.get(i));
+    public void testRemoveById_addSeveralElementsAndRemoveLast_correct() {
+        int[] numbers = {-5, 18, 3, 1, 10, 2, 0, 6};
+        for (int number : numbers) {
+            list.addLast(number);
         }
+
+        assertEquals(6, list.removeById(7));
+        assertEquals(7, list.size());
+
     }
 
     @org.junit.jupiter.api.Test
@@ -250,19 +239,56 @@ class ArrayIntegerListTest {
         assertFalse(list.remove(15));
     }
 
-    @org.junit.jupiter.api.Test
-    void test_remove_trueCase() {
-        list.addLast(14);
-        assertTrue(list.remove(14));
+    @Test
+    public void testRemove_RemoveIntermediate_correct() {
+
+        for (int i = 0; i < 16; i++) {
+            listString.addLast("symbol " + i);
+        }
+
+        String removeElement = "symbol 5";
+        assertTrue(listString.remove(removeElement));
+        assertEquals(15, listString.size());
+
+        for (int i = 0; i < 5; i++) {
+            assertEquals("symbol " + i, listString.get(i));
+        }
+
+        for (int i = 5; i < listString.size(); i++) {
+            assertEquals("symbol " + (i + 1), listString.get(i));
+        }
     }
 
-    @org.junit.jupiter.api.Test
-    void test_remove_falseCase() {
-        list.addLast(14);
-        assertFalse(list.remove(10));
+    @Test
+    public void testRemove_RemoveFirst_correct() {
+
+        for (int i = 0; i < 16; i++) {
+            listString.addLast("symbol " + i);
+        }
+
+        assertTrue(listString.remove("symbol 0"));
+        assertEquals(15, listString.size());
+        assertEquals("symbol 15", listString.get(14));
+
+        for (int i = 1; i < listString.size(); i++) {
+            assertEquals("symbol " + (i + 1), listString.get(i));
+        }
     }
 
-    @org.junit.jupiter.api.Test
+    @Test
+    public void testRemove_RemoveLast_correct() {
+
+        listString.addLast("abra");
+        listString.addLast("ca");
+        listString.addLast("da");
+        listString.addLast("bra");
+
+        assertTrue(listString.remove("bra"));
+        assertEquals(3, listString.size());
+
+    }
+
+    @Ignore
     void test_forwardIterator_emptyList() {
         Iterator<String> forwardIterator = listString.forwardIterator();
         assertFalse(forwardIterator.hasNext());
@@ -270,7 +296,7 @@ class ArrayIntegerListTest {
             forwardIterator.next();
         });
     }
-    @org.junit.jupiter.api.Test
+    @Ignore
     void test_forwardIterator_oneElement() {
         String[] expected = {"Hello"};
         Iterator<String> forwardIterator = listString.forwardIterator();
@@ -286,7 +312,7 @@ class ArrayIntegerListTest {
         });
     }
 
-    @org.junit.jupiter.api.Test
+    @Ignore
     void test_forwardIterator_severalElements() {
         String[] expected = {"Hello", "world", "java", "code"};
         Iterator<String> forwardIterator = listString.forwardIterator();
@@ -306,7 +332,7 @@ class ArrayIntegerListTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Ignore
     void test_backwardIterator_emptyList() {
         Iterator<String> backwardIterator = listString.backwardIterator();
         assertFalse(backwardIterator.hasNext());
@@ -314,7 +340,7 @@ class ArrayIntegerListTest {
             backwardIterator.next();
         });
     }
-    @org.junit.jupiter.api.Test
+    @Ignore
     void test_backwardIterator_oneElement() {
         String[] expected = {"Hello"};
         Iterator<String> backwardIterator = listString.backwardIterator();
@@ -330,7 +356,7 @@ class ArrayIntegerListTest {
         });
     }
 
-    @org.junit.jupiter.api.Test
+    @Ignore
     void test_backwardIterator_severalElements() {
         String[] expected = {"code", "java", "world", "Hello"};
         Iterator<String> backwardIterator = listString.backwardIterator();
@@ -350,16 +376,17 @@ class ArrayIntegerListTest {
     }
 
 
-    @org.junit.jupiter.api.Test
+    @Ignore
     void test_remove_nullCase() {
         list.addLast(null);
         assertTrue(list.remove(null));
     }
 
-    @org.junit.jupiter.api.Test
+    @Ignore
     void test_contains_nullCase() {
         list.addLast(null);
         assertTrue(list.contains(null));
     }
-    
+
+
 }

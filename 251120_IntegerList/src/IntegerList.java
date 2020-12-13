@@ -1,4 +1,6 @@
-public interface IntegerList<T>  {
+import java.util.Iterator;
+
+public interface IntegerList<T> extends Iterable<T> {
 
     /**
      * adds the element to the list
@@ -50,4 +52,14 @@ public interface IntegerList<T>  {
      * @return true if the object is present in the list (according to method equals)
      */
     boolean contains(T obj);
+
+    /**
+     * @return iterator object which iterates from the beginning to the end of the list
+     */
+    Iterator<T> forwardIterator();
+
+    /**
+     * @return iterator object which iterates from the end to the beginning of the list
+     */
+    Iterator<T> backwardIterator();
 }

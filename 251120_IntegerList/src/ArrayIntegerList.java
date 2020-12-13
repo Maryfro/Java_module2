@@ -1,10 +1,9 @@
-import java.util.Arrays;
-import java.util.Objects;
+import java.util.Iterator;
 
 public class ArrayIntegerList<T> implements IntegerList<T> {
     private final static int INITIAL_CAPACITY = 16;
     private int size;
-    Object[] source;
+    private Object[] source;
 
     public ArrayIntegerList() {
         source = new Object[INITIAL_CAPACITY];
@@ -12,12 +11,16 @@ public class ArrayIntegerList<T> implements IntegerList<T> {
 
     @Override
     public void addLast(T element) {
+       /* if (element == null) {
+            throw new NullPointerException();
+        }*/
         if (size == source.length) {
             increaseCapacity();
         }
         source[size++] = element;
     }
 
+    //O(n), where n is size
     void increaseCapacity() {
         int newCapacity = source.length * 2;
         Object[] newSource = new Object[newCapacity];
@@ -25,6 +28,7 @@ public class ArrayIntegerList<T> implements IntegerList<T> {
         source = newSource;
     }
 
+    //O(1) - the number of operations is never dependent on the number of elements in the list
     @Override
     public T get(int index) {
         if (index >= size || index < 0)
@@ -32,6 +36,7 @@ public class ArrayIntegerList<T> implements IntegerList<T> {
         return (T) source[index];
     }
 
+    //O(1) - the number of operations is never dependent on the number of elements in the list
     @Override
     public T set(int index, T value) {
         if (index >= size || index < 0)
@@ -40,6 +45,7 @@ public class ArrayIntegerList<T> implements IntegerList<T> {
         return value;
     }
 
+    ///O(n)
     @Override
     public T removeById(int index) {
         if (index >= size || index < 0)
@@ -51,12 +57,13 @@ public class ArrayIntegerList<T> implements IntegerList<T> {
         return res;
     }
 
-
+    //O(1)
     @Override
     public int size() {
         return size;
     }
 
+    //O(n)
     @Override
     public void clear() {
         for (int i = 0; i < size; i++)
@@ -64,21 +71,41 @@ public class ArrayIntegerList<T> implements IntegerList<T> {
         size = 0;
     }
 
+    //O(n) - to find the needle and O(n) to remove it by its index-> O(n) + O(n)
+    //total n of operations id O(n)
     @Override
     public boolean remove(T obj) {
+        if (obj == null) { // how to escape nullPointerException
+            for (int i = 0; i < size; i++) {
+                if (source[i] == null) {
+                    removeById(i);
+                    source[size--] = null;
+                    return true;
+                }
+            }
+            return false;
+        }
         for (int i = 0; i < size; i++) {
-            // if (source[i].equals(obj)) {
-            if (this.contains(obj)) {
-                System.arraycopy(source, i + 1, source, i, size - i - 1);
-                source[size--] = null;
+            if (source[i].equals(obj)) {
+                removeById(i);
                 return true;
             }
         }
         return false;
     }
-
+    //O(n)
     @Override
     public boolean contains(T obj) {
+        if (obj == null) { // how to escape nullPointerException
+            for (int i = 0; i < size; i++) {
+                if (source[i] == null) {
+                    removeById(i);
+                    source[size--] = null;
+                    return true;
+                }
+            }
+            return false;
+        }
         for (int i = 0; i < size; i++) {
             if (source[i].equals(obj)) {
                 return true;
@@ -86,20 +113,65 @@ public class ArrayIntegerList<T> implements IntegerList<T> {
         }
         return false;
     }
-
+    //O(n) is the complexity of use of iterator
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        ArrayIntegerList<?> that = (ArrayIntegerList<?>) o;
-        return size == that.size &&
-                Arrays.equals(source, that.source);
+    public Iterator<T> forwardIterator() {
+        Iterator<T> iterator = new ForwardIterator();
+        return iterator;
+    }
+    //O(n)
+    @Override
+    public Iterator<T> backwardIterator() {
+        Iterator<T> backwardIterator = new BackwardIterator<>((T[]) source, size);
+        return backwardIterator;
     }
 
     @Override
-    public int hashCode() {
-        int result = Objects.hash(size);
-        result = 31 * result + Arrays.hashCode(source);
-        return result;
+    public Iterator iterator() {
+        return forwardIterator();
+    }
+
+
+    private class ForwardIterator implements Iterator<T> {
+        int currentIndex = 0;
+
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < size;
+        }
+
+        @Override
+        public T next() {
+            if (currentIndex >= size) {
+                throw new IndexOutOfBoundsException();
+            }
+            return (T) source[currentIndex++];
+        }
+    }
+
+    private static class BackwardIterator<E> implements Iterator<E> {
+        E[] source;
+        int currentIndex;
+
+
+        public BackwardIterator(E[] source, int size) {
+            this.source = source;
+            currentIndex = size - 1;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex >= 0;
+        }
+
+        @Override
+        public E next() {
+            if (currentIndex < 0)
+                throw new IndexOutOfBoundsException();
+
+            return source[currentIndex--];
+        }
     }
 }
+
