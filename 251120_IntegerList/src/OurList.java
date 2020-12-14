@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public interface IntegerList<T> extends Iterable<T> {
+public interface OurList<T> extends Iterable<T> {
 
     /**
      * adds the element to the list
@@ -21,7 +21,7 @@ public interface IntegerList<T> extends Iterable<T> {
      * @param value the value of the removed element
      * @return
      */
-    T set(int index, T value);
+    void set(int index, T value);
 
     /**
      * removes the element by index

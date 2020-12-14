@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class ArrayIntegerList<T> implements IntegerList<T> {
+public class ArrayIntegerList<T> implements OurList<T> {
     private final static int INITIAL_CAPACITY = 16;
     private int size;
     private Object[] source;
@@ -38,11 +38,10 @@ public class ArrayIntegerList<T> implements IntegerList<T> {
 
     //O(1) - the number of operations is never dependent on the number of elements in the list
     @Override
-    public T set(int index, T value) {
+    public void set(int index, T value) {
         if (index >= size || index < 0)
             throw new IndexOutOfBoundsException();
         source[index] = value;
-        return value;
     }
 
     ///O(n)

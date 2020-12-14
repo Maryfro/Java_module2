@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class OurLinkedList<T> implements IntegerList<T> {
+public class OurLinkedList<T> implements OurList<T> {
     Node<T> first;
     Node<T> last;
     int size;
@@ -38,10 +38,9 @@ public class OurLinkedList<T> implements IntegerList<T> {
     }
 
     @Override
-    public T set(int index, T value) {
+    public void set(int index, T value) {
         Node<T> needle = getNodeByIndex(index);
         needle.element = value;
-        return needle.element;
     }
 
     private Node<T> getNodeByIndex(int index) {
@@ -55,30 +54,72 @@ public class OurLinkedList<T> implements IntegerList<T> {
         return res;
     }
 
+    private T removeNode(Node<T> needle) {
+        Node<T> before = needle.prev;
+        Node<T> after = needle.next;
+        if (before != null) {
+            before.next = after;
+        } else {
+            first = after;
+        }
+        if (after != null) {
+            after.prev = before;
+        } else {
+            last = before;
+        }
+        //clear the removing element
+        needle.prev = needle.next = null;
+        T res = needle.element;
+        needle.element = null;
+        size--;
+        return res;
+
+    }
+
     @Override
     public T removeById(int index) {
-        if (index >= size || index < 0) {
-            throw new IndexOutOfBoundsException();
+        Node<T> needle = getNodeByIndex(index);
+        return removeNode(needle);
+    }
+
+    @Override
+    public boolean remove(T obj) {
+        Node<T> needle = findByElement(obj);
+        if (needle == null) {
+            return false;
         }
-        if (index == 0) {
-            Node<T> res = first;
-            first = first.next;
-            first.prev = null;
-            size--;
-            return res.element;
+        removeNode(needle);
+        return true;
+    }
+
+    /**
+     * @param obj
+     * @return null if not found; return Node otherwise
+     */
+    private Node<T> findByElement(T obj) {
+        Node<T> res = first;
+        if (obj == null) {
+          //  for (int i = 0; i < size; i++) {
+                while(res!=null){
+                if (res.element == null) {
+                    return res;
+                }
+                res = res.next;
+            }
+        }else{
+            while(res!=null){
+                if(obj.equals(res.element)){
+                    return res;
+                }
+                res= res.next;
+            }
         }
-        if (index == size - 1) {
-            Node<T> res = last;
-            last = last.prev;
-            last.next = null;
-            size--;
-            return res.element;
-        }
-        Node<T> res = getNodeByIndex(index);
-        res.prev.next = res.next;
-        res.next.prev = res.prev;
-        size--;
-        return res.element;
+        return null;
+    }
+
+    @Override
+    public boolean contains(T obj) {
+        return findByElement(obj) != null;
     }
 
     @Override
@@ -88,53 +129,10 @@ public class OurLinkedList<T> implements IntegerList<T> {
 
     @Override
     public void clear() {
-        if (size != 0) {
-            first.next = null;
-            last.prev = null;
-            size = 0;
-        }
+        first = last= null;
+        size = 0;
     }
 
-    @Override
-    public boolean remove(T obj) {
-        if (size == 0) {
-            return false;
-        }
-        if (obj.equals(first.element)) {
-            first = first.next;
-            first.prev = null;
-            size--;
-            return true;
-        }
-        if (obj.equals(last.element)) {
-            last = last.prev;
-            last.next = null;
-            size--;
-            return true;
-        }
-        for (Node node = first.next; node != null; node = node.next) {
-            if (obj.equals(node.element)) {
-                node.prev.next = node.next;
-                node.next.prev = node.prev;
-                size--;
-                return true;
-            }
-        }
-        return false;
-    }
-
-    @Override
-    public boolean contains(T obj) {
-        for (Node node = first.next; node != null; node = node.next) {
-            if (obj.equals(node.element)) {
-                node.prev.next = node.next;
-                node.next.prev = node.prev;
-                size--;
-                return true;
-            }
-        }
-        return false;
-    }
 
     @Override
     public Iterator<T> forwardIterator() {
@@ -150,6 +148,9 @@ public class OurLinkedList<T> implements IntegerList<T> {
     public Iterator<T> iterator() {
         return null;
     }
-
+//Do not use list.get(id) method
+    private class forwardIterator implements Iterator<T>{
+        Node<T> currentNode;
+    }
 
 }
