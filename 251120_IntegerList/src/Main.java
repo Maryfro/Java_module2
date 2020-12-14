@@ -22,6 +22,12 @@ public class Main {
         myList.addLast(10);
         myList.addLast(2);
 
+        OurLinkedList<Integer> myLinkedList = new OurLinkedList<>();
+       myLinkedList.addLast(15);
+       myLinkedList.addLast(-5);
+       myLinkedList.addLast(10);
+       myLinkedList.addLast(2);
+
 
 //non-static nested class
        /* Iterator<String> forwardIterator = strings.new ForwardIterator();
@@ -54,6 +60,16 @@ public class Main {
         OurLinkedList<Integer> linkedList = new OurLinkedList();
         linkedList.addLast(12);
         System.out.println(linkedList.remove(12));
+        System.out.println("--------------");
+        OurLinkedList.ForwardIterator forwardIteratorLinkedList = myLinkedList.new ForwardIterator();
+        OurLinkedList.BackwardIterator backwardIteratorLinkedList = myLinkedList.new BackwardIterator();
+        while (backwardIteratorLinkedList.hasNext()) {
+            System.out.println(backwardIteratorLinkedList.next());
+        }
+
+
+
+
     }
 }
 

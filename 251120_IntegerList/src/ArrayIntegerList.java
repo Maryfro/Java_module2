@@ -131,7 +131,7 @@ public class ArrayIntegerList<T> implements OurList<T> {
     }
 
 
-    private class ForwardIterator implements Iterator<T> {
+    class ForwardIterator implements Iterator<T> {
         int currentIndex = 0;
 
 

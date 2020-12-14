@@ -99,19 +99,19 @@ public class OurLinkedList<T> implements OurList<T> {
     private Node<T> findByElement(T obj) {
         Node<T> res = first;
         if (obj == null) {
-          //  for (int i = 0; i < size; i++) {
-                while(res!=null){
+            //  for (int i = 0; i < size; i++) {
+            while (res != null) {
                 if (res.element == null) {
                     return res;
                 }
                 res = res.next;
             }
-        }else{
-            while(res!=null){
-                if(obj.equals(res.element)){
+        } else {
+            while (res != null) {
+                if (obj.equals(res.element)) {
                     return res;
                 }
-                res= res.next;
+                res = res.next;
             }
         }
         return null;
@@ -129,28 +129,67 @@ public class OurLinkedList<T> implements OurList<T> {
 
     @Override
     public void clear() {
-        first = last= null;
+        first = last = null;
         size = 0;
     }
 
 
     @Override
     public Iterator<T> forwardIterator() {
-        return null;
+        ForwardIterator fi = new ForwardIterator();
+        return fi;
     }
 
     @Override
     public Iterator<T> backwardIterator() {
-        return null;
+        BackwardIterator bi = new BackwardIterator();
+        return bi;
     }
 
     @Override
     public Iterator<T> iterator() {
         return null;
     }
-//Do not use list.get(id) method
-    private class forwardIterator implements Iterator<T>{
-        Node<T> currentNode;
+
+    //Do not use list.get(id) method
+    class ForwardIterator implements Iterator<T> {
+        Node<T> currentNode = first;
+
+        @Override
+        public boolean hasNext() {
+            if (currentNode != null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public T next() {
+            T res = currentNode.element;
+            currentNode = currentNode.next;
+            return res;
+        }
+    }
+
+    class BackwardIterator implements Iterator<T> {
+        Node<T> currentNode = last;
+
+        @Override
+        public boolean hasNext() {
+            if (currentNode != null) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        @Override
+        public T next() {
+            T res = currentNode.element;
+            currentNode = currentNode.prev;
+            return res;
+        }
     }
 
 }
