@@ -1,17 +1,15 @@
 package generator.rule;
 
 import generator.RandomRule;
-
 import java.util.ArrayList;
 import java.util.List;
 
 
 public class ListRandomRule implements RandomRule {
-
-    private List<Integer> values;
+    private final ArrayList<Integer> values;
 
     public ListRandomRule(List<Integer> numbers) {
-        this.values = numbers;
+        this.values =  new ArrayList(numbers);
     }
 
     public ListRandomRule(int[] numbers) {

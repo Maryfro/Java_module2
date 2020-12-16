@@ -5,11 +5,10 @@ import generator.rule.RangeRandomRule;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
-        List<Integer> list = new ArrayList<>();
+        ArrayList<Integer> list = new ArrayList<>();
         Collections.addAll(list, 10, 7, 2);
         int[] nums = new int[]{1, 10, -15, 100, 14, 34, 45, 23, 235};
         RandomRule lrr1 = new ListRandomRule(nums);
