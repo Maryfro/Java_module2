@@ -26,6 +26,16 @@ class Exercise_ArrayTest {
         assertEquals(6, arr.countRepeatedNumbers(new int[]{5, 6,  6, 2, -3}));
     }
 
+    @Test
+    void countRepeatedNumbers_twoNumbers() {
+        assertTrue(arr.countRepeatedNumbers(new int[]{5, 6, 23, -5, 6, 5}) == 5 || arr.countRepeatedNumbers(new int[]{5, 6}) == 6);
+    }
+
+    @Test
+    void countRepeatedNumbers_severalRepetitions() {
+        assertEquals(23, arr.countRepeatedNumbers(new int[]{23, 5, 6, 23, -5, 6, 5, 23}));
+    }
+
 
     @Test
     void findSwitchingSequence_emptyArray() {
