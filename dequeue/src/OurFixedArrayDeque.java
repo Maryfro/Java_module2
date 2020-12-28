@@ -15,7 +15,8 @@ public class OurFixedArrayDeque<T> implements OurDeque<T> {
     public void addFirst(Object el) {
         if (size == source.length)
             throw new DequeOverflowException();
-        firstElId = (firstElId - 1) % capacity & capacity - 1;
+        firstElId = capacity - 1;
+        firstElId = (firstElId - 1) % capacity;
         source[firstElId] = el;
         size++;
     }
