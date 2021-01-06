@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 
 public interface OurList<T> extends Iterable<T> {
@@ -62,4 +63,10 @@ public interface OurList<T> extends Iterable<T> {
      * @return iterator object which iterates from the end to the beginning of the list
      */
     Iterator<T> backwardIterator();
+
+    /**
+     * sorts elements according to the comparator rule
+     * @return
+     */
+    void sort(Comparator<T> comparator);
 }

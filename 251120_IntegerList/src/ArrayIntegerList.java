@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class ArrayIntegerList<T> implements OurList<T> {
@@ -123,6 +124,11 @@ public class ArrayIntegerList<T> implements OurList<T> {
     public Iterator<T> backwardIterator() {
         Iterator<T> backwardIterator = new BackwardIterator<>((T[]) source, size);
         return backwardIterator;
+    }
+
+    @Override
+    public void sort(Comparator<T> comparator) {
+
     }
 
     @Override

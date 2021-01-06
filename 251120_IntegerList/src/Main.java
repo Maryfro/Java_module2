@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -23,10 +20,10 @@ public class Main {
         myList.addLast(2);
 
         OurLinkedList<Integer> myLinkedList = new OurLinkedList<>();
-       myLinkedList.addLast(15);
-       myLinkedList.addLast(-5);
-       myLinkedList.addLast(10);
-       myLinkedList.addLast(2);
+        myLinkedList.addLast(15);
+        myLinkedList.addLast(-5);
+        myLinkedList.addLast(10);
+        myLinkedList.addLast(2);
 
 
 //non-static nested class
@@ -61,14 +58,33 @@ public class Main {
         linkedList.addLast(12);
         System.out.println(linkedList.remove(12));
         System.out.println("--------------");
-        OurLinkedList.ForwardIterator forwardIteratorLinkedList = myLinkedList.new ForwardIterator();
+        /*OurLinkedList.ForwardIterator forwardIteratorLinkedList = myLinkedList.new ForwardIterator();
         OurLinkedList.BackwardIterator backwardIteratorLinkedList = myLinkedList.new BackwardIterator();
         while (backwardIteratorLinkedList.hasNext()) {
             System.out.println(backwardIteratorLinkedList.next());
         }
+        while (forwardIteratorLinkedList.hasNext()) {
+            System.out.println(forwardIteratorLinkedList.next());
+        }
+*/
+        //OurLinkedList<Integer> sorted =
 
-
-
+        for (Integer i:
+                myLinkedList) {
+            System.out.println(i);
+        }
+        System.out.println("----------");
+        Comparator<Integer> comparator = new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        };
+        myLinkedList.sort(comparator);
+        for (Integer i:
+             myLinkedList) {
+            System.out.println(i);
+        }
 
     }
 }

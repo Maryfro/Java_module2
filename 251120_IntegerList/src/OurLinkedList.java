@@ -1,3 +1,4 @@
+import java.util.Comparator;
 import java.util.Iterator;
 
 public class OurLinkedList<T> implements OurList<T> {
@@ -146,9 +147,10 @@ public class OurLinkedList<T> implements OurList<T> {
         return bi;
     }
 
+
     @Override
     public Iterator<T> iterator() {
-        return null;
+        return forwardIterator();
     }
 
     //Do not use list.get(id) method
@@ -157,15 +159,14 @@ public class OurLinkedList<T> implements OurList<T> {
 
         @Override
         public boolean hasNext() {
-            if (currentNode != null) {
-                return true;
-            } else {
-                return false;
-            }
+            return currentNode != null;
         }
 
         @Override
         public T next() {
+            if (currentNode == null) {
+                throw new IndexOutOfBoundsException();
+            }
             T res = currentNode.element;
             currentNode = currentNode.next;
             return res;
@@ -177,19 +178,61 @@ public class OurLinkedList<T> implements OurList<T> {
 
         @Override
         public boolean hasNext() {
-            if (currentNode != null) {
-                return true;
-            } else {
-                return false;
-            }
+            return currentNode != null;
         }
 
         @Override
         public T next() {
+            if (currentNode == null) {
+                throw new IndexOutOfBoundsException();
+            }
             T res = currentNode.element;
             currentNode = currentNode.prev;
             return res;
         }
     }
 
+    @Override
+    public void sort(Comparator<T> comparator) {
+        Object[] copy = new Object[size];
+        int i = 0;
+        for (T el : this) {
+            copy[i++] = el;
+        }
+        for (int j = 0; j < copy.length; j++)
+            for (int k = 1; k < (copy.length-j); k++)
+                if (comparator.compare(getNodeByIndex(k-1).element, getNodeByIndex(k).element) > 0)
+                {
+                    Object temp = copy[k-1];
+                    copy[k-1] = copy[k];
+                    copy[k] = temp;
+                }
+        this.clear();
+        for (Object el : copy) {
+            this.addLast((T) el);
+        }
+    }
+// for(int i=0; i < n; i++){
+//                 for(int j=1; j < (n-i); j++){
+//                          if(arr[j-1] > arr[j]){
+//                                 //swap elements
+//                                 temp = arr[j-1];
+//                                 arr[j-1] = arr[j];
+//                                 arr[j] = temp;
+//                         }
+
+
+   /* private void bubbleSort(Object[] arrUnsort,Comparator<T> comparator) {
+        int count = 0;
+        for (int i = 0; i < arrUnsort.length - 1; i++)
+            if (comparator.compare(getNodeByIndex(i).element, getNodeByIndex(i + 1).element) > 0) {
+               Object temp = arrUnsort[i];
+                arrUnsort[i] = arrUnsort[i + 1];
+                arrUnsort[i + 1] = temp;
+                count++;
+            }
+        if (count > 0) {
+            bubbleSort(arrUnsort, comparator);
+        }
+    }*/
 }
