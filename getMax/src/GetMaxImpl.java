@@ -49,8 +49,10 @@ public class GetMaxImpl implements GetMax {
             }
         }
         return max;
-
     }
 
+
+    // create second list
+    //remove max
 
 }
