@@ -1,3 +1,5 @@
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OurFixedArrayDequeTest {
@@ -108,15 +110,45 @@ class OurFixedArrayDequeTest {
     public void testRemoveLastSeveralTimes_throwsEmptyDequeException() {
         deque.addLast(10);
         deque.removeLast();
-        assertThrows(EmptyDequeException.class, ()->deque.removeLast());
+        assertThrows(EmptyDequeException.class, () -> deque.removeLast());
     }
 
     @org.junit.jupiter.api.Test
     public void testRemoveFirstSeveralTimes_throwsEmptyDequeException() {
         deque.addFirst(101);
         deque.removeFirst();
-        assertThrows(EmptyDequeException.class, ()->deque.removeFirst());
+        assertThrows(EmptyDequeException.class, () -> deque.removeFirst());
     }
 
+    @org.junit.jupiter.api.Test
+    void testIterator_AddFirst() {
+        Iterator<Integer> iterator = deque.iterator();
+        deque.addFirst(1);
+        deque.addFirst(2);
+        while (iterator.hasNext()) {
+            assertEquals(deque.getFirst(), iterator.next());
+        }
+    }
 
+    @org.junit.jupiter.api.Test
+    void testIterator_AddLast() {
+        Iterator<Integer> iterator = deque.iterator();
+        deque.addLast(101);
+        deque.addLast(202);
+        while (iterator.hasNext()) {
+            assertEquals(deque.getFirst(), iterator.next());
+        }
+    }
+
+    @org.junit.jupiter.api.Test
+    void testIterator_AddFirst_And_AddLast() {
+        Iterator<Integer> iterator = deque.iterator();
+        deque.addFirst(1);
+        deque.addFirst(2);
+        deque.addLast(101);
+        deque.addLast(202);
+        while (iterator.hasNext()) {
+            assertEquals(deque.getFirst(), iterator.next());
+        }
+    }
 }

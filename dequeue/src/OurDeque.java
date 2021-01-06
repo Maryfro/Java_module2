@@ -4,7 +4,7 @@
  * @param <T> the type of the elements storing in the deque
  */
 
-public interface OurDeque<T> {
+public interface OurDeque<T> extends Iterable<T> {
     /**
      *
      * @param el

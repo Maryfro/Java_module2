@@ -1,3 +1,4 @@
+import java.util.Iterator;
 
 public class OurFixedArrayDeque<T> implements OurDeque<T> {
 
@@ -13,17 +14,22 @@ public class OurFixedArrayDeque<T> implements OurDeque<T> {
 
     @Override
     public void addFirst(Object el) {
-        if (size == source.length)
+        if (size == capacity) {
             throw new DequeOverflowException();
-        firstElId = capacity - 1;
-        firstElId = (firstElId - 1) % capacity;
+        }
+        if (firstElId == 0) {
+            firstElId = capacity - 1;
+        } else {
+            firstElId--;
+        }
+        // firstElId = (firstElId + capacity - 1) % capacity;
         source[firstElId] = el;
         size++;
     }
 
     @Override
     public void addLast(Object el) {
-        if (size == source.length)
+        if (size == capacity)
             throw new DequeOverflowException();
         int index = (firstElId + size) % capacity;
         source[index] = el;
@@ -72,4 +78,39 @@ public class OurFixedArrayDeque<T> implements OurDeque<T> {
     public int size() {
         return size;
     }
+
+    @Override
+    public Iterator<T> iterator() {
+        Iterator iterator = new Iterator() {
+            @Override
+            public boolean hasNext() {
+                return firstElId < capacity;
+            }
+
+            @Override
+            public Object next() {
+                return source[firstElId++];
+            }
+        };
+        return iterator;
+    }
+
+    /*class ForwardIterator implements Iterator<T> {
+        source[]
+
+        @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next() {
+            if (currentNode == null) {
+                throw new IndexOutOfBoundsException();
+            }
+            T res = currentNode.element;
+            currentNode = currentNode.next;
+            return res;
+        }
+    }*/
 }
