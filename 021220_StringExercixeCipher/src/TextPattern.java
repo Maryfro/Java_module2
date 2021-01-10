@@ -22,5 +22,28 @@ public class TextPattern {
         }
     }
 
+    boolean findPatternSolution2(String text, String pattern) {
+        return recursiveSolution(text, pattern, text.length()-1, pattern.length()-1);
+    }
+
+    boolean recursiveSolution(String text, String pattern, int lastTextId, int lastPatternId) {
+        if (lastPatternId < 0) {
+            return true;
+        }
+        if (lastPatternId > lastTextId) {
+            return false;
+        } if(text.charAt(lastTextId) == pattern.charAt(lastPatternId)){
+            return recursiveSolution(text, pattern, lastTextId-1, lastPatternId-1);
+        } else {
+            return recursiveSolution(text, pattern, lastTextId-1, lastPatternId);
+        }
+
+    }
+
+    //TODO
+    //rewrite method using a while loop
+
+
+
 }
 

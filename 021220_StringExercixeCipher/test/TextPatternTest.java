@@ -55,4 +55,54 @@ class TextPatternTest {
         assertFalse(tp.findPattern("hello", "llh"));
     }
 
+    @Test
+    void test_textPatternS2_emptyPattern(){
+        assertTrue(tp.findPatternSolution2("hello", ""));
+    }
+
+    @Test
+    void test_textPatternS2_emptyTextAndPattern(){
+        assertTrue(tp.findPatternSolution2("", ""));
+    }
+
+    @Test
+    void test_textPatternS2_emptyText(){
+        assertFalse(tp.findPatternSolution2("", "hll"));
+    }
+
+    @Test
+    void test_textPatternS2_textIsShorterThanPattern(){
+        assertFalse(tp.findPatternSolution2("hell", "hello"));
+    }
+
+    @Test
+    void test_textPatternS2_textIsEqualWithPattern(){
+        assertTrue(tp.findPatternSolution2("hello", "hello"));
+    }
+
+    @Test
+    void test_textPatternS2_trueCase_borderLetters(){
+        assertTrue(tp.findPatternSolution2("hello", "ho"));
+    }
+
+    @Test
+    void test_textPatternS2_trueCase_oneLetter(){
+        assertTrue(tp.findPatternSolution2("hello", "l"));
+    }
+
+    @Test
+    void test_textPatternS2_trueCase_severalLetters(){
+        assertTrue(tp.findPatternSolution2("hello", "ell"));
+    }
+
+    @Test
+    void test_textPatternS2_falseCase_oneLetter(){
+        assertFalse(tp.findPatternSolution2("hello", "g"));
+    }
+
+    @Test
+    void test_textPatternS2_falseCase_severalLetters(){
+        assertFalse(tp.findPatternSolution2("hello", "llh"));
+    }
+
 }

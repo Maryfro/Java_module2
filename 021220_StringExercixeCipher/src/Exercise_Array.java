@@ -41,6 +41,8 @@ public class Exercise_Array {
             return 0;
         if (arr.length == 1)
             return 1;
+        if (arr.length == 2)
+            return 2;
         int num = arr[0];
         int count = 2;
         for (int i = 1; i < arr.length - 1; i++) {
@@ -50,5 +52,16 @@ public class Exercise_Array {
         }
         return count;
     }
+
+    /**
+     * We name a sequence "switching" if elements with odd and even indices are equal.
+     *
+     * @return whether of sequence is a  switching sequence
+     * {5, -3, 5, -3, 5}->true; {5}->false; {1,2,3}->false
+     */
+    public boolean isSwitchingSequence(int[] arr) {
+        return false;
+    }
 }
+
 
