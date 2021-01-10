@@ -192,47 +192,39 @@ public class OurLinkedList<T> implements OurList<T> {
         }
     }
 
-    @Override
+    /*@Override
     public void sort(Comparator<T> comparator) {
         Object[] copy = new Object[size];
         int i = 0;
         for (T el : this) {
             copy[i++] = el;
         }
-        for (int j = 0; j < copy.length; j++)
-            for (int k = 1; k < (copy.length-j); k++)
-                if (comparator.compare(getNodeByIndex(k-1).element, getNodeByIndex(k).element) > 0)
-                {
-                    Object temp = copy[k-1];
-                    copy[k-1] = copy[k];
-                    copy[k] = temp;
+        for (int j = 0; j < size; j++) {
+            int minId = j;
+            for (int k = j + 1; k < size; k++) {
+                if (comparator.compare((T) copy[minId], (T) copy[k]) > 0) {
+                    minId = k;
                 }
+            }
+            Object temp = copy[j];
+            copy[j] = copy[minId];
+            copy[minId] = temp;
+        }
         this.clear();
         for (Object el : copy) {
             this.addLast((T) el);
         }
     }
-// for(int i=0; i < n; i++){
-//                 for(int j=1; j < (n-i); j++){
-//                          if(arr[j-1] > arr[j]){
-//                                 //swap elements
-//                                 temp = arr[j-1];
-//                                 arr[j-1] = arr[j];
-//                                 arr[j] = temp;
-//                         }
 
+    @Override
+    public T max(Comparator<T> comparator) {
+        this.sort(comparator);
+        return last.element;
+    }
 
-   /* private void bubbleSort(Object[] arrUnsort,Comparator<T> comparator) {
-        int count = 0;
-        for (int i = 0; i < arrUnsort.length - 1; i++)
-            if (comparator.compare(getNodeByIndex(i).element, getNodeByIndex(i + 1).element) > 0) {
-               Object temp = arrUnsort[i];
-                arrUnsort[i] = arrUnsort[i + 1];
-                arrUnsort[i + 1] = temp;
-                count++;
-            }
-        if (count > 0) {
-            bubbleSort(arrUnsort, comparator);
-        }
+    @Override
+    public T min(Comparator<T> comparator) {
+        this.sort(comparator);
+        return first.element;
     }*/
 }

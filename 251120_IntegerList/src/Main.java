@@ -20,10 +20,10 @@ public class Main {
         myList.addLast(2);
 
         OurLinkedList<Integer> myLinkedList = new OurLinkedList<>();
-        myLinkedList.addLast(15);
-        myLinkedList.addLast(-5);
-        myLinkedList.addLast(10);
-        myLinkedList.addLast(2);
+        myLinkedList.addLast(150);
+        myLinkedList.addLast(-50);
+        myLinkedList.addLast(103);
+        myLinkedList.addLast(22);
 
 
 //non-static nested class
@@ -67,14 +67,13 @@ public class Main {
             System.out.println(forwardIteratorLinkedList.next());
         }
 */
-        //OurLinkedList<Integer> sorted =
 
         for (Integer i:
                 myLinkedList) {
             System.out.println(i);
         }
         System.out.println("----------");
-        Comparator<Integer> comparator = new Comparator<Integer>() {
+   /*     Comparator<Integer> comparator = new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
                 return o1 - o2;
@@ -85,6 +84,21 @@ public class Main {
              myLinkedList) {
             System.out.println(i);
         }
+
+        myList.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1-o2;
+            }
+        });
+        for (Integer i: myList) {
+            System.out.println(i);
+        }*/
+
+        System.out.println(myList.max(Integer::compareTo));
+        System.out.println(myList.min(Integer::compareTo));
+        System.out.println(myLinkedList.max(Integer::compareTo));
+        System.out.println(myLinkedList.min(Integer::compareTo));
 
     }
 }

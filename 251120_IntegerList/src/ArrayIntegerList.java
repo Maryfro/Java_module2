@@ -1,5 +1,7 @@
+import java.util.Arrays;
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class ArrayIntegerList<T> implements OurList<T> {
     private final static int INITIAL_CAPACITY = 16;
@@ -93,6 +95,7 @@ public class ArrayIntegerList<T> implements OurList<T> {
         }
         return false;
     }
+
     //O(n)
     @Override
     public boolean contains(T obj) {
@@ -113,12 +116,14 @@ public class ArrayIntegerList<T> implements OurList<T> {
         }
         return false;
     }
+
     //O(n) is the complexity of use of iterator
     @Override
     public Iterator<T> forwardIterator() {
         Iterator<T> iterator = new ForwardIterator();
         return iterator;
     }
+
     //O(n)
     @Override
     public Iterator<T> backwardIterator() {
@@ -126,10 +131,6 @@ public class ArrayIntegerList<T> implements OurList<T> {
         return backwardIterator;
     }
 
-    @Override
-    public void sort(Comparator<T> comparator) {
-
-    }
 
     @Override
     public Iterator iterator() {
@@ -137,7 +138,7 @@ public class ArrayIntegerList<T> implements OurList<T> {
     }
 
 
-    class ForwardIterator implements Iterator<T> {
+     class ForwardIterator implements Iterator<T> {
         int currentIndex = 0;
 
 

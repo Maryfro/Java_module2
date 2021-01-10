@@ -1,11 +1,19 @@
 
-import java.util.Iterator;
+import org.junit.jupiter.api.Test;
+
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public abstract class OurListTest {
     OurList<Integer> list;
     OurList<String> listString;
+    Comparator<Integer> integerComparator = new Comparator<Integer>() {
+        @Override
+        public int compare(Integer o1, Integer o2) {
+            return o1 - o2;
+        }
+    };
 
 
     @org.junit.jupiter.api.Test
@@ -57,7 +65,6 @@ public abstract class OurListTest {
         }
 
     }
-
 
 
     @org.junit.jupiter.api.Test
@@ -228,6 +235,7 @@ public abstract class OurListTest {
     void test_remove_emptyList() {
         assertFalse(list.remove(15));
     }
+
     @org.junit.jupiter.api.Test
     void test_remove_singleElement() {
         listString.addLast("Hello");
@@ -238,7 +246,7 @@ public abstract class OurListTest {
     @org.junit.jupiter.api.Test
     void test_removeById_singleElement() {
         listString.addLast("Hello");
-        assertEquals( "Hello",listString.removeById(0));
+        assertEquals("Hello", listString.removeById(0));
         assertEquals(0, listString.size());
     }
 
@@ -262,6 +270,7 @@ public abstract class OurListTest {
             forwardIterator.next();
         });
     }
+
     @org.junit.jupiter.api.Test
     void test_forwardIterator_oneElement() {
         String[] expected = {"Hello"};
@@ -272,7 +281,7 @@ public abstract class OurListTest {
             assertEquals(expected[i++],
                     forwardIterator.next());
         }
-      //  assertEquals(1, i);
+        //  assertEquals(1, i);
         assertThrows(IndexOutOfBoundsException.class, () -> {
             forwardIterator.next();
         });
@@ -306,6 +315,7 @@ public abstract class OurListTest {
             backwardIterator.next();
         });
     }
+
     @org.junit.jupiter.api.Test
     void test_backwardIterator_oneElement() {
         String[] expected = {"Hello"};
@@ -354,5 +364,106 @@ public abstract class OurListTest {
         list.addLast(null);
         assertTrue(list.contains(null));
     }
-    
+
+    @org.junit.jupiter.api.Test
+    void test_sort_severalUnsortedNumbers() {
+        int[] expected = new int[]{-8, 3, 15};
+        list.addLast(15);
+        list.addLast(-8);
+        list.addLast(3);
+        list.sort(new Comparator<Integer>() {
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+        });
+        for (int i = 0; i < list.size(); i++) {
+            assertEquals(expected[i], list.get(i));
+        }
+    }
+
+    @Test
+    public void test_max_severalInt() {
+        int[] test = {6, -2, -8, 9, 0, -1, 13};
+        for (int i : test) {
+            list.addLast(i);
+        }
+        assertEquals(13, list.max(new Comparator<Integer>() {
+
+            @Override
+            public int compare(Integer o1, Integer o2) {
+                return o1 - o2;
+            }
+
+        }));
+    }
+
+
+    @Test
+    public void test_max_severalString() {
+        String[] expected = {"Evgenievna", "Vladislava", "Borisovich", "Evgeny"};
+        Comparator<String> stringComparator = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        };
+        listString.addLast("Evgeny");
+        listString.addLast("Borisovich");
+        listString.addLast("Vladislava");
+        listString.addLast("Evgenievna");
+        assertEquals("Vladislava", listString.max(stringComparator));
+    }
+
+    @Test
+    public void test_min_severalString() {
+        String[] expected = {"Evgenievna", "Vladislava", "Borisovich", "Evgeny"};
+        Comparator<String> stringComparator = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        };
+        listString.addLast("Evgeny");
+        listString.addLast("Borisovich");
+        listString.addLast("Vladislava");
+        listString.addLast("Evgenievna");
+        assertEquals("Borisovich", listString.min(stringComparator));
+    }
+
+    @Test
+    public void test_min_severalInt() {
+        int[] test = {6, -2, -8, 9};
+        list.addLast(6);
+        list.addLast(-2);
+        list.addLast(-8);
+        list.addLast(9);
+
+        assertEquals(-8, list.min(Integer::compareTo));
+    }
+
+    @Test
+    public void test_max_emptyList() {
+        assertThrows(NoSuchElementException.class, () -> list.max(Integer::compareTo));
+    }
+
+    @Test
+    public void test_min_emptyList() {
+        assertThrows(NoSuchElementException.class, () -> list.min(Integer::compareTo));
+    }
+
+    @Test
+    void test_sort_withoutComparator_severalUnsortedNumbers() {
+        int[] expected = new int[]{-8, 0, 3, 15};
+        list.addLast(15);
+        list.addLast(0);
+        list.addLast(-8);
+        list.addLast(3);
+        list.sort();
+        for (int i = 0; i < list.size(); i++) {
+            assertEquals(expected[i], list.get(i));
+        }
+    }
+
+
 }
