@@ -17,6 +17,13 @@ class MaxCutPointsTest {
     }
 
     @Test
+    public void test_maxCutPoints_threePointsCovered_inTheMiddle(){
+        List<Integer> numbers = new ArrayList<>();
+        Collections.addAll(numbers, 10, 15, 25, 27, 31, 55, 68, 74);
+        assertEquals(3, mcp.maxCoveredPoints(numbers, 9));
+    }
+
+    @Test
     public void test_maxCutPoints_onePointCovered(){
         List<Integer> numbers = new ArrayList<>();
         Collections.addAll(numbers, 10, 20, 30, 40, 55, 65);

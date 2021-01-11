@@ -8,15 +8,15 @@ public class MaxCutPoints {
     int maxCoveredPoints(List<Integer> numbers, int cut) {
         ArrayDeque<Integer> cutDeque = new ArrayDeque<>();
         int max = 1;
-        for (Integer el:numbers) {
+        for (Integer el : numbers) {
             cutDeque.addLast(el);
-            if (el - cutDeque.getFirst() > cut) {
+            while (el - cutDeque.getFirst() > cut) {
                 cutDeque.removeFirst();
             }
-        }
             if (max < cutDeque.size()) {
                 max = cutDeque.size();
             }
+        }
         return max;
     }
 
