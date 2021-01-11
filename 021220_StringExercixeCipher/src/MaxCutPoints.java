@@ -1,4 +1,5 @@
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MaxCutPoints {
@@ -6,16 +7,17 @@ public class MaxCutPoints {
 
     int maxCoveredPoints(List<Integer> numbers, int cut) {
         ArrayDeque<Integer> cutDeque = new ArrayDeque<>();
+        ArrayList<Integer> numbersCopy = (ArrayList) numbers;
         int max = 1;
-        for (int i = 0; i < numbers.size(); i++) {
-            cutDeque.addLast(numbers.get(i));
+        for (int i = 0; i < numbersCopy.size(); i++) {
+            cutDeque.addLast(numbersCopy.get(i));
             for (int j = 0; j < cutDeque.size(); j++) {
-                if (numbers.get(i) - cutDeque.getFirst() > cut) {
+                if (numbersCopy.get(i) - cutDeque.getFirst() > cut) {
                     cutDeque.removeFirst();
                 }
-                if (max < cutDeque.size()) {
-                    max = cutDeque.size();
-                }
+            }
+            if (max < cutDeque.size()) {
+                max = cutDeque.size();
             }
         }
         return max;
