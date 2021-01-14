@@ -53,7 +53,14 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
     }
 
     private void resize() {
-        source = new Pair[capacity * 2];
+        int capacityNew = capacity * 2;
+        Pair<K, V>[] sourceNew = new Pair[capacityNew];
+        for (int i = 0; i < capacityNew; i++) {
+            int index = hash(source[i]) % capacityNew;
+            sourceNew[index] = source[i];
+        }
+        System.out.println("new source" + Arrays.toString(sourceNew));
+        source = sourceNew;
     }
 
     private Pair<K, V> findPair(K key) {
@@ -102,13 +109,35 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
 
     @Override
     public Iterator keyIterator() {
+        // MyIterator keyIterator = new MyIterator();
         return null;
     }
 
     @Override
-    public Iterator valueIterator() {
+    public Iterator<V> valueIterator() {
         return null;
     }
+
+   /* class MyIterator implements Iterator {
+        Pair<K,V> current = source[0];
+
+     /*   @Override
+        public boolean hasNext() {
+            return currentNode != null;
+        }
+
+        @Override
+        public T next() {
+            if (currentNode == null) {
+                throw new IndexOutOfBoundsException();
+            }
+            T res = currentNode.element;
+            currentNode = currentNode.next;
+            return res;
+        }
+    }
+
+    }*/
 
     private static class Pair<K, V> {
         K key;

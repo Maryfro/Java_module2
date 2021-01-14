@@ -79,5 +79,14 @@ class OurMapImplTest {
         assertEquals(4, map.size());
     }
 
+    @Test
+    public void test_remove_resize() {
+        for (int i = 0; i < 14; i++) {
+            map.put(i, "aaa");
+        }
+        System.out.println(map);
+        assertEquals("aaa", map.get(13));
+    }
+
 
 }
