@@ -1,5 +1,4 @@
-import java.util.Arrays;
-import java.util.Iterator;
+import java.util.*;
 
 /**
  * The implementation of OurMap cannot contain null as a key.
@@ -16,12 +15,14 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
     private int size;
     private double loadFactor;
     private int capacity;
+  //  private ArrayList<K> keys;
 
     public OurMapImpl() {
         source = new Pair[INITIAL_CAPACITY];
         capacity = INITIAL_CAPACITY;
         size = 0;
         loadFactor = DEFAULT_LOAD_FACTOR;
+       // keys = createKeys();
     }
 
     static int hash(Object key) {
@@ -42,7 +43,6 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
         if (pair != null) {
             V res = pair.value;
             pair.value = value;
-            size++;
             return res;
         }
         int index = hash(key) % capacity;
@@ -53,13 +53,16 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
     }
 
     private void resize() {
-        int capacityNew = capacity * 2;
-        Pair<K, V>[] sourceNew = new Pair[capacityNew];
-        for (int i = 0; i < capacityNew; i++) {
-            int index = hash(source[i]) % capacityNew;
-            sourceNew[index] = source[i];
+        capacity = capacity * 2;
+        Pair<K, V>[] sourceNew = new Pair[capacity];
+        for (int i = 0; i < source.length; i++) {
+            while (source[i] != null) {
+                int index = hash(source[i].key) % capacity;
+                source[i].next = sourceNew[index];
+                sourceNew[index] = source[i];
+                source[i] = source[i].next;
+            }
         }
-        System.out.println("new source" + Arrays.toString(sourceNew));
         source = sourceNew;
     }
 
@@ -86,20 +89,27 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
 
     @Override
     public V remove(K key) {
+        if (findPair(key) == null)
+            throw new NoSuchElementException();
         Pair<K, V> pair = findPair(key);
-        if (pair != null) {
-            V res = pair.value;
-            if (pair != source[0]) {
-                Pair<K, V> pairPrev = source[(hash(key) % capacity) - 1];
-                if (pairPrev != null) {
-                    pairPrev.next = pair.next;
+        int index = hash(key) % capacity;
+        Pair<K, V> current = source[index];
+        if (current == pair) { // remove from Head
+            source[index] = current.next;
+        } else { // remove form Middle or Tail
+            while (current != null) {
+                if (current.next != null && key.equals(current.next.key)) {
+                    current.next = pair.next;
+                    break;
                 }
+                current = current.next;
             }
-            pair.key = null;
-            size--;
-            return res;
         }
-        return null;
+        size--;
+        V value = pair.value;
+        pair.value = null;
+        pair.key = null;
+        return value;
     }
 
     @Override
@@ -109,35 +119,45 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
 
     @Override
     public Iterator keyIterator() {
-        // MyIterator keyIterator = new MyIterator();
-        return null;
+        ArrayList<K> keys = createKeys();
+        Iterator<K> iterator = keys.iterator();
+        return iterator;
     }
+
+    private ArrayList<K> createKeys() {
+        ArrayList<K> keys = new ArrayList<>();
+        for (int i = 0; i < source.length; i++) {
+            if (source[i] != null) {
+                keys.add(source[i].key);
+            }
+        }
+        System.out.println(keys);
+        return keys;
+    }
+
+   /* class ForwardIterator implements Iterator<K> {
+        int currentIndex = 0;
+
+        @Override
+        public boolean hasNext() {
+            return currentIndex < keys.size();
+        }
+
+        @Override
+        public K next() {
+            if (currentIndex >= keys.size()) {
+                throw new IndexOutOfBoundsException();
+            }
+            return keys.get(currentIndex++);
+        }
+    }*/
+
 
     @Override
     public Iterator<V> valueIterator() {
         return null;
     }
 
-   /* class MyIterator implements Iterator {
-        Pair<K,V> current = source[0];
-
-     /*   @Override
-        public boolean hasNext() {
-            return currentNode != null;
-        }
-
-        @Override
-        public T next() {
-            if (currentNode == null) {
-                throw new IndexOutOfBoundsException();
-            }
-            T res = currentNode.element;
-            currentNode = currentNode.next;
-            return res;
-        }
-    }
-
-    }*/
 
     private static class Pair<K, V> {
         K key;
