@@ -1,9 +1,6 @@
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.List;
-import java.util.NoSuchElementException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -102,23 +99,31 @@ class OurMapImplTest {
             map.put(i, "aaa");
             map.put(i * 2, "bbb");
         }
-       // map.keyIterator();
+
+        Iterator iterator = this.map.keyIterator();
         int[] exp = {0, 1, 2, 3, 4, 6, 8};
-   while (map.keyIterator().hasNext()) {
-            System.out.println(map.keyIterator().next());
-            assertEquals(0, map.keyIterator().next());
-            System.out.println(map.keyIterator().next());
-            // assertEquals(1, map.keyIterator().next());
-            System.out.println(map.keyIterator().next());
-            //assertEquals(2, map.keyIterator().next());
-            System.out.println(map.keyIterator().next());
-           // assertEquals(3, map.keyIterator().next());
-            System.out.println(map.keyIterator().next());
-           // assertEquals(4, map.keyIterator().next());
-           // assertEquals(6, map.keyIterator().next());
-          //  assertEquals(8, map.keyIterator().next());
+        int i = 0;
+        while (iterator.hasNext()) {
+            assertEquals(exp[i++], iterator.next());
         }
 
+    }
+
+    @Test
+    void test_valueIterator() {
+        for (int i = 0; i < 5; i++) {
+            map.put(i, "aaa");
+            map.put(i * 2, "bbb");
+        }
+        String[] exp = {"bbb", "aaa", "aaa", "aaa", "aaa", "bbb", "bbb"};
+        Iterator iterator = map.valueIterator();
+        int size = map.size();
+        int i = 0;
+        while (iterator.hasNext()) {
+           // System.out.println(exp[i]);
+            assertEquals(exp[i++], iterator.next());
+            assertEquals(7, size);
+        }
     }
 }
 

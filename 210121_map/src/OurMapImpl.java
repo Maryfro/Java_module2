@@ -15,14 +15,14 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
     private int size;
     private double loadFactor;
     private int capacity;
-  //  private ArrayList<K> keys;
+    //  private ArrayList<K> keys;
 
     public OurMapImpl() {
         source = new Pair[INITIAL_CAPACITY];
         capacity = INITIAL_CAPACITY;
         size = 0;
         loadFactor = DEFAULT_LOAD_FACTOR;
-       // keys = createKeys();
+        // keys = createKeys();
     }
 
     static int hash(Object key) {
@@ -56,11 +56,13 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
         capacity = capacity * 2;
         Pair<K, V>[] sourceNew = new Pair[capacity];
         for (int i = 0; i < source.length; i++) {
-            while (source[i] != null) {
+            Pair<K, V> current = source[i];
+            while (current != null) {
                 int index = hash(source[i].key) % capacity;
-                source[i].next = sourceNew[index];
-                sourceNew[index] = source[i];
-                source[i] = source[i].next;
+                Pair<K, V> next = current.next;
+                current.next = sourceNew[index];
+                sourceNew[index] = current;
+                current = next;
             }
         }
         source = sourceNew;
@@ -81,22 +83,46 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
     @Override
     public V get(K key) {
         Pair<K, V> pair = findPair(key);
-        if (pair != null) {
-            return pair.value;
-        }
-        return null;
+        return pair == null ? null : pair.value;
     }
 
     @Override
     public V remove(K key) {
-        if (findPair(key) == null)
-            throw new NoSuchElementException();
+        int index = hash(key) % capacity;
+        Pair<K, V> current = source[index];
+        if (current == null) {
+            return null;
+        }
+        if (current.key.equals(key)) { //remove from Head
+            source[index] = current.next;
+            V res = current.value;
+            clearPair(current);
+            size--;
+            return res;
+        }
+        while (current.next != null) { //remove from Middle and Tail
+            if (current.next.key.equals(key)) {
+                Pair<K, V> pairToRemove = current.next;
+                V res = pairToRemove.value;
+                current.next = pairToRemove.next;
+                clearPair(pairToRemove);
+                size--;
+                return res;
+            }
+            current = current.next;
+        }
+        return null;
+
+
+      /*  if (findPair(key) == null) {
+            return null;
+        }
         Pair<K, V> pair = findPair(key);
         int index = hash(key) % capacity;
         Pair<K, V> current = source[index];
         if (current == pair) { // remove from Head
             source[index] = current.next;
-        } else { // remove form Middle or Tail
+        } else { // remove from Middle or Tail
             while (current != null) {
                 if (current.next != null && key.equals(current.next.key)) {
                     current.next = pair.next;
@@ -107,9 +133,16 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
         }
         size--;
         V value = pair.value;
+        pair.next = null;
         pair.value = null;
         pair.key = null;
-        return value;
+        return value;*/
+    }
+
+    private void clearPair(Pair<K, V> current) {
+        current.key = null;
+        current.value = null;
+        current.next = null;
     }
 
     @Override
@@ -119,43 +152,35 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
 
     @Override
     public Iterator keyIterator() {
-        ArrayList<K> keys = createKeys();
+         ArrayList<K> keys = createKeys();
         Iterator<K> iterator = keys.iterator();
-        return iterator;
+        //KeyIterator keyIterator = new KeyIterator();
+        return keys.iterator();
     }
 
     private ArrayList<K> createKeys() {
         ArrayList<K> keys = new ArrayList<>();
         for (int i = 0; i < source.length; i++) {
-            if (source[i] != null) {
+            while (source[i] != null) {
                 keys.add(source[i].key);
+                source[i] = source[i].next;
             }
         }
         System.out.println(keys);
         return keys;
     }
 
-   /* class ForwardIterator implements Iterator<K> {
-        int currentIndex = 0;
-
-        @Override
-        public boolean hasNext() {
-            return currentIndex < keys.size();
-        }
-
-        @Override
-        public K next() {
-            if (currentIndex >= keys.size()) {
-                throw new IndexOutOfBoundsException();
-            }
-            return keys.get(currentIndex++);
-        }
-    }*/
-
 
     @Override
     public Iterator<V> valueIterator() {
-        return null;
+        ArrayList<V> values = new ArrayList<>();
+        for (int i = 0; i < source.length; i++) {
+            while (source[i] != null) {
+                values.add(source[i].value);
+                source[i] = source[i].next;
+            }
+        }
+        return values.iterator();
     }
 
 
@@ -202,4 +227,56 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
         }
         return "";
     }
+
+    private class KeyIterator implements Iterator<K> {
+        int index = 0;
+        int position = 0; // how many elements we already passed
+        Pair<K, V> currentPair;
+
+        public KeyIterator() {
+            if (size == 0)
+                return;
+            while (source[index++] == null) ;
+            currentPair = source[index];
+        }
+
+        @Override
+        public boolean hasNext() {
+            return position < size;
+        }
+
+        @Override
+        public K next() {
+            if (position >= size) {
+                throw new IndexOutOfBoundsException();
+            }
+            K res = currentPair.key;
+            if (currentPair.next != null) {
+                currentPair = currentPair.next;
+            } else {
+                do {
+                    index++;
+                } while (index < capacity && source[index] == null);
+                currentPair = index < capacity ? source[index] : null;
+            }
+            position++;
+            return res;
+        }
+    }
+
+    /*@Override
+    public Iterator<V> valueIterator() {
+
+        return new Iterator<V>() {
+            @Override
+            public boolean hasNext() {
+                return keyIterator().hasNext();
+            }
+
+            @Override
+            public V next() {
+                return get((K) keyIterator().next());
+            }
+        };
+    }*/
 }
