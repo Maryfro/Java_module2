@@ -1,5 +1,14 @@
 public class TextPattern {
 
+    public TextPattern() {
+        super();
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
+
     /***
      * Is pattern subsequence of text?
      * //hello, hll ->true

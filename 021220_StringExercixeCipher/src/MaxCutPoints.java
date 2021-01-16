@@ -6,6 +6,9 @@ public class MaxCutPoints {
 
 
     int maxCoveredPoints(List<Integer> numbers, int cut) {
+        if(numbers.isEmpty() || cut == 0){
+            return 0;
+        }
         ArrayDeque<Integer> cutDeque = new ArrayDeque<>();
         int max = 1;
         for (Integer el : numbers) {
@@ -32,3 +35,4 @@ public class MaxCutPoints {
 //1st iteration cutDeque{10}
 //{10, 15}
 //{10, 15, 25}->remove 10,
+
