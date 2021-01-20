@@ -7,7 +7,7 @@ import java.util.*;
  * @param <V>
  */
 
-public class OurMapImpl<K, V> implements OurMap<K, V> {
+public class OurHashMap<K, V> implements OurMap<K, V> {
     private static final double DEFAULT_LOAD_FACTOR = 0.75;
     private static final int INITIAL_CAPACITY = 16;
 
@@ -17,7 +17,7 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
     private int capacity;
     //  private ArrayList<K> keys;
 
-    public OurMapImpl() {
+    public OurHashMap() {
         source = new Pair[INITIAL_CAPACITY];
         capacity = INITIAL_CAPACITY;
         size = 0;
@@ -29,7 +29,7 @@ public class OurMapImpl<K, V> implements OurMap<K, V> {
         return Math.abs(key.hashCode());
     }
 
-    public OurMapImpl(double loadFactor) {
+    public OurHashMap(double loadFactor) {
         this();
         this.loadFactor = loadFactor;
     }

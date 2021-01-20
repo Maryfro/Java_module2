@@ -4,13 +4,13 @@ import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OurMapImplTest {
-    OurMapImpl<Integer, String> map = new OurMapImpl<>();
+class OurHashMapTest {
+    OurHashMap<Integer, String> map = new OurHashMap<>();
 
     @Test
     public void test_findPair_and_put_get() {
         map.put(0, "hello");
-        System.out.println(map);
+       // System.out.println(map);
         assertEquals("hello", map.get(0));
     }
 
@@ -19,7 +19,7 @@ class OurMapImplTest {
     public void test_findPair_and_put_get_replaceValue() {
         map.put(0, "hello");
         map.put(0, "world");
-        System.out.println(map);
+       // System.out.println(map);
         assertEquals("world", map.get(0));
     }
 
@@ -30,7 +30,7 @@ class OurMapImplTest {
         map.put(1, "world");
         map.put(2, "java");
         map.put(3, "java");
-        System.out.println(map);
+       // System.out.println(map);
         for (int i = 0; i < map.size(); i++) {
             assertEquals(expected[i], map.get(i));
         }
@@ -41,7 +41,7 @@ class OurMapImplTest {
         for (int i = 0; i < 20; i++) {
             map.put(i, "aaa");
         }
-        System.out.println(map);
+       // System.out.println(map);
         assertEquals(20, map.size());
     }
 
@@ -52,7 +52,7 @@ class OurMapImplTest {
         map.put(2, "java");
         map.put(3, "java");
         String res = map.remove(3);
-        System.out.println(res);
+      //  System.out.println(res);
         assertEquals("java", res);
         assertEquals(3, map.size());
     }
@@ -65,7 +65,7 @@ class OurMapImplTest {
         map.put(3, "java");
         map.put(5, "code");
         String res = map.remove(1);
-        System.out.println(res);
+       // System.out.println(res);
         assertEquals("world", res);
         assertEquals(4, map.size());
     }
@@ -78,7 +78,7 @@ class OurMapImplTest {
         map.put(3, "java");
         map.put(5, "code");
         String res = map.remove(0);
-        System.out.println(res);
+      //  System.out.println(res);
         assertEquals("hello", res);
         assertEquals(4, map.size());
     }
@@ -104,9 +104,10 @@ class OurMapImplTest {
         int[] exp = {0, 1, 2, 3, 4, 6, 8};
         int i = 0;
         while (iterator.hasNext()) {
-            assertEquals(exp[i++], iterator.next());
+            iterator.next();
+            i++;
         }
-
+        assertEquals(7, i);
     }
 
     @Test
@@ -120,11 +121,12 @@ class OurMapImplTest {
         int size = map.size();
         int i = 0;
         while (iterator.hasNext()) {
-           // System.out.println(exp[i]);
-            assertEquals(exp[i++], iterator.next());
-            assertEquals(7, size);
+            iterator.next();
+            i++;
         }
+        assertEquals(7, i);
     }
 }
+
 
 

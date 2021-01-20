@@ -1,6 +1,7 @@
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
+import java.util.TreeMap;
 
 public class Main {
     public static void main(String[] args) {
@@ -10,20 +11,23 @@ public class Main {
         String value = map.get(anotherGreyOpel);
         System.out.println(value); // null->
         // if equals and hashCode are not overriden
-Map<String, String> map1 = new HashMap<>();
+        Map<String, String> map1 = new HashMap<>();
+
+        TreeMap<Integer, Integer> treeMap = new TreeMap<>();
     }
 
-    static void fillMap(Map<Auto, String> map){
+    static void fillMap(Map<Auto, String> map) {
         Auto greyOpel = new Auto("grey", "Opel");
         map.put(greyOpel, "value");
 
     }
 }
-class Auto{
+
+class Auto {
     private final String brand; // fields should be immutable
     private final String color;
 
-    public Auto(String brand, String color){
+    public Auto(String brand, String color) {
         this.brand = brand;
         this.color = color;
     }
