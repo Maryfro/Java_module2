@@ -23,19 +23,19 @@ class OurTreeMapTest {
     @Test
     public void test_put_get_2Elements() {
         treeMap.put(0, "hello");
-        treeMap.put(2, "world");
+        treeMap.put(1, "world");
         assertEquals("hello", treeMap.get(0));
-        assertEquals("world", treeMap.get(2));
+        assertEquals("world", treeMap.get(1));
     }
 
 
     @Test
     void test_put_get_severalPairs() {
-        String[] expected = {"hello", "world", "java", "java"};
+        String[] expected = {"hello", "world", "java", "loop"};
         treeMap.put(0, "hello");
         treeMap.put(1, "world");
         treeMap.put(2, "java");
-        treeMap.put(3, "java");
+        treeMap.put(3, "loop");
         for (int i = 0; i < treeMap.size(); i++) {
             assertEquals(expected[i], treeMap.get(i));
         }

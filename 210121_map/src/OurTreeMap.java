@@ -43,7 +43,6 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
         if(root==null){
             return null;
         }
-
         return;
     }*/
 
@@ -55,39 +54,31 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
             size++;
             return null;
         }
+        int cmp;
+        Node<K, V> parent;
         Node<K, V> current = root;
-        while (current != null) {
-            int cmp = keyComparator.compare(key, current.key);
-            if (current.key.equals(key)) { // if we already have given key and want to replace value
-                if (cmp < 0) {
-                    current.parent = current;
-                    current = current.left;
-                }else if (cmp > 0) {
-                   current.parent = current;
-                    current = current.right;
-                }else {
-                    V res = current.value;
-                    current.value = value;
-                    return res;
-                }
-            } else { // if given key is new
-                if (cmp < 0) {
-                  //  current.parent = current;
-                    current = current.left;
-                } else if (cmp > 0) {
-                 //   current.parent = current;
-                    current = current.right;
-                } else {
-                    Node<K, V> node = new Node(current.parent, key, value);
-                    System.out.println(current.parent);
-                    current = node;
-                    return current.value;
-                }
-                size++;
+        do {
+            parent = current;
+            cmp = keyComparator.compare(key, current.key);
+            if (cmp < 0)
+                current = current.left;
+            else if (cmp > 0)
+                current = current.right;
+            else {// if we already have given key and want to replace value
+                V res = current.value;
+                current.value = value;
+                return res;
             }
-        }
+        } while (current != null);
+        Node<K, V> node = new Node(parent, key, value);// if given key is new
+        if (cmp < 0) {
+            parent.left = node;
+        } else
+            parent.right = node;
+        size++;
         return null;
     }
+
 
     @Override
     public V get(K key) {
