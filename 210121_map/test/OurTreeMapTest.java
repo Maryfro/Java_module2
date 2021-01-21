@@ -1,79 +1,66 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OurTreeMapTest {
-    OurTreeMap<Integer, String> treeMap = new OurTreeMap<>();
+class OurTreeMapTest extends OurMapTest {
+    @BeforeEach
+    public void init() {
+        map = new OurTreeMap<>();
 
-    @Test
-    public void test_put_get_onePair() {
-        treeMap.put(0, "hello");
-        assertEquals("hello", treeMap.get(0));
-    }
-
-
-    @Test
-    public void test_put_get_replaceValue() {
-        treeMap.put(0, "hello");
-        treeMap.put(0, "world");
-        assertEquals("world", treeMap.get(0));
     }
 
     @Test
-    public void test_put_get_2Elements() {
-        treeMap.put(0, "hello");
-        treeMap.put(1, "world");
-        assertEquals("hello", treeMap.get(0));
-        assertEquals("world", treeMap.get(1));
+    public void test_remove_fromHead() {
+        map.put(0, "hello");
+        map.put(1, "world");
+        map.put(2, "java");
+        map.put(3, "java");
+        map.put(4, "code");
+        String res = map.remove(0);
+        //  System.out.println(res);
+        assertEquals("hello", res);
+        assertEquals(4, map.size());
+        String[] exp = {null, "world", "java", "java", "code"};
+        for (int i = 0; i < map.size(); i++) {
+            assertEquals(exp[i], map.get(i));
+        }
     }
 
+    @Test
+    public void test_remove_fromMiddle() {
+        map.put(0, "hello");
+        map.put(1, "world");
+        map.put(2, "java");
+        map.put(3, "java");
+        map.put(4, "code");
+        String res = map.remove(1);
+        assertEquals("world", res);
+        assertEquals(4, map.size());
+
+        String[] exp = {"hello", null, "java", "java", "code"};
+        for (int i = 0; i < map.size(); i++) {
+            assertEquals(exp[i], map.get(i));
+        }
+    }
 
     @Test
-    void test_put_get_severalPairs() {
-        String[] expected = {"hello", "world", "java", "loop"};
-        treeMap.put(0, "hello");
-        treeMap.put(1, "world");
-        treeMap.put(2, "java");
-        treeMap.put(3, "loop");
-        for (int i = 0; i < treeMap.size(); i++) {
-            assertEquals(expected[i], treeMap.get(i));
+    public void test_remove_fromTail() {
+        map.put(0, "hello");
+        map.put(1, "world");
+        map.put(2, "java");
+        map.put(3, "java");
+        String res = map.remove(3);
+        //  System.out.println(res);
+        assertEquals("java", res);
+        assertEquals(3, map.size());
+
+        String[] exp = {"hello", "world", "java", null};
+        for (int i = 0; i < map.size(); i++) {
+            assertEquals(exp[i], map.get(i));
         }
     }
 
 
-    @Test
-    public void test_size() {
-        for (int i = 0; i < 20; i++) {
-            treeMap.put(i, "aaa");
-        }
-        assertEquals(20, treeMap.size());
-    }
-
-    @Test
-    void test_get_nullPointerException() {
-        assertThrows(NullPointerException.class, () -> {
-            treeMap.get(null);
-        });
-
-    }
-
-    @Test
-    void test_get_noSuchElement_returnNull() {
-        assertNull(treeMap.get(1));
-
-    }
-
-    @Test
-    void test_get_oneElement() {
-        treeMap.put(100, "abracadabra");
-        assertEquals("abracadabra", treeMap.get(100));
-    }
-
-    @Test
-    void test_get_replacedValue() {
-        treeMap.put(100, "abracadabra");
-        treeMap.put(100, "hello");
-        assertEquals("hello", treeMap.get(100));
-    }
 }

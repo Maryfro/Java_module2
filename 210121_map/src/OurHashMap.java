@@ -151,8 +151,13 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
     }
 
     @Override
+    public boolean containsKey(K key) {
+        return findPair(key) != null;
+    }
+
+    @Override
     public Iterator keyIterator() {
-         ArrayList<K> keys = createKeys();
+        ArrayList<K> keys = createKeys();
         Iterator<K> iterator = keys.iterator();
         //KeyIterator keyIterator = new KeyIterator();
         return keys.iterator();
