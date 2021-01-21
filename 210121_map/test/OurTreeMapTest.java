@@ -2,6 +2,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
+import java.util.Iterator;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class OurTreeMapTest extends OurMapTest {
@@ -59,6 +61,22 @@ class OurTreeMapTest extends OurMapTest {
         String[] exp = {"hello", "world", "java", null};
         for (int i = 0; i < map.size(); i++) {
             assertEquals(exp[i], map.get(i));
+        }
+    }
+
+    @Test
+    public void test_keyIterator() {
+        for (int i = 0; i < 5; i++) {
+            map.put(i, "aaa");
+            map.put(i * 2, "bbb");
+        }
+        Iterator iterator = this.map.keyIterator();
+        int[] exp = {0, 1, 2, 3, 4, 6, 8};
+        int i = 0;
+        while (iterator.hasNext()) {
+            iterator.next();
+            i++;
+        assertEquals(exp[i], iterator.next());
         }
     }
 

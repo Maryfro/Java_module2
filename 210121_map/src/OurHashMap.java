@@ -160,7 +160,7 @@ public class OurHashMap<K, V> implements OurMap<K, V> {
         ArrayList<K> keys = createKeys();
         Iterator<K> iterator = keys.iterator();
         //KeyIterator keyIterator = new KeyIterator();
-        return keys.iterator();
+        return iterator;
     }
 
     private ArrayList<K> createKeys() {

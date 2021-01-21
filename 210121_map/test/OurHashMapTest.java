@@ -11,5 +11,21 @@ class OurHashMapTest extends OurMapTest {
         map = new OurHashMap<>();
 
     }
+    @Test
+    public void test_keyIterator() {
+        for (int i = 0; i < 5; i++) {
+            map.put(i, "aaa");
+            map.put(i * 2, "bbb");
+        }
+
+        Iterator iterator = this.map.keyIterator();
+        int[] exp = {0, 1, 2, 3, 4, 6, 8};
+        int i = 0;
+        while (iterator.hasNext()) {
+            iterator.next();
+            i++;
+        }
+        assertEquals(7, i);
+    }
 
 }

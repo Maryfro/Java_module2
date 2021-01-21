@@ -154,7 +154,7 @@ class OurMapTest {
     }
 
     @Test
-    void testRemove_emptyMap() {
+    void test_remove_emptyMap() {
         assertNull(map.remove(0));
     }
 

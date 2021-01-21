@@ -1,8 +1,11 @@
-import javax.xml.soap.Node;
 import java.util.Comparator;
 import java.util.Iterator;
 
 public class OurTreeMap<K, V> implements OurMap<K, V> {
+    private final Comparator<K> keyComparator;
+    private Node<K, V> root;
+    private int size;
+
 
     private static class Node<K, V> {
         Node<K, V> left;
@@ -18,9 +21,6 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
         }
     }
 
-    private final Comparator<K> keyComparator;
-    private Node<K, V> root;
-    private int size;
 
     public OurTreeMap(Comparator<K> keyComparator) {
         this.keyComparator = keyComparator;
@@ -185,7 +185,7 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
     }
 
     private V linearRemove(Node<K, V> nodeToRemove) {
-            V res = nodeToRemove.value;
+        V res = nodeToRemove.value;
         if (nodeToRemove.parent == null) { //removing root
             if (nodeToRemove.right == null) {
                 root = nodeToRemove.left;
@@ -195,8 +195,10 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
             return res;
         }
         if (nodeToRemove.right == null && nodeToRemove.left == null) { //if nodeToRemove is a leaf
-            nodeToRemove.parent.left = null; // is this ok? if we don't have parent left?
-            nodeToRemove.parent.right = null;
+            if (nodeToRemove.parent.left != null)
+                nodeToRemove.parent.left = null;
+            else
+                nodeToRemove.parent.right = null;
         } else {
             if (nodeToRemove.right != null) { // if nodeToRemove has one child
                 nodeToRemove.parent.right = nodeToRemove.right;
@@ -215,7 +217,56 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
 
     @Override
     public Iterator<K> keyIterator() {
-        return null;
+        KeyIterator iterator = new KeyIterator();
+        return iterator;
+    }
+
+    private class KeyIterator implements Iterator<K> {
+        int position = 0; // how many elements we already passed
+        OurTreeMap.Node<K, V> currentPair;
+
+        public KeyIterator() {
+            if (size == 0)
+                return;
+            currentPair = findMin();
+        }
+
+        private Node<K, V> findMin() {
+            Node<K, V> min;
+            min = root;
+            while (min.left != null) {
+                min = min.left;
+            }
+            return min;
+        }
+
+        @Override
+        public boolean hasNext() {
+            return position < size;
+        }
+
+        @Override
+        public K next() {
+            if (position >= size) {
+                throw new IndexOutOfBoundsException();
+            }
+                if (currentPair.right != null) { // if we have right child
+                    currentPair = currentPair.right;
+                    while (currentPair.left != null) {
+                        currentPair = currentPair.left;
+                    }
+                    position++;
+                } else {
+                    position++;
+                    while (currentPair.parent != currentPair.parent.right) {
+                        currentPair = currentPair.parent.right;
+                    }
+                    if (currentPair == currentPair.parent.left) { //if we have no right child
+                        currentPair = currentPair.parent;
+                    }
+                }
+                return currentPair.key;
+        }
     }
 
     @Override
