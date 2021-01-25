@@ -5,7 +5,7 @@ public class MaxTrees {
     public MaxTrees() {
     }
 
-    private static class Point {
+    public static class Point {
         double x;
         double y;
 
@@ -23,6 +23,7 @@ public class MaxTrees {
         }
     }
 
+
     int maxTrees(List<Point> points, double alpha) {
         if (points.isEmpty() || alpha == 0) {
             return 0;
@@ -30,32 +31,43 @@ public class MaxTrees {
         ArrayList<Double> pointsAngles = new ArrayList<>();
         for (Point p : points) {
             double pointAngle = Math.atan2(p.y, p.x);
+            if (pointAngle < 0) {
+                pointAngle = 2 * Math.PI + pointAngle;
+            }
+            if (pointAngle < alpha) {
+                pointsAngles.add(pointAngle + 2 * Math.PI);
+            }
             pointsAngles.add(pointAngle);
         }
         Collections.sort(pointsAngles);
-        System.out.println(pointsAngles);
+        return maxCoveredPoints(pointsAngles, alpha);
+    }
+
+    int maxCoveredPoints(List<Double> numbers, double cut) {
+        if (numbers.isEmpty() || cut == 0) {
+            return 0;
+        }
+        ArrayDeque<Double> cutDeque = new ArrayDeque<>();
         int max = 1;
-        ArrayDeque<Double> pointsDeque = new ArrayDeque<>();
-        for (Double point : pointsAngles) {
-            pointsDeque.addLast(point);
-            while (point - pointsDeque.getFirst() > alpha) {
-                pointsDeque.removeFirst();
+        for (Double el : numbers) {
+            cutDeque.addLast(el);
+            while (el - cutDeque.getFirst() > cut) {
+                cutDeque.removeFirst();
             }
-            if (max < pointsDeque.size()) {
-                max = pointsDeque.size();
+            if (max < cutDeque.size()) {
+                max = cutDeque.size();
             }
         }
         return max;
     }
 
+
     public static void main(String[] args) {
         ArrayList<Point> points = new ArrayList<>();
-        points.add(new Point(0.5, 1.7));
-        points.add(new Point(4.2, 0.2));
-        points.add(new Point(1.5, 3.1));
-        points.add(new Point(-8, -5));
-        points.add(new Point(-10, -10));
-        points.add(new Point(0.7, 17));
+        points.add(new Point(1, 0));
+        points.add(new Point(-1, 0));
+        points.add(new Point(0, -1));
+        points.add(new Point(0, 1));
         double alpha = Math.PI;
         MaxTrees mt = new MaxTrees();
         System.out.println(mt.maxTrees(points, alpha));
@@ -73,4 +85,12 @@ public class MaxTrees {
 //Math.arctn()
 //tangens = y1/x1;
 //Math.arctn(tangens);
+
+
+
+//new task
+//Prime number is a number which can be deleted over itself or 1. *2,3,5,7,11
+// write a method which finds all prime numbers from 2 to n.
+// 1 is not a prime number.
+// List<Integer> getPrimes(int upperBound){}
 
