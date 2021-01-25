@@ -4,7 +4,7 @@ import java.util.Iterator;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class OurMapTest {
+abstract class OurMapTest {
     OurMap<Integer,String> map;
     @Test
     public void test_findPair_and_put_get() {
@@ -66,6 +66,16 @@ class OurMapTest {
         // System.out.println(res);
         assertEquals("world", res);
         assertEquals(4, map.size());
+    }
+
+    @Test
+    public void test_remove_oneElement() {
+        map.put(0, "hello");
+
+        String res = map.remove(0);
+        assertEquals("hello", res);
+        assertEquals(0, map.size());
+        assertNull(map.get(0));
     }
 
     @Test

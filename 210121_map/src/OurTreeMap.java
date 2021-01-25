@@ -1,5 +1,6 @@
 import java.util.Comparator;
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 public class OurTreeMap<K, V> implements OurMap<K, V> {
     private final Comparator<K> keyComparator;
@@ -46,7 +47,7 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
             throw new NullPointerException();
         }
         if (root == null) { // if we have no root
-            Node<K, V> node = new Node(null, key, value);
+            Node<K, V> node = new Node<>(null, key, value);
             root = node;
             size++;
             return null;
@@ -67,7 +68,7 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
                 return res;
             }
         } while (current != null);
-        Node<K, V> node = new Node(parent, key, value);// if given key is new
+        Node<K, V> node = new Node<>(parent, key, value);// if given key is new
         if (cmp < 0)
             parent.left = node;
         else
@@ -96,7 +97,7 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
                 return res;
             }
         }
-        Node<K, V> node = new Node(parent, key, value);
+        Node<K, V> node = new Node<>(parent, key, value);
         if (comparator > 0)
             parent.right = node;
         else if (comparator < 0)
@@ -168,7 +169,7 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
     }
 
     private V junctionRemove(Node<K, V> nodeToRemove) {
-        Node<K, V> nextNode = findNext(nodeToRemove);
+        Node<K, V> nextNode = findNextInRightBranch(nodeToRemove);
         V res = nodeToRemove.value;
         nodeToRemove.key = nextNode.key;
         nodeToRemove.value = nextNode.value;
@@ -176,12 +177,21 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
         return res;
     }
 
-    private Node<K, V> findNext(Node<K, V> nodeToRemove) {
+    private Node<K, V> findNextInRightBranch(Node<K, V> nodeToRemove) {
         Node<K, V> next = nodeToRemove.right;
-        while (next != null) {
+
+        while (next.left != null) {
             next = next.left;
         }
+
         return next;
+    }
+
+    private Node<K, V> findNextRightParent(Node<K, V> currentPair) {
+        while (currentPair.parent != null && currentPair.parent.left != currentPair) {
+            currentPair = currentPair.parent;
+        }
+        return currentPair.parent;
     }
 
     private V linearRemove(Node<K, V> nodeToRemove) {
@@ -189,9 +199,9 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
         if (nodeToRemove.parent == null) { //removing root
             if (nodeToRemove.right == null) {
                 root = nodeToRemove.left;
-            } else {
+            } else
                 root = nodeToRemove.right;
-            }
+
             return res;
         }
         if (nodeToRemove.right == null && nodeToRemove.left == null) { //if nodeToRemove is a leaf
@@ -200,11 +210,10 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
             else
                 nodeToRemove.parent.right = null;
         } else {
-            if (nodeToRemove.right != null) { // if nodeToRemove has one child
+            if (nodeToRemove.right != null)  // if nodeToRemove has one child
                 nodeToRemove.parent.right = nodeToRemove.right;
-            } else {
+            else
                 nodeToRemove.parent.left = nodeToRemove.left;
-            }
         }
         return res;
     }
@@ -221,57 +230,70 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
         return iterator;
     }
 
+    private Node<K, V> findMin() {
+        Node<K, V> min = root;
+        while (min.left != null) {
+            min = min.left;
+        }
+        return min;
+    }
+
     private class KeyIterator implements Iterator<K> {
-        int position = 0; // how many elements we already passed
+        int count = 0; // how many elements we already passed
         OurTreeMap.Node<K, V> currentPair;
 
         public KeyIterator() {
-            if (size == 0)
-                return;
-            currentPair = findMin();
+            if (size > 0)
+                currentPair = findMin();
         }
 
-        private Node<K, V> findMin() {
-            Node<K, V> min;
-            min = root;
-            while (min.left != null) {
-                min = min.left;
-            }
-            return min;
-        }
 
         @Override
         public boolean hasNext() {
-            return position < size;
+            return count < size;
         }
 
         @Override
         public K next() {
-            if (position >= size) {
+            if (count == size)
                 throw new IndexOutOfBoundsException();
+
+            K res = currentPair.key;
+            if (currentPair.right != null) { // if we have right child
+                currentPair = findNextInRightBranch(currentPair);
+            } else {//if we have no right child
+                currentPair = findNextRightParent(currentPair);
             }
-                if (currentPair.right != null) { // if we have right child
-                    currentPair = currentPair.right;
-                    while (currentPair.left != null) {
-                        currentPair = currentPair.left;
-                    }
-                    position++;
-                } else {
-                    position++;
-                    while (currentPair.parent != currentPair.parent.right) {
-                        currentPair = currentPair.parent.right;
-                    }
-                    if (currentPair == currentPair.parent.left) { //if we have no right child
-                        currentPair = currentPair.parent;
-                    }
-                }
-                return currentPair.key;
+            count++;
+            return res;
         }
     }
 
+
     @Override
     public Iterator<V> valueIterator() {
-        return null;
+        ValueIterator valueIterator = new ValueIterator();
+        return valueIterator;
+    }
+
+    class ValueIterator implements Iterator<V> {
+        KeyIterator valIterator;
+
+        public ValueIterator() {
+            valIterator = new KeyIterator();
+        }
+
+        @Override
+        public boolean hasNext() {
+            return valIterator.hasNext();
+        }
+
+        @Override
+        public V next() {
+            if (!valIterator.hasNext())
+                throw new NoSuchElementException();
+            return get(valIterator.next());
+        }
     }
 
 

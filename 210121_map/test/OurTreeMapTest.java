@@ -2,7 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 
-import java.util.Iterator;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -66,18 +66,76 @@ class OurTreeMapTest extends OurMapTest {
 
     @Test
     public void test_keyIterator() {
-        for (int i = 0; i < 5; i++) {
+        for (int i = 0; i < 3; i++) {
             map.put(i, "aaa");
-            map.put(i * 2, "bbb");
+
         }
         Iterator iterator = this.map.keyIterator();
-        int[] exp = {0, 1, 2, 3, 4, 6, 8};
-        int i = 0;
+        ArrayList<Integer> exp = new ArrayList<>();
+        Collections.addAll(exp, 0, 1, 2);
+        ArrayList<Integer> actual = new ArrayList<>();
         while (iterator.hasNext()) {
-            iterator.next();
-            i++;
-        assertEquals(exp[i], iterator.next());
+            actual.add((Integer) iterator.next());
         }
+        assertEquals(exp, actual);
+    }
+
+    @Test
+    public void test_keyIterator_anotherTree() {
+        map.put(33, "zz");
+        map.put(-5, "yy");
+        map.put(0, "xx");
+        map.put(12, "*");
+        Iterator iterator = this.map.keyIterator();
+        ArrayList<Integer> exp = new ArrayList<>();
+        Collections.addAll(exp, -5, 0, 12, 33);
+        ArrayList<Integer> actual = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            actual.add((Integer) iterator.next());
+        }
+        assertEquals(exp, actual);
+    }
+
+    @Test
+    public void test_valueIterator() {
+        for (int i = 0; i < 3; i++) {
+            map.put(i, "aaa");
+
+        }
+        Iterator iterator = this.map.valueIterator();
+        ArrayList<String> exp = new ArrayList<>();
+        Collections.addAll(exp, "aaa", "aaa", "aaa");
+        ArrayList<String> actual = new ArrayList<>();
+        while (iterator.hasNext()) {
+            actual.add((String) iterator.next());
+        }
+        assertEquals(exp, actual);
+    }
+
+    @Test
+    public void test_valueIterator_anotherTree() {
+        map.put(33, "zz");
+        map.put(-5, "yy");
+        map.put(0, "xx");
+        map.put(12, "*");
+        Iterator iterator = this.map.valueIterator();
+        ArrayList<String> exp = new ArrayList<>();
+        Collections.addAll(exp, "yy", "xx", "*", "zz");
+        ArrayList<String> actual = new ArrayList<>();
+
+        while (iterator.hasNext()) {
+            actual.add((String) iterator.next());
+        }
+        assertEquals(exp, actual);
+    }
+
+    @Test
+    public void test_valueIterator_exception() {
+        Iterator iterator = this.map.valueIterator();
+        assertThrows(NoSuchElementException.class, () -> {
+            iterator.next();
+        });
     }
 
 
