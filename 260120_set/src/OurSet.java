@@ -1,15 +1,59 @@
-public interface OurSet<T> extends Iterable<T>{
-    boolean add(T el);
+import map.OurHashMap;
+import map.OurMap;
+import map.OurTreeMap;
 
-    boolean remove(T el);
+import java.util.Iterator;
 
-    boolean contains(T el);
+public interface OurSet<T> extends Iterable<T> {
+    OurMap<T, Object> source = new Object();
+    Object stubValue = new Object();
 
-    int size();
+    default boolean add(T el) {
+        if (source.containsKey(el))
+            return false;
+        source.put(el, stubValue);
+        return true;
+    }
 
-    void addAll(OurSet<T> another);
+    default boolean remove(T el) {
+        if (!source.containsKey(el))
+            return false;
+        source.remove(el);
+        return true;
+    }
 
-    void retainAll(OurSet<T> another);
+    default boolean contains(T el) {
+        return source.containsKey(el);
+    }
 
-    void removeAll(OurSet<T> another);
+    default int size(){
+        return source.size();
+    }
+
+    default void addAll(OurSet<T> another){
+        for (T el : another) {
+            source.put(el, stubValue);
+        }
+    }
+
+    default void retainAll(OurSet<T> another){
+       Iterator<T> it = source.keyIterator();
+       while(it.hasNext()){
+           if(!another.contains(it.next()))
+               source.remove(it.next());
+       }
+
+    }
+
+    default void removeAll(OurSet<T> another){
+        Iterator<T> it = source.keyIterator();
+        while(it.hasNext()){
+            if(another.contains(it.next()))
+                source.remove(it.next());
+        }
+    }
+
+    default Iterator<T> iterator() {
+        return source.keyIterator();
+    }
 }

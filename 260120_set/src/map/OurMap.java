@@ -1,4 +1,4 @@
-package set;
+package map;
 
 import java.util.Iterator;
 
