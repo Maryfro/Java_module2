@@ -54,11 +54,9 @@ abstract class OurSetTest {
         set.add(-5);
         set.add(121);
         assertTrue(set.remove(5));
-        assertTrue(set.remove(-5));
-        assertFalse(set.remove(-5));
         assertFalse(set.remove(34));
         assertFalse(set.remove(0));
-        assertEquals(1, set.size());
+        assertEquals(2, set.size());
     }
 
     @Test

@@ -1,10 +1,30 @@
 
+import map.OurHashMap;
+import map.OurMap;
 import map.OurTreeMap;
 
-public class OurTreeSet<T> implements OurSet<T> {
+import java.util.Iterator;
+
+public class OurTreeSet<T> extends AbstractSet<T> {
 
 
     public OurTreeSet() {
-        T source = (T) new OurTreeMap<T, Object>();
+        source = new OurTreeMap<>();
     }
+
+
+    @Override
+    public void retainAll(OurSet<T> another) {
+        OurSet<T> temp = new OurTreeSet<>();
+        for (T el: this) {
+            if(!another.contains(el))
+                temp.add(el);
+        }
+        this.removeAll(temp);
+    }
+
+
+
+
+
 }
