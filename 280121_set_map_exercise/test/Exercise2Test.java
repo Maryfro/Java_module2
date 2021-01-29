@@ -27,6 +27,16 @@ class Exercise2Test {
     }
 
     @Test
+    public void test_groupAutosByMake2_CorrectKeys() {
+        Collections.addAll(list, opel1, opel2, opel3, opel4, mazda1, mazda2, mazda3);
+        HashMap<String, List<Exercise2.Auto>> res = group.groupAutosByMake2(list);
+        HashSet<String> resKeys = new HashSet<>();
+        resKeys.add("Opel");
+        resKeys.add("Mazda");
+        assertEquals(resKeys, res.keySet());
+    }
+
+    @Test
     public void test_groupAutosByMake_CorrectValues_opel() {
         Collections.addAll(list, opel1, opel2, opel3, opel4, mazda1, mazda2, mazda3);
         HashMap<String, List<Exercise2.Auto>> res = group.groupAutosByMake(list);
@@ -36,9 +46,27 @@ class Exercise2Test {
     }
 
     @Test
+    public void test_groupAutosByMake2_CorrectValues_opel() {
+        Collections.addAll(list, opel1, opel2, opel3, opel4, mazda1, mazda2, mazda3);
+        HashMap<String, List<Exercise2.Auto>> res = group.groupAutosByMake2(list);
+        List<Exercise2.Auto> expValues = new ArrayList<>();
+        Collections.addAll(expValues, opel1, opel2, opel3, opel4);
+        assertEquals(expValues, res.get("Opel"));
+    }
+
+    @Test
     public void test_groupAutosByMake_CorrectValues_mazda() {
         Collections.addAll(list, opel1, opel2, opel3, opel4, mazda1, mazda2, mazda3);
         HashMap<String, List<Exercise2.Auto>> res = group.groupAutosByMake(list);
+        List<Exercise2.Auto> expValues = new ArrayList<>();
+        Collections.addAll(expValues, mazda1, mazda2, mazda3);
+        assertEquals(expValues, res.get("Mazda"));
+    }
+
+    @Test
+    public void test_groupAutosByMake2_CorrectValues_mazda() {
+        Collections.addAll(list, opel1, opel2, opel3, opel4, mazda1, mazda2, mazda3);
+        HashMap<String, List<Exercise2.Auto>> res = group.groupAutosByMake2(list);
         List<Exercise2.Auto> expValues = new ArrayList<>();
         Collections.addAll(expValues, mazda1, mazda2, mazda3);
         assertEquals(expValues, res.get("Mazda"));

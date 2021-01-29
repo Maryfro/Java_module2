@@ -21,6 +21,19 @@ public class Exercise2 {
         }
     }
 
+    public HashMap<String, List<Auto>> groupAutosByMake2(List<Auto> autos) {
+        HashMap<String, List<Auto>> group = new HashMap<>();
+        for (Auto auto : autos) {
+            List<Auto> values = group.get(auto.make);
+            if (values == null) {
+                values = new ArrayList<>();
+            group.put(auto.make, values);
+            }
+            values.add(auto);
+        }
+        return group;
+    }
+
     public HashMap<String, List<Auto>> groupAutosByMake(List<Auto> autos) {
         HashMap<String, List<Auto>> group = new HashMap<>();
         HashSet<String> keys = new HashSet<>();

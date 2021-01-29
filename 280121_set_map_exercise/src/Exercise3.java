@@ -22,8 +22,23 @@ public class Exercise3 {
                 dictionary.put(key, values);
             }
         }
-        List<List<String>> res = new ArrayList<>();
-        res.addAll(dictionary.values());
-        return res;
+        return new ArrayList<>(dictionary.values());
+    }
+
+    public List<List<String>> createDictionary2(List<String> words) {
+        TreeMap<String, List<String>> dictionary = new TreeMap<>();
+        Collections.sort(words);
+
+
+        for (String word : words) {
+            String firstLetter = word.substring(0, 1);
+            List<String> values = dictionary.get(firstLetter);
+            if (values == null) {
+                values = new ArrayList<>();
+                dictionary.put(firstLetter, values);
+            }
+            values.add(word);
+        }
+        return new ArrayList<>(dictionary.values());
     }
 }
