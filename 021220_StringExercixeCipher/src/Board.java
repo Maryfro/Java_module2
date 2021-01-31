@@ -32,9 +32,38 @@ public class Board {
         return res;
     }
 
-    ;
 
-
+    /**
+     * the method recovers the board 2*n
+     *
+     * @param columns sums in each column
+     * @param p       sum in the first row
+     * @param q       sum  in the second row
+     * @return recovered board
+     */
+    public int[] solve2(int[] columns, int p, int q) {
+        int[] res = new int[columns.length * 2];
+        int width = columns.length;
+        for (int i = width - 1; i >= 0; i--) {
+            int columnSum = columns[i];
+            if (columnSum == 0) {
+                res[i] = res[i + width] = 0;
+            } else if (columnSum == 2) {
+                res[i] = res[i + width] = 1;
+                p--;
+                q--;
+            } else if (p > q) {
+                res[i] = 1;
+                res[i + width] = 0;
+                p--;
+            } else {
+                res[i] = 0;
+                res[i + width] = 1;
+                q--;
+            }
+        }
+        return res;
+    }
 }
 
 // 1.arr sum of row

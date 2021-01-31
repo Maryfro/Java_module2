@@ -82,15 +82,11 @@ public class MaxTrees {
 //we need to transform coordinates into angle
 //-> need to create a List of points from 0 to 360
 //left end should come to 360-> 360 + alpha
-//Math.arctn()
+//Math.atan2()
 //tangens = y1/x1;
-//Math.arctn(tangens);
+//Math.atan2(tangens);
 
 
 
-//new task
-//Prime number is a number which can be deleted over itself or 1. *2,3,5,7,11
-// write a method which finds all prime numbers from 2 to n.
-// 1 is not a prime number.
-// List<Integer> getPrimes(int upperBound){}
+
 

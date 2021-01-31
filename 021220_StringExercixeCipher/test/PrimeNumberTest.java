@@ -23,12 +23,11 @@ class PrimeNumberTest {
     }
 
     @Test
-    void test_getPrimes_upperBoundNegative() {
-        assertEquals(exp, pn.getPrimes(-5));
+    void test_getPrimes_upperBound30() {
+        Collections.addAll(exp, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
+        assertEquals(exp, pn.getPrimes(30));
     }
 
-    @Test
-    void test_getPrimes_upperBoundOne() {
-        assertEquals(exp, pn.getPrimes(1));
-    }
+
+
 }
