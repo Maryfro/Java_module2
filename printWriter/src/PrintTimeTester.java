@@ -1,4 +1,4 @@
-import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class PrintTimeTester {
     private Printer printer;
@@ -7,12 +7,12 @@ public class PrintTimeTester {
         this.printer = printer;
     }
 
-    public void test(int times, String text) throws FileNotFoundException {
+    public void test(int times, String text) throws IOException {
         String[] arr = composeArray(times, text);
         long beforePrinting = System.currentTimeMillis();
         printer.print(arr);
-        long timeConcatenated = System.currentTimeMillis() - beforePrinting;
-        System.out.println(timeConcatenated);
+        long timePrinted = System.currentTimeMillis() - beforePrinting;
+        System.out.println(timePrinted);
     }
 
     String[] composeArray(int times, String text) {
