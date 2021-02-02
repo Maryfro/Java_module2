@@ -1,14 +1,13 @@
-import com.sun.tools.javac.util.StringUtils;
-import com.sun.xml.internal.ws.api.model.wsdl.WSDLOutput;
-import org.w3c.dom.ls.LSOutput;
+
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.List;
 
-import static java.lang.Integer.parseInt;
 
 public class FileOperations {
     /**
@@ -24,7 +23,11 @@ public class FileOperations {
                 outputStream.write(str.getBytes());
                 //outputStream.write('\n');
                 outputStream.write(10);
+                // outputStream.write(System.lineSeparator().getBytes());
             }
+            //another way
+           /* String output = String.join(System.lineSeparator(), strings);
+            outputStream.write(output.getBytes());*/
         }
     }
 
@@ -39,9 +42,9 @@ public class FileOperations {
         try (FileInputStream inputStream = new FileInputStream(filename)) {
             byte[] bytes = new byte[inputStream.available()];
             inputStream.read(bytes);
-            strings.add(new String(bytes));
+            String input = new String(bytes);
+            return Arrays.asList(input.split(System.lineSeparator()));
         }
-        return strings;
     }
 
     public void writeBytes(byte[] bytes, String filename) throws IOException {
@@ -73,6 +76,20 @@ public class FileOperations {
         }
     }
 
+    public void writeInts1(List<Integer> numbers, String filename) throws IOException {
+        try (FileOutputStream outputStream = new FileOutputStream(filename, false)) {
+            if (numbers == null || numbers.size() == 0)
+                return;
+
+            StringBuilder sb = new StringBuilder();
+            Iterator<Integer> iterator = numbers.iterator();
+            while (iterator.hasNext()) {
+                sb.append(" ").append(iterator.next());
+            }
+            outputStream.write(sb.toString().getBytes());
+        }
+    }
+
     /**
      * the file contains data in the following format "12, 35, 234"
      *
@@ -85,11 +102,10 @@ public class FileOperations {
             byte[] bytes = new byte[inputStream.available()];
             inputStream.read(bytes);
             String res = new String(bytes);
-            String[] divided = res.split("\n");
+            String[] divided = res.split(" ");
             for (String s : divided) {
                 Integer number = Integer.parseInt(s);
                 numbers.add(number);
-
 
             }
             return numbers;
