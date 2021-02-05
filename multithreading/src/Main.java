@@ -9,8 +9,8 @@ public class Main {
         plusThread.join();*/
         System.out.println("End of main");
 
-        MyRunnable mr = new MyRunnable();
-        Thread thread = new Thread((Runnable) mr);
+        MyRunnable mr = new MyRunnable(20, '*');
+        Thread thread = new Thread(mr);
         thread.start();
     }
 }

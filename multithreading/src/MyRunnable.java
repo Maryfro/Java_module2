@@ -1,9 +1,17 @@
 public class MyRunnable implements Runnable {
+    final int times;
+    final char ch;
+
+    public MyRunnable(int times, char ch) {
+        this.times = times;
+        this.ch = ch;
+    }
+
     @Override
     public void run() {
         System.out.println("start of the runnable thread");
-        for (int i = 0; i <20 ; i++) {
-        System.out.println("hello");
+        for (int i = 0; i < times; i++) {
+            System.out.println(ch);
 
         }
     }
@@ -15,7 +23,7 @@ public class MyRunnable implements Runnable {
     // }
 
     /*MyRunnable myRunnable = new MyRunnable();
-    Thread thread = new Thread((Runnable) myRunnable);
+    Thread thread = new Thread( myRunnable);
     thread.start();*/
     // }
 
