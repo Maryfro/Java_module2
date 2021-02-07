@@ -1,4 +1,7 @@
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -7,9 +10,20 @@ import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.mock;
 
 class CapitalLettersFileActionTest {
-    CapitalLettersFileAction capLet = new CapitalLettersFileAction(new FileOperations());
+   // @Mock
+    FileOperations fo;
+   // @InjectMocks
+    CapitalLettersFileAction capLet;
+
+    @BeforeEach
+    public void init() {
+        fo = mock(FileOperations.class);
+        capLet = new CapitalLettersFileAction(fo);
+    }
+
 
     @Test
     public void test_perform_lowerCase() {
@@ -23,13 +37,7 @@ class CapitalLettersFileActionTest {
         assertEquals(exp, capLet.perform(Arrays.asList("aPPle", "Banana", "Apricot", "cheRRY")));
     }
 
-    @Test
-    public void test_handle() throws IOException {
-        capLet.handleFile("source.txt");
-        List<String> readStrings = new FileOperations().readStrings("source.txt");
-        List<String> exp = Arrays.asList("TWINKLE, TWINKLE, LITTLE STAR, HOW I WONDER WHAT YOU ARE.");
-        assertEquals(exp, readStrings);
-    }
+
 
 
 }
