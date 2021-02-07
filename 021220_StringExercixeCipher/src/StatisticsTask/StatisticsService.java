@@ -1,12 +1,13 @@
 package StatisticsTask;
 
 import java.time.LocalTime;
-import java.util.ArrayDeque;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
 
 public class StatisticsService {
-
+    /**
+     * the method accepts only sorted by time list of statistics
+     * @param listOfStatistics
+     */
     public void last10minutesMentions(List<Statistics> listOfStatistics) {
         HashMap<String, ArrayDeque<LocalTime>> map = new HashMap<>();
         for (Statistics s : listOfStatistics) {
