@@ -24,9 +24,9 @@ public class MessageSupplier implements Runnable {
     public void readFromConsole() throws IOException {
         try (BufferedReader br = new BufferedReader(new InputStreamReader(System.in))) {
             String line;
-            while ((line = br.readLine()) != null) {
+            while ((line = br.readLine()) != null && !line.equals("exit")) {
                 queue.addFirst(line);
-               // System.out.println(Thread.currentThread());
+                // System.out.println(Thread.currentThread());
             }
         }
     }
