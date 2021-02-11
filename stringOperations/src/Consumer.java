@@ -17,9 +17,9 @@ public class Consumer implements Runnable {
     }
 
     @Override
-    public void run() {
+    public synchronized void run() {
         try {
-            for (String line : queue) {
+            for (String line : queue) { //while(true) String line = queue.take();
                 String res = handleRawString(line);
                 writer.println(res);
             }

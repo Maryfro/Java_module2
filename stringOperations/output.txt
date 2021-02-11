@@ -1,4 +1,0 @@
-hello
-WORLD
-hello world#opper_case #wrong operation
-hello world#lower_case#param #wrong format
