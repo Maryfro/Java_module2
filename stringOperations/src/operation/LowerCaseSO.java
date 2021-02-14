@@ -1,6 +1,9 @@
 package operation;
 
 public class LowerCaseSO implements IStringOperation {
+    public LowerCaseSO() {
+    }
+
     @Override
     public String operate(String input) {
         String res;

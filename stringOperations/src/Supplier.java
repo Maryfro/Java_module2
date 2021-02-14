@@ -1,5 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.concurrent.BlockingQueue;
 
@@ -18,16 +17,10 @@ public class Supplier implements Runnable {
         try {
             String line;
             while ((line = br.readLine()) != null) {
-                    queue.put(line);
-                }
+                queue.put(line);
+            }
         } catch (InterruptedException | IOException e) {
             e.printStackTrace();
-        } finally {
-            try {
-                br.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
         }
     }
 }

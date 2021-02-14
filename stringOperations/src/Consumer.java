@@ -9,6 +9,9 @@ public class Consumer implements Runnable {
     private final BlockingQueue<String> queue;
     private final PrintWriter writer;
     private final OperationContext context;
+    private final static String SEPARATOR = "#";
+    private final static String WRONG_OPERATION = "wrong operation";
+    private final static String WRONG_FORMAT = "wrong format";
 
     public Consumer(BlockingQueue<String> queue, PrintWriter writer, OperationContext context) {
         this.queue = queue;
@@ -17,26 +20,32 @@ public class Consumer implements Runnable {
     }
 
     @Override
-    public synchronized void run() {
+    public void run() {
         try {
-            for (String line : queue) { //while(true) String line = queue.take();
+            while (true) {
+                String line = queue.take();
+                if (line.equals("exit")) {
+                    queue.remove("exit");
+                    Thread.currentThread().interrupt();
+                }
                 String res = handleRawString(line);
                 writer.println(res);
             }
-        } finally {
-            writer.close();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
         }
     }
 
-    String handleRawString(String line) {
-        String[] split = line.split("#");
+    //TODO test with mocking!
+    public String handleRawString(String line) {
+        String[] split = line.split(SEPARATOR);
         if (split.length != 2) {
-            return line + " #wrong format";
+            return line + SEPARATOR + WRONG_FORMAT;
         }
-        IStringOperation operation = context.getOperation(split[1]);
         String word = split[0];
+        IStringOperation operation = context.getOperation(split[1]);
         if (operation == null) {
-            return line + " #wrong operation";
+            return line + SEPARATOR + WRONG_OPERATION;
         }
         return operation.operate(word);
     }

@@ -1,4 +1,6 @@
 HELLO#lower_case
 world#upper_case
+cat#
+java
 hello world#opper_case
 hello world#lower_case#param

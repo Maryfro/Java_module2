@@ -1,6 +1,11 @@
 package operation;
 
 public class UpperCaseSO implements IStringOperation{
+private String name;
+
+    public UpperCaseSO() {
+        this.name = "upper_case";
+    }
 
     @Override
     public String operate(String input) {
@@ -11,6 +16,6 @@ public class UpperCaseSO implements IStringOperation{
 
     @Override
     public String getName() {
-        return "upper_case";
+        return name;
     }
 }
