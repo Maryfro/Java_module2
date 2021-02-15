@@ -22,19 +22,23 @@ public class Main {
         Thread cons3Thread = new Thread(new Consumer(queue, pw, operationContext));
         Thread supplierThread = new Thread(new Supplier(br, queue));
 
-        cons1Thread.setDaemon(true);
-        cons2Thread.setDaemon(true);
-        cons3Thread.setDaemon(true);
 
         for (Thread thread : Arrays.asList(supplierThread, cons1Thread, cons2Thread, cons3Thread)) {
             thread.start();
         }
-        supplierThread.join();
-        Thread.sleep(1);
-        queue.add("exit");
-        queue.add("exit");
-        queue.add("exit");
 
+        //Wait until supplier completes
+        supplierThread.join();
+
+        //signal to the consumers that no new elements will appear in the queue
+        cons1Thread.interrupt();
+        cons2Thread.interrupt();
+        cons3Thread.interrupt();
+
+        //Wait until consumers complete handling the remaining elements
+        cons1Thread.join();
+        cons2Thread.join();
+        cons3Thread.join();
 
         pw.close();
         br.close();

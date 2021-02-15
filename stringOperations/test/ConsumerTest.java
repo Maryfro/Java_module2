@@ -7,12 +7,13 @@ import java.io.PrintWriter;
 import java.util.concurrent.ArrayBlockingQueue;
 
 import static org.mockito.Mockito.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 class ConsumerTest {
     OperationContext oc;
     IStringOperation operation;
     Consumer consumer;
-    ArrayBlockingQueue queue;
+    ArrayBlockingQueue<String> queue;
     PrintWriter pw;
 
     @BeforeEach
@@ -27,42 +28,38 @@ class ConsumerTest {
 
     @Test
     public void test_handleRawString_regularCase() {
-        when(oc.getOperation("upper_case")).thenReturn(operation);
-        when(consumer.handleRawString("hello#upper_case")).thenReturn("HELLO");
+        when(operation.operate("hello")).thenReturn("HeLlO");
+        when(oc.getOperation("beliberda_operation")).thenReturn(operation);
+
+        String res = consumer.handleRawString("hello#beliberda_operation");
+        assertEquals("HeLlO", res);
     }
 
     @Test
     public void test_handleRawString_wrongFormat() {
-        when(oc.getOperation("lower_case")).thenReturn(operation);
-        when(consumer.handleRawString("HELLO#lower_case#")).thenReturn("HELLO#lower_case##wrong format");
-
-    }
-
-    @Test
-    public void test_handleRawString_wrongOperation() { //does not work
-        when(oc.getOperation("upper_case")).thenReturn(operation);
-        when(consumer.handleRawString("hello#opper_case")).thenReturn("hello world#opper_case#wrong operation");
-
-    }
-
-    @Test
-    public void test_handleRawString_oneWord() {
-        when(oc.getOperation("upper_case")).thenReturn(operation);
-        when(consumer.handleRawString("hello")).thenReturn("hello#wrong format");
-
+        String res = consumer.handleRawString("hello world#lower_case#param#");
+        assertEquals("hello world#lower_case#param#" + Consumer.SEPARATOR + Consumer.WRONG_FORMAT, res);
     }
 
     @Test
     public void test_handleRawString_oneWordAndHash() {
-        when(oc.getOperation("upper_case")).thenReturn(operation);
-        when(consumer.handleRawString("hello#")).thenReturn("hello##wrong format");
-      //  verify(pw, times(1)).println("hello##wrong format");
+        String res = consumer.handleRawString("hello#");
+        assertEquals("hello#" + Consumer.SEPARATOR + Consumer.WRONG_FORMAT, res);
     }
 
     @Test
-    public void test_handleRawString_wrongResults() {
-        when(oc.getOperation("upper_case")).thenReturn(operation);
-        when(consumer.handleRawString("hello#")).thenReturn("hesdvx#vxcvsfvmat");
+    public void test_handleRawString_wrongOperation() {
+
+        when(oc.getOperation("beliberda_operation")).thenReturn(null);
+        String res = consumer.handleRawString("hello#beliberda_operation");
+        assertEquals("hello#beliberda_operation" + Consumer.SEPARATOR + Consumer.WRONG_OPERATION, res);
     }
+
+    @Test
+    public void test_handleRawString_oneWord() {
+        String res = consumer.handleRawString("hello");
+        assertEquals("hello" + Consumer.SEPARATOR + Consumer.WRONG_FORMAT, res);
+    }
+
 
 }

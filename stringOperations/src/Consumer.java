@@ -2,6 +2,7 @@ import operation.IStringOperation;
 import operation.OperationContext;
 
 import java.io.PrintWriter;
+import java.util.NoSuchElementException;
 import java.util.concurrent.BlockingQueue;
 
 public class Consumer implements Runnable {
@@ -9,9 +10,9 @@ public class Consumer implements Runnable {
     private final BlockingQueue<String> queue;
     private final PrintWriter writer;
     private final OperationContext context;
-    private final static String SEPARATOR = "#";
-    private final static String WRONG_OPERATION = "wrong operation";
-    private final static String WRONG_FORMAT = "wrong format";
+    public final static String SEPARATOR = "#";
+    public final static String WRONG_OPERATION = "wrong operation";
+    public final static String WRONG_FORMAT = "wrong format";
 
     public Consumer(BlockingQueue<String> queue, PrintWriter writer, OperationContext context) {
         this.queue = queue;
@@ -21,22 +22,34 @@ public class Consumer implements Runnable {
 
     @Override
     public void run() {
-        try {
-            while (true) {
+        boolean isAlive = true;
+
+       //supplier and consumer are working
+        while (isAlive ) {
+            try {
                 String line = queue.take();
-                if (line.equals("exit")) {
-                    queue.remove("exit");
-                    Thread.currentThread().interrupt();
-                }
                 String res = handleRawString(line);
                 writer.println(res);
+            } catch (InterruptedException e) {
+                isAlive = false;
             }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        }
+
+        //supplier is already finished, consumer has to write the remaining lines from queue
+
+       while (true) {
+            String line;
+            try{
+                line = queue.remove();
+            } catch(NoSuchElementException e){
+               // e.printStackTrace();
+                break;
+            }
+            String res = handleRawString(line);
+            writer.println(res);
         }
     }
 
-    //TODO test with mocking!
     public String handleRawString(String line) {
         String[] split = line.split(SEPARATOR);
         if (split.length != 2) {

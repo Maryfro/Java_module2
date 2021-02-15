@@ -1,6 +1,6 @@
 hello
 WORLD
-java#wrong format
 cat##wrong format
-hello world#opper_case#wrong operation
+java#wrong format
 hello world#lower_case#param#wrong format
+hello world#opper_case#wrong operation
