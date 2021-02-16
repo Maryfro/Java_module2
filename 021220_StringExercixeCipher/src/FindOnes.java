@@ -5,7 +5,11 @@ public class FindOnes {
 
     // Есть диапазон чисел от a до b включительно. Найти количество чисел, содержащих цифру 1.
 
-    public int findOnes(List<Integer> list) {
+    public int findOnes(int a, int b) {
+        List<Integer> list = new ArrayList<>();
+        for (int i = a; i <= b; i++) {
+            list.add(i);
+        }
         int count = 0;
         for (Integer num : list) {
             String temp = num.toString();
@@ -15,11 +19,5 @@ public class FindOnes {
         return count;
     }
 
-     static List<Integer> createList(int a, int b) {
-        List<Integer> list = new ArrayList<>();
-        for (int i = a; i <= b; i++) {
-            list.add(i);
-        }
-        return list;
-    }
+
 }
