@@ -9,7 +9,7 @@ class ReverseStringManuallyTest {
     ReverseStringManually rsm = new ReverseStringManually();
 
     @Test
-    public void reverseString_severalletters(){
+    public void reverseString_severalLetters(){
      assertEquals("arbadacarba", rsm.reverseString("abracadabra"));
     }
 
