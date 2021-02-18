@@ -9,7 +9,7 @@ public class Main {
         System.out.println(lambda.apply(new ArrayList<>(Arrays.asList("hello", "world", "cat", "hello", "cat"))));
 
         final int a = 2, b = 3, c = 4;
-        Function<Integer, Integer> f = (x) -> a * x * x + b *git x + c;
+        Function<Integer, Integer> f = (x) -> a * x * x + b * x + c;
 
         System.out.println(f.apply(1));
     }
