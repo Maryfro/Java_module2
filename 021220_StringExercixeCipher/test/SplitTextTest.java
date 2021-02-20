@@ -49,14 +49,21 @@ class SplitTextTest {
 
     @Test
     public void test_splitTextWithDictionary_closeWordsInDictionary() {
-        Collections.addAll(dictionary, "hello", "hell", "world");
-        List<String> exp = new ArrayList<>(Arrays.asList("hello", "world"));
-        assertEquals(exp, st.splitTextWithDictionary(dictionary, "helloworld"));
+        Collections.addAll(dictionary, "hello", "hell", "operation");
+        List<String> exp = new ArrayList<>(Arrays.asList("hello", "operation"));
+        assertEquals(exp, st.splitTextWithDictionary(dictionary, "hellooperation"));
+    }
+
+    @Test
+    public void test_splitTextWithDictionary_closeWordsInDictionary1() {
+        Collections.addAll(dictionary, "hello", "operation", "hell");
+        List<String> exp = new ArrayList<>(Arrays.asList("hell", "operation"));
+        assertEquals(exp, st.splitTextWithDictionary(dictionary, "helloperation"));
     }
 
     @Test
     public void test_splitTextWithDictionary_closeWordsInDictionary2() {
-        Collections.addAll(dictionary,  "megaworld", "world", "word");
+        Collections.addAll(dictionary, "megaworld", "world", "word");
         List<String> exp = new ArrayList<>(Arrays.asList("world", "megaworld", "word"));
         assertEquals(exp, st.splitTextWithDictionary(dictionary, "worldmegaworldword"));
     }

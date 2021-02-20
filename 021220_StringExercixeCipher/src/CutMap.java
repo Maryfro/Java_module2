@@ -19,8 +19,8 @@ public class CutMap {
                 if (cut.left <= num && cut.right >= num) {
                     count++;
                 }
-                map.put(num, count);
             }
+            map.put(num, count);
             count = 0;
         }
         return map;

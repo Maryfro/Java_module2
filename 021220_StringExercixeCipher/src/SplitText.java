@@ -1,4 +1,3 @@
-import com.sun.tools.javac.util.StringUtils;
 
 import java.util.*;
 
@@ -6,33 +5,51 @@ public class SplitText {
 
 
     public List<String> splitTextWithDictionary(Set<String> dictionary, String text) {
-        if (text.isEmpty())
-            return null;
+        int size = dictionary.size();
+        List<String> dictList = new ArrayList<>(dictionary);
         List<String> res = new ArrayList<>();
         String temp = text;
         boolean flag = true;
+        int wordsInResListCounter = 0;
         int mismatchCounter = 0;
         while (flag) {
-            for (String word : dictionary) {
+            for (String word : dictList) {
                 if (temp.startsWith(word)) {
                     res.add(word);
+                    wordsInResListCounter++;
                     temp = temp.substring(word.length());
                 } else {
                     mismatchCounter++;
                 }
             }
-            if (temp.length() == 0 || mismatchCounter > dictionary.size()) {
+            if (wordsInResListCounter < size && temp.length() != 0) {
+                Collections.rotate(dictList, 1);
+                temp = text;
+                res.clear();
+                mismatchCounter = 0;
+
+            }
+            if (temp.length() == 0 || mismatchCounter > size) {
                 flag = false;
             }
         }
         String temp2 = String.join("", res);
-        if (!temp2.equals(text))
+        if (!temp2.equals(text) || text.isEmpty())
             return null;
         return res;
-
     }
 
 
+
+
+    public static void main(String[] args) {
+        SplitText st = new SplitText();
+        Set<String> dictionary = new HashSet<>();
+        Set<String> dictionary1 = new HashSet<>();
+        Collections.addAll(dictionary, "operation", "hello", "hell");
+        System.out.println(st.splitTextWithDictionary(dictionary, "helloperation"));
+
+    }
 
 
     // Task 2

@@ -1,4 +1,7 @@
 import java.util.*;
+import java.util.function.Consumer;
+import java.util.function.Function;
+import java.util.function.Predicate;
 
 public class MaxTrees {
 
@@ -71,6 +74,7 @@ public class MaxTrees {
         double alpha = Math.PI;
         MaxTrees mt = new MaxTrees();
         System.out.println(mt.maxTrees(points, alpha));
+       
     }
 }
 
