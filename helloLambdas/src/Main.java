@@ -1,5 +1,6 @@
 import java.util.*;
 import java.util.function.Function;
+import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 
 public class Main {
@@ -37,9 +38,9 @@ public class Main {
         System.out.println("-----------------------------------");
 
         PredicateTask4 predicateTask4 = new PredicateTask4();
-        List<Predicate> listOfPredicates = new ArrayList<>();
-        Predicate<Integer> predicate1Task4 = (x) -> x > 10;
-        Predicate<Integer> predicate2Task4 = (x) -> x % 2 == 0;
+        List<IntPredicate> listOfPredicates = new ArrayList<>();
+        IntPredicate predicate1Task4 = (x) -> x > 10;
+        IntPredicate predicate2Task4 = (x) -> x % 2 == 0;
         Collections.addAll(listOfPredicates, predicate1Task4, predicate2Task4);
         System.out.println(predicateTask4.intersect(listOfPredicates).test(100000));
         System.out.println(predicateTask4.intersect(listOfPredicates).test(11));
