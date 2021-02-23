@@ -16,3 +16,6 @@ public class Task2 {
         System.out.println(Arrays.toString(res.toArray()));
     }
 }
+
+
+

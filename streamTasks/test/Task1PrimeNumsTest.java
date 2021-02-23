@@ -22,7 +22,9 @@ class Task1PrimeNumsTest {
     @Test
     public void testIsPrime_FalseCase_6() {
         assertFalse(pn.isPrime(6));
-    } @Test
+    }
+
+    @Test
     public void testIsPrime_FalseCase_1000() {
         assertFalse(pn.isPrime(1000));
     } @Test
