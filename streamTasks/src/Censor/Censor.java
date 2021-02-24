@@ -1,8 +1,7 @@
 package Censor;
 
-import java.util.Arrays;
-import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Stream;
 
 public class Censor {
     private final Set<String> dictionary;
@@ -16,19 +15,9 @@ public class Censor {
      * @return true if the text does not contain words from dictionary
      */
     public boolean verify(String text) {
-        String[] res = text.split(" ");
-        for (String word : res) {
-            if (dictionary.contains(word.toLowerCase())) {
-                return false;
-            }
-        }
-        return true;
+        String[] words = text.split(" ");
+        return Stream.of(words)
+                .map(String::toLowerCase)
+                .noneMatch(dictionary::contains);
     }
-
-    public static void main(String[] args) {
-        Censor censor = new Censor(new HashSet<>(Arrays.asList("fuck", "bitch", "suck")));
-        System.out.println(censor.verify(" Hello bitch, you suck as fuck"));
-        System.out.println(censor.verify(" Hello my dear, you rock as cock"));
-    }
-
 }

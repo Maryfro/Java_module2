@@ -1,10 +1,9 @@
-import java.util.OptionalInt;
-import java.util.stream.IntStream;
+import java.util.stream.LongStream;
 
 public class Task3Factorial {
 
-    public int countFactorial(int n) {
-        return IntStream
+    public long countFactorial(int n) {
+        return LongStream
                 .rangeClosed(1, n)
                 .reduce(1, (x, y) -> x * y);
     }

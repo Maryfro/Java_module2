@@ -1,5 +1,7 @@
 import org.junit.jupiter.api.Test;
 
+import java.util.NoSuchElementException;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 class Task4SumOfOddNumsTest {
@@ -18,7 +20,16 @@ class Task4SumOfOddNumsTest {
 
     @Test
     public void testCountSumOfOddNums_rangeFrom2to2(){
-        assertEquals(0, sum.countSumOfOddNums(2,2));
+        assertThrows(NoSuchElementException.class, ()->{
+            sum.countSumOfOddNums(2, 2);
+        });
+    }
+
+    @Test
+    public void testCountSumOfOddNums_rangeFrom3to2(){
+        assertThrows(NoSuchElementException.class, ()->{
+            sum.countSumOfOddNums(3, 2);
+        });
     }
 
     @Test
