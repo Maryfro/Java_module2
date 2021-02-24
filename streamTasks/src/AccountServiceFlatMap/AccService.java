@@ -5,20 +5,14 @@ import java.util.*;
 public class AccService {
 
     public long countSumOfCancelledTransactions(List<Account> accounts) {
-        Optional<Long> sum = accounts.stream()
+        return accounts.stream()
                 .filter(x -> x.getBalance() > 0)
                 .flatMap(account -> account
                         .getTransactions()
-                        .stream()
-                        .filter(transaction -> transaction
-                                .getState()
-                                .toString()
-                                .equals("CANCELLED")))
-                .map(Transaction::getSum).reduce(Long::sum);
+                        .stream())
+                .filter(transaction -> transaction.getState() == State.CANCELLED)
+                .map(Transaction::getSum).reduce(Long::sum).orElse((long) 0);
 
-        if (sum.isPresent())
-            return sum.get();
-        else return 0;
     }
 
 }
