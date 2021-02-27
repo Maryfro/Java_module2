@@ -4,69 +4,87 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class SplitTextTest {
-    SplitText st = new SplitText();
+class DictionaryTest {
+    SplitText st;
     Set<String> dictionary = new HashSet<>();
 
     @Test
-    public void test_splitTextWithDictionary_regularCase() {
+    public void test_splitText_regularCase() {
         Collections.addAll(dictionary, "hello", "world", "super");
         List<String> exp = new ArrayList<>(Arrays.asList("hello", "super"));
-        assertEquals(exp, st.splitTextWithDictionary(dictionary, "hellosuper"));
+
+        st = new SplitText(dictionary);
+        assertEquals(exp, st.splitTextSolution("hellosuper"));
     }
 
     @Test
-    public void test_splitTextWithDictionary_repeatedWords() {
+    public void test_splitText_repeatedWords() {
         Collections.addAll(dictionary, "hello", "world", "super");
         List<String> exp = new ArrayList<>(Arrays.asList("super", "super"));
-        assertEquals(exp, st.splitTextWithDictionary(dictionary, "supersuper"));
+
+        st = new SplitText(dictionary);
+        assertEquals(exp, st.splitTextSolution("supersuper"));
     }
 
     @Test
-    public void test_splitTextWithDictionary_repeatedWordsCorrectOrder() {
+    public void test_splitText_repeatedWordsCorrectOrder() {
         Collections.addAll(dictionary, "hello", "world", "super");
         List<String> exp = new ArrayList<>(Arrays.asList("super", "hello", "super"));
-        assertEquals(exp, st.splitTextWithDictionary(dictionary, "superhellosuper"));
+
+        st = new SplitText(dictionary);
+        List<String> res = st.splitTextSolution("superhellosuper");
+
+        assertEquals(exp, res);
     }
 
     @Test
-    public void test_splitTextWithDictionary_oneWordFromDictionary_expNull() {
+    public void test_splitText_oneWordFromDictionary_expNull() {
         Collections.addAll(dictionary, "hello", "world", "super");
-        assertNull(st.splitTextWithDictionary(dictionary, "hellopapa"));
+
+        st = new SplitText(dictionary);
+        assertNull(st.splitTextSolution("hellopapa"));
     }
 
     @Test
-    public void test_splitTextWithDictionary_misspelling_expNull() {
+    public void test_splitText_misspelling_expNull() {
         Collections.addAll(dictionary, "hello", "world", "super");
-        assertNull(st.splitTextWithDictionary(dictionary, "superhelloo"));
+
+        st = new SplitText(dictionary);
+        assertNull(st.splitTextSolution("superhelloo"));
     }
 
     @Test
-    public void test_splitTextWithDictionary_emptyString_expNull() {
+    public void test_splitText_emptyString_expNull() {
         Collections.addAll(dictionary, "hello", "world", "super");
-        assertNull(st.splitTextWithDictionary(dictionary, ""));
+
+        st = new SplitText(dictionary);
+        assertNull(st.splitTextSolution(""));
     }
 
     @Test
-    public void test_splitTextWithDictionary_closeWordsInDictionary() {
+    public void test_splitText_closeWordsInDictionary() {
         Collections.addAll(dictionary, "hello", "hell", "operation");
         List<String> exp = new ArrayList<>(Arrays.asList("hello", "operation"));
-        assertEquals(exp, st.splitTextWithDictionary(dictionary, "hellooperation"));
+
+        st = new SplitText(dictionary);
+        assertEquals(exp, st.splitTextSolution("hellooperation"));
     }
 
     @Test
-    public void test_splitTextWithDictionary_closeWordsInDictionary1() {
+    public void test_splitText_closeWordsInDictionary1() {
         Collections.addAll(dictionary, "hello", "operation", "hell");
         List<String> exp = new ArrayList<>(Arrays.asList("hell", "operation"));
-        assertEquals(exp, st.splitTextWithDictionary(dictionary, "helloperation"));
+
+        st = new SplitText(dictionary);
+        assertEquals(exp, st.splitTextSolution("helloperation"));
     }
 
     @Test
-    public void test_splitTextWithDictionary_closeWordsInDictionary2() {
+    public void test_splitText_closeWordsInDictionary2() {
         Collections.addAll(dictionary, "megaworld", "world", "word");
         List<String> exp = new ArrayList<>(Arrays.asList("world", "megaworld", "word"));
-        assertEquals(exp, st.splitTextWithDictionary(dictionary, "worldmegaworldword"));
+
+        st = new SplitText(dictionary);
+        assertEquals(exp, st.splitTextSolution("worldmegaworldword"));
     }
-
-
 }

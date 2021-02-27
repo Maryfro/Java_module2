@@ -2,11 +2,16 @@
 import java.util.*;
 
 public class SplitText {
+    private final Set<String> words;
 
+    public SplitText(Collection<String> words) {
+        this.words = new HashSet<>();
+        this.words.addAll(words);
+    }
 
-    public List<String> splitTextWithDictionary(Set<String> dictionary, String text) {
-        int size = dictionary.size();
-        List<String> dictList = new ArrayList<>(dictionary);
+    public List<String> splitTextWithDictionary(String text) {
+        int size = words.size();
+        List<String> dictList = new ArrayList<>(words);
         List<String> res = new ArrayList<>();
         String temp = text;
         boolean flag = true;
@@ -39,17 +44,38 @@ public class SplitText {
         return res;
     }
 
+    public List<String> splitTextSolution(String text) {
+        if (text == null || text.length() == 0)
+            return null;
 
+        Deque<String> sequence = new ArrayDeque<>();
 
+        if (splitRecursively(text, 0, sequence))
+            return new ArrayList<>(sequence);
 
-    public static void main(String[] args) {
-        SplitText st = new SplitText();
-        Set<String> dictionary = new HashSet<>();
-        Set<String> dictionary1 = new HashSet<>();
-        Collections.addAll(dictionary, "operation", "hello", "hell");
-        System.out.println(st.splitTextWithDictionary(dictionary, "helloperation"));
-
+        return null;
     }
+
+
+
+    private boolean splitRecursively(String text, int startIndex, Deque<String> sequence) {
+        if (startIndex == text.length())
+            return true;
+
+        for (String word : words) {
+            if (text.startsWith(word, startIndex)) {
+                sequence.addLast(word);
+
+                boolean isSplit = splitRecursively(text, startIndex + word.length(), sequence);
+                if (isSplit)
+                    return true;
+
+                sequence.removeLast();
+            }
+        }
+        return false;
+    }
+
 
 
     // Task 2
