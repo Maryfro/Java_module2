@@ -1,3 +1,5 @@
+package CutMapPoints;
+
 import java.util.*;
 
 public class CutMap {
@@ -26,19 +28,36 @@ public class CutMap {
         return map;
     }
 
-   /* public Map<Integer, Integer> countCuts2(List<Cut> cuts, List<Integer> numbers) {
+    public Map<Integer, Integer> countCuts2(List<Cut> cuts, List<Integer> numbers) {
         Map<Integer, Integer> map = new HashMap<>();
-        for (int i = 0; i < numbers.size(); i++) {
-            ArrayDeque<Cut> deque = new ArrayDeque<>();
-            map.put(numbers.get(i), 0);
-            if (numbers.get(i) >= cuts.get(i).left && numbers.get(i) <= cuts.get(i).right)
-                deque.addLast(cuts.get(i));
+        List<Point> points = new ArrayList<>();
+        for (Cut c : cuts) {
+            points.add(new Point(c.left, Pointkind.BEGIN));
+            points.add(new Point(c.right, Pointkind.END));
+        }
+        for (Integer num : numbers) {
+            points.add(new Point(num, Pointkind.POINT));
+        }
+        int counter = 0;
+        points.sort(new Comparator<Point>() {
+            @Override
+            public int compare(Point o1, Point o2) {
+                if (o1.getValue() == o2.getValue())
+                    return o1.getKind().compareTo(o2.getKind());
+                return o1.getValue() - o2.getValue();
+            }
+        });
+
+        for (Point p : points) {
+            if (p.getKind() == Pointkind.BEGIN)
+                counter++;
+            else if (p.getKind() == Pointkind.END)
+                counter--;
             else
-                deque.removeFirst();
-            map.put(numbers.get(i), deque.size());
+                map.put(p.getValue(), counter);
         }
         return map;
-    }*/
+    }
 
 }
 // There is a list of objects of type Cut
