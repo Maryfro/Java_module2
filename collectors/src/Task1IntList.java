@@ -16,13 +16,11 @@ public class Task1IntList {
         return list.stream().collect(Collectors.summingInt(number -> number * number));
     }
 
-    public int findProductOfSquaredNumbers() throws NoSuchElementException {
+    public int findProductOfSquaredNumbers() {
+        return list.stream().collect(Collectors.reducing(1,
+                numInt -> numInt.intValue(),
+                (currentRes, currentNum) -> currentRes * currentNum * currentNum));
 
-        Optional<Integer> res = list.stream().collect(Collectors.reducing((x, y) ->
-                ((int) Math.pow(x, 2)) * (int) Math.pow(y, 2)));
 
-        if (res.isPresent())
-            return res.get();
-        else throw new NoSuchElementException();
     }
 }

@@ -11,6 +11,7 @@ class Task1IntListTest {
     Task1IntList t2 = new Task1IntList(Arrays.asList(-5, 0, 10));
     Task1IntList t3 = new Task1IntList(Arrays.asList(1, 1));
     Task1IntList t4 = new Task1IntList(Arrays.asList(10, 2));
+    Task1IntList t6 = new Task1IntList(Arrays.asList(10, 2, 1));
 
 
     @Test
@@ -39,10 +40,10 @@ class Task1IntListTest {
     }
 
     @Test
-    public void test_findProductOfSquaredNumbers_emptyList() {
-        Task1IntList t5 = new Task1IntList(new ArrayList<>());
-       // assertEquals(0, t5.findProductOfSquaredNumbers());
-        assertThrows(NoSuchElementException.class, t5::findSumOfSquaredNumbers);
+    public void test_findProductOfSquaredNumbers_case4() {
+        assertEquals(400, t6.findProductOfSquaredNumbers());
     }
+
+
 
 }
