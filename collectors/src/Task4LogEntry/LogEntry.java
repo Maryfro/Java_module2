@@ -11,5 +11,15 @@ public class LogEntry {
         this.url = url;
     }
 
+    public long getTimeStamp() {
+        return timeStamp;
+    }
 
+    public String getLogin() {
+        return login;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }

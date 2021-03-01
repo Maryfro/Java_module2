@@ -24,14 +24,9 @@ class ServiceTest {
 
     @Test
     void countUniqueUsers() {
-        Map<String, Map<String, Long>> exp = new HashMap<>();
-        Map<String, Long> val = new HashMap<>();
-        Map<String, Long> val1 = new HashMap<>();
-        val.put("hacker", 1L);
-        val.put("admin", 2L);
-        val1.put("somebody", 3L);
-        exp.put("google.com", val);
-        exp.put("boogle.com", val1);
+        Map<String, Integer> exp = new HashMap<>();
+        exp.put("google.com", 2);
+        exp.put("boogle.com", 1);
 
         List<LogEntry> entries = Arrays.asList(new LogEntry(System.currentTimeMillis(), "admin", "google.com"),
                 new LogEntry(System.currentTimeMillis(), "hacker", "google.com"),
