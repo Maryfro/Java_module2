@@ -53,9 +53,9 @@ public class Main {
         ZonedDateTime vladivostokMorning = minskMorning.withZoneSameInstant(ZoneId
                 .of("Asia/Vladivostok")); //how to find time in another zone
         System.out.println(vladivostokMorning);
-        ZonedDateTime sameTimeOtherzone = minskMorning
+        ZonedDateTime sameTimeOtherZone = minskMorning
                 .withZoneSameLocal(ZoneId.of("Asia/Vladivostok"));
-        System.out.println(sameTimeOtherzone);
+        System.out.println(sameTimeOtherZone);
 
         //Differences between times/dates etc
         Period period = Period.between(now, tomorrow);
