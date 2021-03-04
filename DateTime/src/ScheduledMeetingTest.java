@@ -39,6 +39,16 @@ class ScheduledMeetingTest {
     }
 
     @Test
+    public void test_intersectWorkingTime2_borderCase() {
+        ZoneId zone1 = ZoneId.of("US/Alaska");
+        ZoneId zone2 = ZoneId.of("Asia/Kamchatka");
+        LocalTime start1 = LocalTime.of(9, 0);
+        LocalTime start2 = LocalTime.of(9, 0);
+        int res = meeting.intersectWorkingTime(start1, 8, zone1, start2, 8, zone2);
+        assertEquals(5, res);
+    }
+
+    @Test
     public void test_intersectWorkingTime2_sameTimeZone() {
         ZoneId zone1 = ZoneId.of("Europe/Berlin");
         ZoneId zone2 = ZoneId.of("Europe/Warsaw");

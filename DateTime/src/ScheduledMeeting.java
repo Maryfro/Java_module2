@@ -49,6 +49,9 @@ public class ScheduledMeeting {
 
     public static void main(String[] args) {
         System.out.println(ZoneId.getAvailableZoneIds());
-
+        ZoneId zone1 = ZoneId.of("US/Alaska");
+        ZoneId zone2 = ZoneId.of("Asia/Kamchatka");
+        System.out.println(zone1.getRules());
+        System.out.println(zone2.getRules());
     }
 }
