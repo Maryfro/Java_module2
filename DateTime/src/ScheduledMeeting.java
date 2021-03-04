@@ -1,9 +1,66 @@
 import java.time.*;
+import java.time.temporal.ChronoUnit;
 
 public class ScheduledMeeting {
 
 
     public int intersectWorkingTime(LocalTime start1, int hours1, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) {
+        int resToday = intersectWorkingTimeToday(start1, hours1, zone1, start2, hours2, zone2);
+        int resYesterday = intersectWorkingTimeYesterday(start1, hours1, zone1, start2, hours2, zone2);
+        int resTomorrow = intersectWorkingTimeTomorrow(start1, hours1, zone1, start2, hours2, zone2);
+        if (resToday > 0)
+            return resToday;
+        if (resTomorrow > 0)
+            return resTomorrow;
+        else
+            return resYesterday;
+    }
+
+    private int intersectWorkingTimeToday(LocalTime start1, int hours1, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) {
+        ZonedDateTime office1Start = ZonedDateTime.of(LocalDate.now(), start1, zone1);
+        ZonedDateTime office2Start = ZonedDateTime.of(LocalDate.now(), start2, zone2);
+        ZonedDateTime office1End = office1Start.plusHours(hours1);
+        ZonedDateTime office2End = office2Start.plusHours(hours2);
+
+        ZonedDateTime intersectionStart = office1Start.isBefore(office2Start) ? office2Start : office1Start;
+        ZonedDateTime intersectionEnd = office1End.isAfter(office2End) ? office2End : office1End;
+        int result = (int) intersectionStart.until(intersectionEnd, ChronoUnit.HOURS);
+        return Math.max(result, 0);
+    }
+
+    private int intersectWorkingTimeTomorrow(LocalTime start1, int hours1, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) {
+        ZonedDateTime office1Start = ZonedDateTime.of(LocalDate.now().plusDays(1), start1, zone1);
+        ZonedDateTime office2Start = ZonedDateTime.of(LocalDate.now(), start2, zone2);
+        ZonedDateTime office1End = office1Start.plusHours(hours1);
+        ZonedDateTime office2End = office2Start.plusHours(hours2);
+
+        ZonedDateTime intersectionStart = office1Start.isBefore(office2Start) ? office2Start : office1Start;
+        ZonedDateTime intersectionEnd = office1End.isAfter(office2End) ? office2End : office1End;
+        int result = (int) intersectionStart.until(intersectionEnd, ChronoUnit.HOURS);
+        return Math.max(result, 0);
+    }
+
+    private int intersectWorkingTimeYesterday(LocalTime start1, int hours1, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) {
+        ZonedDateTime office1Start = ZonedDateTime.of(LocalDate.now().minusDays(1), start1, zone1);
+        ZonedDateTime office2Start = ZonedDateTime.of(LocalDate.now(), start2, zone2);
+        ZonedDateTime office1End = office1Start.plusHours(hours1);
+        ZonedDateTime office2End = office2Start.plusHours(hours2);
+
+        ZonedDateTime intersectionStart = office1Start.isBefore(office2Start) ? office2Start : office1Start;
+        ZonedDateTime intersectionEnd = office1End.isAfter(office2End) ? office2End : office1End;
+        int result = (int) intersectionStart.until(intersectionEnd, ChronoUnit.HOURS);
+        return Math.max(result, 0);
+    }
+
+
+    public static void main(String[] args) {
+        System.out.println(ZoneId.getAvailableZoneIds());
+    }
+
+    /*
+     * ******this method works for office hours not on the edge of the days*******
+     */
+    /* public int intersectWorkingTime(LocalTime start1, int hours1, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) {
         ZonedDateTime office1Start = ZonedDateTime.of(LocalDate.now(), start1, zone1);
         ZonedDateTime office2Start = ZonedDateTime.of(LocalDate.now(), start2, zone2);
         LocalTime end1 = start1.plusHours(hours1);
@@ -18,7 +75,12 @@ public class ScheduledMeeting {
             return 0;
         return intersectionEnd - intersectionStart;
     }
+*/
 
+
+
+
+    /*
     public int intersectWorkingTime2(LocalTime start1, int hours1, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) {
         LocalTime end1 = start1.plusHours(hours1);
         int end1Hour = end1.getHour();
@@ -45,13 +107,5 @@ public class ScheduledMeeting {
         if (res.equals("Z]"))
             res = "00";
         return Integer.parseInt(res);
-    }
-
-    public static void main(String[] args) {
-        System.out.println(ZoneId.getAvailableZoneIds());
-        ZoneId zone1 = ZoneId.of("US/Alaska");
-        ZoneId zone2 = ZoneId.of("Asia/Kamchatka");
-        System.out.println(zone1.getRules());
-        System.out.println(zone2.getRules());
-    }
+    }*/
 }

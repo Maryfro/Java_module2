@@ -29,12 +29,22 @@ class ScheduledMeetingTest {
     }
 
     @Test
+    public void test_intersectWorkingTime2_timeOnBorderOf2Days() {
+        ZoneId zone1 = ZoneId.of("Europe/Berlin");
+        ZoneId zone2 = ZoneId.of("Europe/Moscow");
+        LocalTime start1 = LocalTime.of(22, 0);
+        LocalTime start2 = LocalTime.of(23, 0);
+        int res = meeting.intersectWorkingTime(start1, 8, zone1, start2, 9, zone2);
+        assertEquals(8, res);
+    }
+
+    @Test
     public void test_intersectWorkingTime2_noIntersection() {
         ZoneId zone1 = ZoneId.of("Europe/Berlin");
         ZoneId zone2 = ZoneId.of("Pacific/Honolulu");
         LocalTime start1 = LocalTime.of(9, 0);
-        LocalTime start2 = LocalTime.of(9, 0);
-        int res = meeting.intersectWorkingTime(start1, 8, zone1, start2, 8, zone2);
+        LocalTime start2 = LocalTime.of(8, 0);
+        int res = meeting.intersectWorkingTime(start1, 8, zone1, start2, 9, zone2);
         assertEquals(0, res);
     }
 
@@ -42,6 +52,16 @@ class ScheduledMeetingTest {
     public void test_intersectWorkingTime2_borderCase() {
         ZoneId zone1 = ZoneId.of("US/Alaska");
         ZoneId zone2 = ZoneId.of("Asia/Kamchatka");
+        LocalTime start1 = LocalTime.of(9, 0);
+        LocalTime start2 = LocalTime.of(9, 0);
+        int res = meeting.intersectWorkingTime(start1, 8, zone1, start2, 8, zone2);
+        assertEquals(5, res);
+    }
+
+    @Test
+    public void test_intersectWorkingTime2_borderCase_ViceVersa() {
+        ZoneId zone1 = ZoneId.of("Asia/Kamchatka");
+        ZoneId zone2 = ZoneId.of("US/Alaska");
         LocalTime start1 = LocalTime.of(9, 0);
         LocalTime start2 = LocalTime.of(9, 0);
         int res = meeting.intersectWorkingTime(start1, 8, zone1, start2, 8, zone2);
@@ -58,23 +78,4 @@ class ScheduledMeetingTest {
         assertEquals(8, res);
     }
 
-    @Test
-    public void test_intersectWorkingTime_version2() {
-        ZoneId zone1 = ZoneId.of("Europe/Berlin");
-        ZoneId zone2 = ZoneId.of("Europe/Warsaw");
-        LocalTime start1 = LocalTime.of(9, 0);
-        LocalTime start2 = LocalTime.of(9, 0);
-        int res = meeting.intersectWorkingTime2(start1, 8, zone1, start2, 8, zone2);
-        assertEquals(8, res);
-    }
-
-    @Test
-    public void test_intersectWorkingTime_version2_checkParsing() {
-        ZoneId zone1 = ZoneId.of("Europe/London");
-        ZoneId zone2 = ZoneId.of("Europe/Warsaw");
-        LocalTime start1 = LocalTime.of(9, 0);
-        LocalTime start2 = LocalTime.of(9, 0);
-        int res = meeting.intersectWorkingTime2(start1, 8, zone1, start2, 8, zone2);
-        assertEquals(7, res);
-    }
 }
