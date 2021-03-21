@@ -1,0 +1,51 @@
+package com.example.demo;
+
+import com.example.demo.entity.Auto;
+import com.example.demo.service.AutoService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.ApplicationArguments;
+import org.springframework.boot.ApplicationRunner;
+import org.springframework.stereotype.Component;
+
+import java.util.List;
+
+@Component
+public class OrderFlow implements ApplicationRunner {
+
+    List<Auto> simpleAutos;
+
+    //   @Autowired
+    Auto opel;
+    // @Autowired
+    Auto mazda;
+    //@Autowired
+    Auto tesla;
+    //@Autowired
+    AutoService autoService;
+
+    public OrderFlow(@Qualifier("simpleAutos")
+                             List<Auto> simpleAutos,
+                     Auto tesla,
+                     AutoService autoService) {
+        this.simpleAutos = simpleAutos;
+        this.tesla = tesla;
+        this.autoService = autoService;
+    }
+
+    @Override
+    public void run(ApplicationArguments args) throws Exception {
+        autoService.print(simpleAutos);
+        autoService.print(tesla);
+
+        for (Auto auto : simpleAutos) {
+            if (auto.getMake().equals("Opel"))
+                autoService.paint(auto, "beige");
+        }
+        autoService.print(simpleAutos);
+
+        autoService.paint(tesla, "white");
+        autoService.print(tesla);
+
+    }
+}
