@@ -15,11 +15,11 @@ public class ProgrammLoger {
         return pg;
     }
 
-    public void addLogInfo(String logInfo){
+    public void addLogInfo(String logInfo) {
         logFile += logInfo + "\n";
     }
 
-    public void showLogFile(){
+    public void showLogFile() {
         System.out.println(logFile);
     }
 

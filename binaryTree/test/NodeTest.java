@@ -44,7 +44,7 @@ class NodeTest {
     @Test
     void getHeight_singleRoot() {
         Node node = new Node(null, null);
-        assertEquals(1, node.getHeight(node));
+        assertEquals(0, node.getHeight(node));
     }
 
     @Test

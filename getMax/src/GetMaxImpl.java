@@ -39,10 +39,10 @@ public class GetMaxImpl implements GetMax {
 
     @Override
     public Integer getMax() {
-        if (size == 0){
+        if (size == 0) {
             throw new IndexOutOfBoundsException();
         }
-            Integer max = getLast();
+        Integer max = getLast();
         for (int i = 1; i <= size; i++) {
             if (max < source[size - i]) {
                 max = source[size - i];

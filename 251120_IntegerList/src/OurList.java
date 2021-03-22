@@ -140,6 +140,7 @@ public interface OurList<T> extends Iterable<T> {
         // this.sort(comparator);
         return max(comparator.reversed());
     }
+
     default T min() {
         if (size() == 0) {
             throw new NoSuchElementException();

@@ -1,3 +1,4 @@
-public interface TernaryIntPredicate{
-    boolean test(Integer a, Integer b, Integer c);
+@FunctionalInterface
+public interface TernaryIntPredicate {
+    boolean test(int a, int b, int c);
 }

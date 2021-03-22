@@ -8,9 +8,7 @@ public class ConcatenationTester {
     public void test(int times, String text) {
         String[] arr = composeArray(times, text);
         long beforeConcatenation = System.currentTimeMillis();
-        for (int i = 0; i < times; i++) {
-            concatenator.concatenate(arr);
-        }
+        concatenator.concatenate(arr);
         long timeConcatenated = System.currentTimeMillis() - beforeConcatenation;
         System.out.println(timeConcatenated);
     }

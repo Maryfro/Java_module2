@@ -28,8 +28,8 @@ public class NormalizationCollector implements Collector<Double, List<Double>, L
     @Override
     public Function<List<Double>, List<Double>> finisher() {
         return numbers -> {
-            Double min = numbers.stream().min(Double::compareTo).orElse(null);
-            Double max = numbers.stream().max(Double::compareTo).orElse(null);
+            double min = Collections.min(numbers);
+            double max = numbers.stream().max(Double::compareTo).orElseThrow(NoSuchElementException::new);
             double divisor = max - min;
             List<Double> res = new ArrayList<>();
             for (Double num : numbers) {

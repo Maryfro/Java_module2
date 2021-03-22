@@ -2,7 +2,6 @@ package com.example.demo;
 
 import com.example.demo.entity.Auto;
 import com.example.demo.service.AutoService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;

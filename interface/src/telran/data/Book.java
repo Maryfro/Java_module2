@@ -2,7 +2,7 @@ package telran.data;
 
 public class Book implements Printable {
     private String title;
-   private  String author;
+    private String author;
 
     public Book(String title) {
         this.title = title;
@@ -27,6 +27,6 @@ public class Book implements Printable {
 
     @Override
     public void print() {
-        System.out.println("Book " + title +", by "  + author);
+        System.out.println("Book " + title + ", by " + author);
     }
 }

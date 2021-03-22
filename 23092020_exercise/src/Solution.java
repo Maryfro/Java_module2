@@ -10,7 +10,7 @@ public class Solution {
         if (n == 1) {
             return n;
         } else {
-            return ((squaredNumber(n - 1) + (2 * n) - 1));
+            return squaredNumber(n - 1) + n + n - 1;
         }
 
     }

@@ -1,9 +1,9 @@
 package telran;
 
 public class Test {
-   public static String str;
-   private static int id;
-   private int idInstance;
+    public static String str;
+    private static int id;
+    private int idInstance;
 
     {
         System.out.println("non static block initializer");
@@ -11,12 +11,12 @@ public class Test {
         str = "Hello world";
     }
 
-    static{
+    static {
         System.out.println("static initializer");
         str = "Hi";
     }
 
-    public void call(){
+    public void call() {
         System.out.println("Call method");
     }
 

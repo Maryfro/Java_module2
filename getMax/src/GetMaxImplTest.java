@@ -42,7 +42,7 @@ class GetMaxImplTest {
 
     @org.junit.jupiter.api.Test
     void getMax_EmptyCollection() {
-        assertThrows(IndexOutOfBoundsException.class, ()->gml.getMax());
+        assertThrows(IndexOutOfBoundsException.class, () -> gml.getMax());
     }
 
     @org.junit.jupiter.api.Test

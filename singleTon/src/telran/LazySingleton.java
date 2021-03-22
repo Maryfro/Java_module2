@@ -7,9 +7,9 @@ public class LazySingleton {
     private LazySingleton() {
     }
 
-    public static LazySingleton getInstance(String name){
-        if(instance==null){
-            instance= new LazySingleton();
+    public static LazySingleton getInstance(String name) {
+        if (instance == null) {
+            instance = new LazySingleton();
             instance.name = name;
         }
         return instance;

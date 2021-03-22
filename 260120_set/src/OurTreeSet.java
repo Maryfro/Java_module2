@@ -16,15 +16,12 @@ public class OurTreeSet<T> extends AbstractSet<T> {
     @Override
     public void retainAll(OurSet<T> another) {
         OurSet<T> temp = new OurTreeSet<>();
-        for (T el: this) {
-            if(!another.contains(el))
+        for (T el : this) {
+            if (!another.contains(el))
                 temp.add(el);
         }
         this.removeAll(temp);
     }
-
-
-
 
 
 }

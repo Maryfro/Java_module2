@@ -1,6 +1,6 @@
 package telran.data;
 
-public class Cat extends Pet{
+public class Cat extends Pet {
 
     public Cat(String type, String color, String nickName, String owner) {
         super(type, color, nickName, owner);

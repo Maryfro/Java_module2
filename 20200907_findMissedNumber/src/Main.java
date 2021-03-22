@@ -24,7 +24,7 @@ public class Main {
             sumI += (i + 1);
         }
         sumI += input.length + 1;
-        
+
         return sumI - sum;
     }
 

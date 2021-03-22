@@ -13,10 +13,14 @@ public interface Printable {
 
     static Printable createObject(String name, int choice) {
         switch (choice) {
-            case 1: return new Book(name);
-            case 2: return new Magazine(name);
-            case 3: return new Newspaper(name);
-            default: return null;
+            case 1:
+                return new Book(name);
+            case 2:
+                return new Magazine(name);
+            case 3:
+                return new Newspaper(name);
+            default:
+                return null;
         }
     }
 

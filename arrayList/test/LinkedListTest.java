@@ -1,11 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
-import telran.ArrayList;
 import telran.CustomList;
 import telran.LinkedList;
 
-import java.util.Collections;
-import java.util.List;
 
 public class LinkedListTest {
     CustomList<Integer> list = new LinkedList();

@@ -12,6 +12,7 @@ class BackwardIteratorTest {
     void test_hasNext_trueCase() {
         assertTrue(backwardIterator.hasNext());
     }
+
     @org.junit.jupiter.api.Test
     void test_hasNext_falseCase() {
         assertFalse(backwardIteratorEmpty.hasNext());
@@ -19,12 +20,12 @@ class BackwardIteratorTest {
 
     @org.junit.jupiter.api.Test
     void test_next() {
-        assertEquals(2,backwardIterator.next());
+        assertEquals(2, backwardIterator.next());
     }
 
     @org.junit.jupiter.api.Test
     void test_next_Exception() {
-        assertThrows(ArrayIndexOutOfBoundsException.class, ()->{
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> {
             backwardIteratorEmpty.next();
         });
     }

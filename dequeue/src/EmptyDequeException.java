@@ -1,2 +1,2 @@
-public class EmptyDequeException  extends RuntimeException{
+public class EmptyDequeException extends RuntimeException {
 }

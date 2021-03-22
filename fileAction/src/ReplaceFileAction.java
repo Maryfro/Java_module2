@@ -21,7 +21,7 @@ public class ReplaceFileAction extends FileAction {
     @Override
     protected List<String> perform(List<String> text) {
         List<String> copy = new ArrayList<>();
-        for (String s: text) {
+        for (String s : text) {
             copy.add(s.replace(pattern, target));
         }
 

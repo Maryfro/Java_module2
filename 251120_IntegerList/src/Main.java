@@ -58,7 +58,7 @@ public class Main {
         linkedList.addLast(12);
         System.out.println(linkedList.remove(12));
         System.out.println("--------------");
-        /*OurLinkedList.ForwardIterator forwardIteratorLinkedList = myLinkedList.new ForwardIterator();
+        OurLinkedList.ForwardIterator forwardIteratorLinkedList = myLinkedList.new ForwardIterator();
         OurLinkedList.BackwardIterator backwardIteratorLinkedList = myLinkedList.new BackwardIterator();
         while (backwardIteratorLinkedList.hasNext()) {
             System.out.println(backwardIteratorLinkedList.next());
@@ -66,9 +66,9 @@ public class Main {
         while (forwardIteratorLinkedList.hasNext()) {
             System.out.println(forwardIteratorLinkedList.next());
         }
-*/
 
-        for (Integer i:
+
+        for (Integer i :
                 myLinkedList) {
             System.out.println(i);
         }
@@ -95,10 +95,15 @@ public class Main {
             System.out.println(i);
         }*/
 
-        System.out.println(myList.max(Integer::compareTo));
+        /*System.out.println(myList.max(Integer::compareTo));
         System.out.println(myList.min(Integer::compareTo));
         System.out.println(myLinkedList.max(Integer::compareTo));
-        System.out.println(myLinkedList.min(Integer::compareTo));
+        System.out.println(myLinkedList.min(Integer::compareTo));*/
+
+        //infinite loop
+        // while(myList.iterator().hasNext()){
+        //   System.out.println(myList.iterator().next());
+        // }
 
     }
 }

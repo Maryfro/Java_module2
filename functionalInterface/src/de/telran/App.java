@@ -15,7 +15,7 @@ public class App {
                 return word.toUpperCase();
             }
         };
-        WordTransformer wordTransformer = s->s.replaceAll(".", "*");
+        WordTransformer wordTransformer = s -> s.replaceAll(".", "*");
         WordTransformer wordTransformer2 = App::transform;
 
         String word = "Hey";
@@ -25,7 +25,7 @@ public class App {
         System.out.println(WordsTransform.transformWord(word, wc, wt));
         System.out.println(WordsTransform.transformWord(word1, wc, wordTransformer));
 
-        WordsTransform.transformWord("AS FGK sdlk DN", s->s.length()==2, String::toLowerCase);
+        WordsTransform.transformWord("AS FGK sdlk DN", s -> s.length() == 2, String::toLowerCase);
     }
 
     private static String transform(String s) {

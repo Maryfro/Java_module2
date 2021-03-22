@@ -52,17 +52,17 @@ public class Post {
     public String toString() {
         return "author: " + author +
                 ", postID: " + postID +
-                ", title: " + title.toUpperCase()  +
+                ", title: " + title.toUpperCase() +
                 "\n " + content +
                 "\nlikes: " + likes +
                 ", dislikes: " + dislikes;
     }
 
-    public int addLike(){
+    public int addLike() {
         return likes++;
     }
 
-    public int addDislike(){
+    public int addDislike() {
         return dislikes++;
     }
 }

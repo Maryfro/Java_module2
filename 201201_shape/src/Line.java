@@ -1,4 +1,4 @@
-public class Line extends Shape{
+public class Line extends Shape {
     private int length;
 
     public Line(char symbol, int length) {

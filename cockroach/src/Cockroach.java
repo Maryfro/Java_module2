@@ -4,7 +4,7 @@ public class Cockroach implements Runnable {
     private final String name;
     private final int distance;
     final List<Score> scoreList;
-    private long startingTime;
+    private final long startingTime;
 
     public Cockroach(String name, int distance, List<Score> scoreList, long startingTime) {
         this.name = name;
@@ -24,7 +24,10 @@ public class Cockroach implements Runnable {
         }
         long resTime = System.currentTimeMillis() - startingTime;
         Score score = new Score(this.name, resTime);
-        scoreList.add(score);
+
+        synchronized (scoreList) {
+            scoreList.add(score);
+        }
     }
 }
 //   System.current time.millis - starting time

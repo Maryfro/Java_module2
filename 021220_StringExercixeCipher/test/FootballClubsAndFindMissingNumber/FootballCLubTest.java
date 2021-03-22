@@ -10,7 +10,7 @@ class FootballCLubTest {
 
 
     @Test
-    public void test_compare(){
+    public void test_compare() {
         FootballCLub arsenal = new FootballCLub("England", "Arsenal", 9);
         FootballCLub bayern = new FootballCLub("Germany", "Bayern", 6);
         FootballCLub chelsea = new FootballCLub("England", "Chelsea", 16);

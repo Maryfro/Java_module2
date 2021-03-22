@@ -9,10 +9,11 @@ public class Messenger {
         System.out.println(str);
     }
 
-    public int getNumber(){
+    public int getNumber() {
         return scanner.nextInt();
     }
-    public void closeScanner(){
+
+    public void closeScanner() {
         scanner.close();
     }
 

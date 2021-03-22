@@ -60,7 +60,7 @@ public class ScheduledMeeting {
     /*
      * ******this method works for office hours not on the edge of the days*******
      */
-    /* public int intersectWorkingTime(LocalTime start1, int hours1, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) {
+    public int intersectWorkingTime2(LocalTime start1, int hours1, ZoneId zone1, LocalTime start2, int hours2, ZoneId zone2) {
         ZonedDateTime office1Start = ZonedDateTime.of(LocalDate.now(), start1, zone1);
         ZonedDateTime office2Start = ZonedDateTime.of(LocalDate.now(), start2, zone2);
         LocalTime end1 = start1.plusHours(hours1);
@@ -75,7 +75,7 @@ public class ScheduledMeeting {
             return 0;
         return intersectionEnd - intersectionStart;
     }
-*/
+
 
 
 

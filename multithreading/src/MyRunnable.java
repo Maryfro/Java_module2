@@ -13,7 +13,9 @@ public class MyRunnable implements Runnable {
         for (int i = 0; i < times; i++) {
             System.out.println(ch);
 
+            // Thread.yield(); the same as sleep
         }
+        System.out.println("end my runnable thread");
     }
 
     // class myRunnable implements Runnable{

@@ -40,7 +40,7 @@ class Exercise3Test {
         exp.add(Arrays.asList("алмаз", "арбуз"));
         exp.add(Arrays.asList("банан"));
         exp.add(Arrays.asList("вагон", "винил"));
-        exp.add(Arrays.asList("галоп",  "глина"));
+        exp.add(Arrays.asList("галоп", "глина"));
         assertEquals(exp, output);
     }
 
@@ -52,7 +52,7 @@ class Exercise3Test {
         exp.add(Arrays.asList("алмаз", "арбуз"));
         exp.add(Arrays.asList("банан"));
         exp.add(Arrays.asList("вагон", "винил"));
-        exp.add(Arrays.asList("галоп",  "глина"));
+        exp.add(Arrays.asList("галоп", "глина"));
         assertEquals(exp, output);
     }
 

@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.function.BiConsumer;
 import java.util.function.BinaryOperator;
 import java.util.function.Function;
@@ -30,9 +27,12 @@ public class SqrtSumCollector implements Collector<Double, List<Double>, Double>
     @Override
     public Function<List<Double>, Double> finisher() {
         return numbers -> {
-            int count = (int) numbers.stream().count();
-            double sum = numbers.stream().reduce(1.0, (currentRes, currentNum) -> currentRes + currentNum * currentNum);
-            return Math.sqrt(sum/count);
+            int count = numbers.size();
+            if (count == 0)
+                throw new NoSuchElementException();
+            double sum = numbers.stream()
+                    .reduce(0.0, (currentRes, currentNum) -> currentRes + currentNum * currentNum);
+            return Math.sqrt(sum / count);
         };
 
     }

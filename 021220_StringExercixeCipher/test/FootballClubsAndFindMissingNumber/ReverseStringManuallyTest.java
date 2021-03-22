@@ -9,17 +9,17 @@ class ReverseStringManuallyTest {
     ReverseStringManually rsm = new ReverseStringManually();
 
     @Test
-    public void reverseString_severalLetters(){
-     assertEquals("arbadacarba", rsm.reverseString("abracadabra"));
+    public void reverseString_severalLetters() {
+        assertEquals("arbadacarba", rsm.reverseString("abracadabra"));
     }
 
     @Test
-    public void reverseString_emptyString(){
+    public void reverseString_emptyString() {
         assertEquals("", rsm.reverseString(""));
     }
 
     @Test
-    public void reverseString_oneChar(){
+    public void reverseString_oneChar() {
         assertEquals("A", rsm.reverseString("A"));
     }
 

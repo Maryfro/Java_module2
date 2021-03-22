@@ -34,9 +34,9 @@ public enum YearSeason {
 
         int sum = 0;
         for (int i = 0; i < YearSeason.values().length; i++) {
-            sum = sum +  YearSeason.values()[i].middleTemp;
+            sum = sum + YearSeason.values()[i].middleTemp;
         }
         sum = sum / 4;
-        System.out.println( "Middle " + sum);
+        System.out.println("Middle " + sum);
     }
 }

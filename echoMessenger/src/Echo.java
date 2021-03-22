@@ -13,7 +13,7 @@ public class Echo implements Runnable {
                 Thread.sleep(1000);
             } catch (InterruptedException e) { //checked exception, not an error
                 //interrupted exception should be generated there, where we want to interrupt this thread
-              //  e.printStackTrace();
+                //  e.printStackTrace();
                 System.out.println(message);
             }
         }

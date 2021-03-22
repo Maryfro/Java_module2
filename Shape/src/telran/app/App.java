@@ -7,7 +7,7 @@ public class App {
         Shape shape = new Circle(Color.BLACK, 2.5);
         Circle circle1 = new Circle(Color.BLUE, 5.5);
         Shape square = new Square(Color.BLUE, 3);
-        ((Square)square).changeColor(Color.YELLOW);
+        ((Square) square).changeColor(Color.YELLOW);
 
         Circle circle2 = new Circle(Color.GREEN, 2.2);
         Square square1 = new Square(Color.RED, 7.5);

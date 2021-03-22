@@ -22,10 +22,10 @@ public enum DaysOfWeek {
     @Override
     public String toString() {
         return "DaysOfWeek " +
-                 title ;
+                title;
     }
 
-    public void sayHello(){
+    public void sayHello() {
         System.out.println("Hello");
     }
 }

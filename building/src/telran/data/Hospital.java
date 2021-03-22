@@ -13,6 +13,7 @@ public class Hospital {
 
     public interface AddressContainer {
         String getStreet();
+
         int getHouseNumber();
     }
 
@@ -20,10 +21,12 @@ public class Hospital {
         class HospitalAddressContainer implements AddressContainer {
             String street = Hospital.this.street;
             int houseNumber = Hospital.this.houseNumber;
+
             @Override
             public String getStreet() {
                 return street;
             }
+
             @Override
             public int getHouseNumber() {
                 return houseNumber;

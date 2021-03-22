@@ -5,16 +5,16 @@ public class Dog extends Pet {
         super(type, color, nickName, owner);
     }
 
-    public void bark(){
+    public void bark() {
         System.out.println("I can bark");
     }
 
-    public void voice(){
+    public void voice() {
         super.voice();
         System.out.println("wau-wau");
     }
 
-    public void sleep(){
+    public void sleep() {
         System.out.println("I sleep 8 hours");
     }
 

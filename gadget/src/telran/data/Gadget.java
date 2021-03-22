@@ -7,7 +7,7 @@ public class Gadget {
         this.state = state;
     }
 
-    public void doAction(){
+    public void doAction() {
         this.state.doAction();
     }
 

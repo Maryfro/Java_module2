@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Department {
 
-   private String name;
-   private String code;
-   private List<Employee> employees;
+    private String name;
+    private String code;
+    private List<Employee> employees;
 
     public Department(String name, String code, List<Employee> employees) {
         this.name = name;

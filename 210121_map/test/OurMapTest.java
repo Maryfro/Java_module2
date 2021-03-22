@@ -5,7 +5,8 @@ import java.util.Iterator;
 import static org.junit.jupiter.api.Assertions.*;
 
 abstract class OurMapTest {
-    OurMap<Integer,String> map;
+    OurMap<Integer, String> map;
+
     @Test
     public void test_findPair_and_put_get() {
         map.put(0, "hello");

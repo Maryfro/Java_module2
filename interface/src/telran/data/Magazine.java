@@ -1,7 +1,7 @@
 package telran.data;
 
-public class Magazine implements Printable{
-private String title;
+public class Magazine implements Printable {
+    private String title;
 
     public Magazine(String title) {
         this.title = title;

@@ -23,26 +23,27 @@ class DepartmentServiceTest {
 
 
     @Test
-    public void test_countEmployees_existingprefix_lowThreshold(){
+    public void test_countEmployees_existingprefix_lowThreshold() {
         assertEquals(6, ds.countEmployees(new ArrayList<>(Arrays.asList(sales, accounting, management)), 35000, "012"));
     }
 
     @Test
-    public void test_countEmployees_NonExistingprefix_middleThreshold(){
+    public void test_countEmployees_NonExistingprefix_middleThreshold() {
         assertEquals(0, ds.countEmployees(new ArrayList<>(Arrays.asList(sales, accounting, management)), 40000, "oo12"));
     }
+
     @Test
-    public void test_countEmployees_existingprefix_middleThreshold(){
+    public void test_countEmployees_existingprefix_middleThreshold() {
         assertEquals(3, ds.countEmployees(new ArrayList<>(Arrays.asList(sales, accounting, management)), 40000, "012"));
     }
 
     @Test
-    public void test_countEmployees_existingprefix_highThreshold(){
+    public void test_countEmployees_existingprefix_highThreshold() {
         assertEquals(3, ds.countEmployees(new ArrayList<>(Arrays.asList(sales, accounting, management)), 79000, "0"));
     }
 
     @Test
-    public void test_countEmployees_allEmployees(){
+    public void test_countEmployees_allEmployees() {
         assertEquals(8, ds.countEmployees(new ArrayList<>(Arrays.asList(sales, accounting, management)), 0, ""));
     }
 

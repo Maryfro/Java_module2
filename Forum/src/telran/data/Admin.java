@@ -8,6 +8,7 @@ public class Admin {
     public Admin(String password) {
         this.password = password;
     }
+
     public boolean checkPassword(Scanner scanner) {
         int count = 3;
         while (count > 0) {

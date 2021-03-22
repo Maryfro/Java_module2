@@ -70,7 +70,7 @@ public abstract class Plant {
                 ", height:" + height;
     }
 
-    public void growthOfPlantForPeriod(int years){
+    public void growthOfPlantForPeriod(int years) {
         for (int i = 0; i < years; i++) {
             this.doYear();
             System.out.println("---------------");

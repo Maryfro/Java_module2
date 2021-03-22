@@ -8,25 +8,25 @@ public abstract class Building {
         this.address = address;
     }
 
-    void setType(String type){
+    void setType(String type) {
         this.type = type;
     }
 
-    public static class Cafe extends Building{
+    public static class Cafe extends Building {
         public Cafe(String address) {
             super(address);
             setType("Cafe");
         }
     }
 
-    public static class House extends Building{
+    public static class House extends Building {
         public House(String address) {
             super(address);
             setType("House");
         }
     }
 
-    public static class Shop extends Building{
+    public static class Shop extends Building {
         public Shop(String address) {
             super(address);
             setType("Shop");

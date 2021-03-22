@@ -2,9 +2,9 @@ import java.time.LocalDate;
 
 public class NewYearCountdown {
 
-    public int countDaysTillNewYear(LocalDate now, LocalDate newYear){
-       LocalDate res = newYear.minusDays(now.getDayOfYear());
-       return res.getDayOfYear();
+    public int countDaysTillNewYear(LocalDate now, LocalDate newYear) {
+        LocalDate res = newYear.minusDays(now.getDayOfYear());
+        return res.getDayOfYear();
         // return newYear.getDayOfYear() - now.getDayOfYear();
     }
 

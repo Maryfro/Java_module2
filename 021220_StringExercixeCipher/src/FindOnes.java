@@ -8,6 +8,7 @@ public class FindOnes {
 
     /**
      * The method returns quantity of numbers, containing the digits between a and b inclusively.
+     *
      * @param a should be lower or equal with b
      * @param b
      * @return

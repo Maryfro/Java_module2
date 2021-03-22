@@ -9,9 +9,12 @@ public class Dog {
     private String nameOwner;
     private boolean dogStatus;
 
-    public Dog(){};
+    public Dog() {
+    }
 
-    public Dog(String name, int age){
+    ;
+
+    public Dog(String name, int age) {
         this.name = name;
         this.age = age;
     }

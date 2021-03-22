@@ -1,6 +1,6 @@
 package telran.data;
 
-public class CoffeeWithSugar extends Coffee{
+public class CoffeeWithSugar extends Coffee {
     private static final int SUGAR_PRICE = 10;
 
     @Override

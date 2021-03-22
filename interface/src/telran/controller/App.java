@@ -11,7 +11,7 @@ public class App {
 
         Printable[] printables = {book, book2, magazine, newspaper};
 
-        for (Printable p: printables) {
+        for (Printable p : printables) {
             p.print();
         }
 

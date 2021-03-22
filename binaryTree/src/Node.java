@@ -30,7 +30,7 @@ public class Node {
 
     int getHeight(Node node) {
         if (node == null) {
-            return 0;
+            return -1;
         }
         int leftHeight = getHeight(node.left);
         int rightHeight = getHeight(node.right);

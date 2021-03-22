@@ -28,7 +28,7 @@ public class Main {
         System.out.println(accFilter.filter(accountList, predicate1));
         System.out.println(accFilter.filter(accountList, predicate2));
         System.out.println("-----------------------------------");
-        TernaryIntPredicate ternaryIntPredicate = (x, y, z) -> !x.equals(y) && !y.equals(z) && !z.equals(x);
+        TernaryIntPredicate ternaryIntPredicate = (x, y, z) -> x != y && y != z && x != z;
         System.out.println(ternaryIntPredicate.test(1, 2, 1));
         System.out.println(ternaryIntPredicate.test(1, 2, 3));
         System.out.println("-----------------------------------");

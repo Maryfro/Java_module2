@@ -1,8 +1,8 @@
 package telran.data;
 
 public class Coffee {
-/*    private static final int MILK_PRICE = 10;
-    private static final int SUGAR_PRICE = 10;*/
+    /*    private static final int MILK_PRICE = 10;
+        private static final int SUGAR_PRICE = 10;*/
     private int price = 50;
 
 

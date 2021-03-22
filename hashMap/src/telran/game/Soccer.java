@@ -1,6 +1,6 @@
 package telran.game;
 
-public class Soccer implements Command{
+public class Soccer implements Command {
     public final int number = 2;
 
     public int getNumber() {

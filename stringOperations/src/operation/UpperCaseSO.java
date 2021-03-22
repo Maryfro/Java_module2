@@ -1,7 +1,7 @@
 package operation;
 
-public class UpperCaseSO implements IStringOperation{
-private String name;
+public class UpperCaseSO implements IStringOperation {
+    private String name;
 
     public UpperCaseSO() {
         this.name = "upper_case";

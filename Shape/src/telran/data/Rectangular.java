@@ -26,7 +26,7 @@ public class Rectangular extends Shape {
     @Override
     public String toString() {
         return super.toString() + "Rectangular: " + getColor() +
-                 ", width: " + width +
+                ", width: " + width +
                 ", height: " + height + getArea();
     }
 }

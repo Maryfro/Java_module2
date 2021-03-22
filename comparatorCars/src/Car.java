@@ -1,6 +1,6 @@
 public class Car {
-  private int yearOfIssue;
-   private int mileage;
+    private int yearOfIssue;
+    private int mileage;
 
     public Car(int yearOfIssue, int mileage) {
         this.yearOfIssue = yearOfIssue;

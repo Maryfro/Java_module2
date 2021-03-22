@@ -1,8 +1,8 @@
 package telran.data;
 
-public class Pet extends Animal{
-   private String nickName;
-   private String owner;
+public class Pet extends Animal {
+    private String nickName;
+    private String owner;
 
     public Pet(String type, String color, String nickName, String owner) {
         super(type, color);
@@ -18,15 +18,16 @@ public class Pet extends Animal{
         return owner;
     }
 
-    public void play(){
+    public void play() {
         System.out.println(nickName + " plays");
     }
-    public void voice(){
+
+    public void voice() {
         System.out.println(nickName + " says: ");
     }
 
-    public static void displayVoice(Pet pet){
-       pet.voice();
+    public static void displayVoice(Pet pet) {
+        pet.voice();
     }
 
     @Override
@@ -34,6 +35,6 @@ public class Pet extends Animal{
         return super.toString() +
                 "nickName: " + nickName +
                 ", owner: " + owner +
-                ", type: " + type ;
+                ", type: " + type;
     }
 }

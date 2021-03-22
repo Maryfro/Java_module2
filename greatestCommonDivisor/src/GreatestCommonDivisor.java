@@ -8,13 +8,13 @@ public class GreatestCommonDivisor {
     }
 
     public int findGreatestCommonDivisorRecurcion(int a, int b) {
-        if(a == 0){
+        if (a == 0) {
             return b;
         }
         if (b == 0) {
             return a;
         }
-        int one = a%b;
+        int one = a % b;
         return findGreatestCommonDivisorRecurcion(b, one);
     }
 }

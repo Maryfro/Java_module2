@@ -28,6 +28,5 @@ public class User {
         System.out.println("Name: " + user4.getName() + ",  id number: " + String.format("%03d", user4.getId_number()));
 
 
-
     }
 }

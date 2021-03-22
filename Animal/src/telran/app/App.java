@@ -15,7 +15,7 @@ public class App {
         System.out.println("dog 2 can do the following ");
         dog2.eat();
         dog2.sleep();
-        ((Dog)dog2).bark(); // type casting
+        ((Dog) dog2).bark(); // type casting
         //  ((Dog)animal).bark(); !!ClassCastException
         System.out.println("----------------------");
 
@@ -38,8 +38,8 @@ public class App {
         System.out.print(pet2.getType() + " ");
         pet2.voice();
         System.out.println("----------------------");
-       // Pet.displayVoice(pet1);
-       // Pet.displayVoice(pet2);
+        // Pet.displayVoice(pet1);
+        // Pet.displayVoice(pet2);
 
         Animal animal = new WildAnimal("cow", "white and brown", "Europe");
         System.out.println("Habitat of cow is ");
@@ -48,7 +48,7 @@ public class App {
         System.out.println("----------------------");
         System.out.println("info about dog 1: ");
         dog1.displayInfo("black");
-      //  System.out.println(animal.getType());
+        //  System.out.println(animal.getType());
         System.out.println("----------------------");
 
         System.out.print("cat 1 is instance of Animal: ");
@@ -57,6 +57,6 @@ public class App {
         System.out.println(animal instanceof Dog);
         System.out.print("bear is instance of Animal: ");
         System.out.println(bear instanceof Animal);
-       // System.out.println(bear instanceof Pet); incompatible types:
+        // System.out.println(bear instanceof Pet); incompatible types:
     }
 }

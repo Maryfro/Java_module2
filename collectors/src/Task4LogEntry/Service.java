@@ -13,9 +13,9 @@ public class Service {
     }
 
     public Map<String, Integer> countUniqueUsers(List<LogEntry> entries) {
-       return entries.stream().collect(Collectors.groupingBy(LogEntry::getUrl,
+        return entries.stream().collect(Collectors.groupingBy(LogEntry::getUrl,
                 Collectors.mapping(LogEntry::getLogin,
-                Collectors.collectingAndThen(Collectors.toSet(), Set::size))));
+                        Collectors.collectingAndThen(Collectors.toSet(), Set::size))));
 
 
     }

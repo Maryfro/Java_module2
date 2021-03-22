@@ -5,10 +5,10 @@ public class Main {
         List<String> list = new LinkedList<String>();
         Collections.addAll(list, "a", "b", "c", "c", "d");
         Iterator<String> iterator = list.iterator();
-        while(iterator.hasNext()){
+        while (iterator.hasNext()) {
             System.out.println(iterator.next());
         }
-       // System.out.println(uniqueElements(list));
+        // System.out.println(uniqueElements(list));
         HashSet set = createSet(10);
         System.out.println(set);
         System.out.println(setBelowTen(set));
@@ -28,9 +28,9 @@ public class Main {
         return set;
     }
 
-    private static HashSet<Integer> setBelowTen(HashSet<Integer> set){
+    private static HashSet<Integer> setBelowTen(HashSet<Integer> set) {
         Iterator<Integer> iterator = set.iterator();
-        while(iterator.hasNext()) {
+        while (iterator.hasNext()) {
             if (iterator.next() >= 10) {
                 iterator.remove();
             }

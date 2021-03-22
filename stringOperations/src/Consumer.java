@@ -24,8 +24,8 @@ public class Consumer implements Runnable {
     public void run() {
         boolean isAlive = true;
 
-       //supplier and consumer are working
-        while (isAlive ) {
+        //supplier and consumer are working
+        while (isAlive) {
             try {
                 String line = queue.take();
                 String res = handleRawString(line);
@@ -37,12 +37,12 @@ public class Consumer implements Runnable {
 
         //supplier is already finished, consumer has to write the remaining lines from queue
 
-       while (true) {
+        while (true) {
             String line;
-            try{
+            try {
                 line = queue.remove();
-            } catch(NoSuchElementException e){
-               // e.printStackTrace();
+            } catch (NoSuchElementException e) {
+                // e.printStackTrace();
                 break;
             }
             String res = handleRawString(line);

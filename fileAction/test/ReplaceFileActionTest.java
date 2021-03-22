@@ -8,9 +8,10 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ReplaceFileActionTest {
-ReplaceFileAction replace = new ReplaceFileAction(new FileOperations(), " ", "*");
+    ReplaceFileAction replace = new ReplaceFileAction(new FileOperations(), " ", "*");
+
     @Test
-    public void test_perform(){
+    public void test_perform() {
         ArrayList<String> exp = new ArrayList<>(Arrays.asList("212*8506", "xx*x", "40*4", "1*12"));
         assertEquals(exp, replace.perform(Arrays.asList("212 8506", "xx x", "40 4", "1 12")));
     }

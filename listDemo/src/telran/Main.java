@@ -15,7 +15,7 @@ public class Main {
 
 
         List<String> strings = new ArrayList<>(Arrays.asList("A", "B", "C", "D"));
-        List<String> subList = strings.subList(1,3);
+        List<String> subList = strings.subList(1, 3);
         System.out.println(subList);
         subList.add(0, "!");
         System.out.println(strings);

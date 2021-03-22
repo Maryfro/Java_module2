@@ -14,13 +14,13 @@ public class App {
 
         ElectroCar.Motor motor = car.new Motor();
 
-        ElectroCar car1 = new ElectroCar(230044){
+        ElectroCar car1 = new ElectroCar(230044) {
             @Override
             public void start() {
                 System.out.println("car is moving");
             }
         };
-       car1.start();
+        car1.start();
         System.out.println(car1.getReports()[0]);// method getReports is not implemented at all
     }
 

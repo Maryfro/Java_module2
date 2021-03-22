@@ -11,7 +11,7 @@ public class Password implements User.Authentication {
     }
 
     public Password() {
-      password= "pass" + idNum + "word";
+        password = "pass" + idNum + "word";
     }
 
 

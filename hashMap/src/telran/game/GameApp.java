@@ -11,7 +11,7 @@ public class GameApp {
         gameMap.put(new DuckHunt().getNumber(), new DuckHunt());
         gameMap.put(new Soccer().getNumber(), new Soccer());
         gameMap.put(new Hockey().getNumber(), new Hockey());
-       // System.out.println(gameMap);
+        // System.out.println(gameMap);
         System.out.println("choose game (1 - duck hunt, 2 - soccer, 3 - hockey)");
         gameStart(gameMap);
     }

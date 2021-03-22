@@ -7,6 +7,7 @@ import de.maryfro.shapeswithspring.entity.Shape;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.core.annotation.Order;
 
 @Configuration
 public class Config {
@@ -14,20 +15,37 @@ public class Config {
     final static int LENGTH = 6;
 
     @Bean
-    @Qualifier("lines")
     public Line line() {
         return new Line(SYMBOL, LENGTH);
+    }
+    @Bean
+    @Qualifier("picture")
+    @Order(2)
+    public Line line1() {
+        return new Line('?', LENGTH);
+    }
+    @Bean
+    @Qualifier("picture")
+    @Order(1)
+    public Line line2() {
+        return new Line('<', LENGTH);
     }
 
 
     @Bean
-    @Qualifier("rectangles")
+    @Qualifier("picture")
+    @Order(3)
     public Rectangle rectangle() {
         return new Rectangle(SYMBOL, 5, LENGTH);
     }
 
     @Bean
-    public Picture picture() {
-        return new Picture(SYMBOL, new Shape[]{line(), line(), rectangle()});
+    public Rectangle rectangle1() {
+        return new Rectangle('#', 5, LENGTH);
+    }
+
+    @Bean
+    public Picture picture(@Qualifier ("picture") Shape[] shapes) {
+        return new Picture(SYMBOL, shapes);
     }
 }

@@ -10,7 +10,7 @@ public class ConsoleNumberReader implements NumberReader {
         return input.nextInt();
     }
 
-    public void close(){
+    public void close() {
         input.close();
     }
 }

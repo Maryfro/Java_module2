@@ -74,7 +74,7 @@ public class MaxTrees {
         double alpha = Math.PI;
         MaxTrees mt = new MaxTrees();
         System.out.println(mt.maxTrees(points, alpha));
-       
+
     }
 }
 

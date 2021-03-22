@@ -94,23 +94,4 @@ public class OurFixedArrayDeque<T> implements OurDeque<T> {
         };
         return iterator;
     }
-
-    /*class ForwardIterator implements Iterator<T> {
-        source[]
-
-        @Override
-        public boolean hasNext() {
-            return currentNode != null;
-        }
-
-        @Override
-        public T next() {
-            if (currentNode == null) {
-                throw new IndexOutOfBoundsException();
-            }
-            T res = currentNode.element;
-            currentNode = currentNode.next;
-            return res;
-        }
-    }*/
 }

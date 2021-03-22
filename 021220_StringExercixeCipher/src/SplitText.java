@@ -57,7 +57,6 @@ public class SplitText {
     }
 
 
-
     private boolean splitRecursively(String text, int startIndex, Deque<String> sequence) {
         if (startIndex == text.length())
             return true;
@@ -75,7 +74,6 @@ public class SplitText {
         }
         return false;
     }
-
 
 
     // Task 2

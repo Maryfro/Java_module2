@@ -1,9 +1,11 @@
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+
 
 public abstract class OurListTest {
     OurList<Integer> list;
@@ -401,7 +403,6 @@ public abstract class OurListTest {
 
     @Test
     public void test_max_severalString() {
-        String[] expected = {"Evgenievna", "Vladislava", "Borisovich", "Evgeny"};
         Comparator<String> stringComparator = new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
@@ -417,7 +418,6 @@ public abstract class OurListTest {
 
     @Test
     public void test_min_severalString() {
-        String[] expected = {"Evgenievna", "Vladislava", "Borisovich", "Evgeny"};
         Comparator<String> stringComparator = new Comparator<String>() {
             @Override
             public int compare(String o1, String o2) {
@@ -429,6 +429,26 @@ public abstract class OurListTest {
         listString.addLast("Vladislava");
         listString.addLast("Evgenievna");
         assertEquals("Borisovich", listString.min(stringComparator));
+    }
+
+
+    @Test
+    public void test_sortWithComparator_severalString() {
+        Comparator<String> stringComparator = new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o1.compareTo(o2);
+            }
+        };
+        listString.addLast("Evgeny");
+        listString.addLast("Borisovich");
+        listString.addLast("Vladislava");
+        listString.addLast("Evgenievna");
+        listString.sort(stringComparator);
+        String[] expected = new String[]{"Borisovich", "Evgenievna", "Evgeny", "Vladislava"};
+        for (int i = 0; i < listString.size(); i++) {
+            assertEquals(expected[i], listString.get(i));
+        }
     }
 
     @Test

@@ -3,7 +3,7 @@ package telran.data;
 public interface Colorable {
     Color getColor();
 
-     class Color {
+    class Color {
         private int red, blue, green;
 
         public Color(int red, int blue, int green) {

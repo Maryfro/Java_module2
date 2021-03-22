@@ -13,9 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
 class CapitalLettersFileActionTest {
-   // @Mock
+    // @Mock
     FileOperations fo;
-   // @InjectMocks
+    // @InjectMocks
     CapitalLettersFileAction capLet;
 
     @BeforeEach
@@ -36,8 +36,6 @@ class CapitalLettersFileActionTest {
         ArrayList<String> exp = new ArrayList<>(Arrays.asList("APPLE", "BANANA", "APRICOT", "CHERRY"));
         assertEquals(exp, capLet.perform(Arrays.asList("aPPle", "Banana", "Apricot", "cheRRY")));
     }
-
-
 
 
 }

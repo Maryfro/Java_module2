@@ -4,9 +4,9 @@ import java.util.List;
 
 public class Account {
 
-private String id;
-   private long balance;
-   private List<Transaction> transactions;
+    private String id;
+    private long balance;
+    private List<Transaction> transactions;
 
     public Account(String id, long balance, List<Transaction> transactions) {
         this.id = id;

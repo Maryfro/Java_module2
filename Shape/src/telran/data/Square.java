@@ -16,7 +16,7 @@ public class Square extends Shape {
         return side * side;
     }
 
-    public void changeColor(Color color){
+    public void changeColor(Color color) {
         super.setColor(color);
     }
 

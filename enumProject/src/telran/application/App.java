@@ -11,8 +11,8 @@ public class App {
         System.out.println(DaysOfWeek.FRIDAY.ordinal());
         System.out.println(Arrays.toString(DaysOfWeek.values()));
         System.out.println(DaysOfWeek.WEDNESDAY.getTitle());*/
-      //  DaysOfWeek.THURSDAY.sayHello();
-       // monday.sayHello();
+        //  DaysOfWeek.THURSDAY.sayHello();
+        // monday.sayHello();
         Schedule schedule1 = new Schedule();
         System.out.print("On " + DaysOfWeek.FRIDAY.getTitle() + " you have to");
         schedule1.wakeUp(DaysOfWeek.FRIDAY);

@@ -158,7 +158,7 @@ public class Exercise {
         int[] b2 = {0, 4, 0, 3};
         int[] b3 = {0, 1, 0};
         System.out.println(Arrays.toString(zeroMax(b1)));
-         System.out.println(Arrays.toString(zeroMax(b2)));
+        System.out.println(Arrays.toString(zeroMax(b2)));
         System.out.println(Arrays.toString(zeroMax(b3)));
 
 

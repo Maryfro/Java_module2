@@ -11,8 +11,9 @@ import static org.junit.jupiter.api.Assertions.*;
 class AccountServiceTest {
 
     AccountService acc = new AccountService();
+
     @Test
-    public void test_countSumOfTransactions(){
+    public void test_countSumOfTransactions() {
         Map<String, Long> exp = new HashMap<>();
         exp.put("001", 200L);
         exp.put("002", 120L);

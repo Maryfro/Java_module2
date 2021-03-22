@@ -30,7 +30,7 @@ public class Exercise {
         System.out.println(getAnagrams(dictionary, "anna"));
         System.out.println(getAnagrams(dictionary, "piotr"));
         System.out.println("-----------------------------");
-        Anagram anagram = new Anagram(new String[] {"anna", "ivan", "naan", "vani", "piotr", "navi"});
+        Anagram anagram = new Anagram(new String[]{"anna", "ivan", "naan", "vani", "piotr", "navi"});
         anagram.createMap();
         System.out.println(anagram.getMap());
         System.out.println(anagram.getAnagrams("sam"));

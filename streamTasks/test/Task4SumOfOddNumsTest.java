@@ -9,37 +9,37 @@ class Task4SumOfOddNumsTest {
 
 
     @Test
-    public void testCountSumOfOddNums_rangeFrom2to5(){
-        assertEquals(8, sum.countSumOfOddNums(2,5));
+    public void testCountSumOfOddNums_rangeFrom2to5() {
+        assertEquals(8, sum.countSumOfOddNums(2, 5));
     }
 
     @Test
-    public void testCountSumOfOddNums_rangeFrom7to7(){
-        assertEquals(7, sum.countSumOfOddNums(7,7));
+    public void testCountSumOfOddNums_rangeFrom7to7() {
+        assertEquals(7, sum.countSumOfOddNums(7, 7));
     }
 
     @Test
-    public void testCountSumOfOddNums_rangeFrom2to2(){
-        assertThrows(NoSuchElementException.class, ()->{
+    public void testCountSumOfOddNums_rangeFrom2to2() {
+        assertThrows(NoSuchElementException.class, () -> {
             sum.countSumOfOddNums(2, 2);
         });
     }
 
     @Test
-    public void testCountSumOfOddNums_rangeFrom3to2(){
-        assertThrows(NoSuchElementException.class, ()->{
+    public void testCountSumOfOddNums_rangeFrom3to2() {
+        assertThrows(NoSuchElementException.class, () -> {
             sum.countSumOfOddNums(3, 2);
         });
     }
 
     @Test
-    public void testCountSumOfOddNums_rangeFrom145678to145680(){
-        assertEquals(145679, sum.countSumOfOddNums(145678,145680));
+    public void testCountSumOfOddNums_rangeFrom145678to145680() {
+        assertEquals(145679, sum.countSumOfOddNums(145678, 145680));
     }
 
     @Test
-    public void testCountSumOfOddNums_rangeFrom2to12(){
-        assertEquals(35, sum.countSumOfOddNums(2,12));
+    public void testCountSumOfOddNums_rangeFrom2to12() {
+        assertEquals(35, sum.countSumOfOddNums(2, 12));
     }
 
 }

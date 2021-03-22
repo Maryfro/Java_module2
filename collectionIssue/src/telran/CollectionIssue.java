@@ -77,7 +77,7 @@ public class CollectionIssue {
         for (int i = 0; i < listInteger.size(); i++) {
             output.add(listInteger.get(listInteger.size() - 1 - i));
         }
-      //  Collections.reverse(listInteger);
+        //  Collections.reverse(listInteger);
         return output;
     }
 
@@ -103,7 +103,7 @@ public class CollectionIssue {
         }
         for (int i = 0; i < one.size(); i++) {
             Collections.rotate(one, 1);
-            if(one.equals(two)){
+            if (one.equals(two)) {
                 return true;
             }
         }

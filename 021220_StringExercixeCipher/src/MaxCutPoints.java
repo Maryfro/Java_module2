@@ -6,7 +6,7 @@ public class MaxCutPoints {
 
 
     int maxCoveredPoints(List<Integer> numbers, int cut) {
-        if(numbers.isEmpty() || cut == 0){
+        if (numbers.isEmpty() || cut == 0) {
             return 0;
         }
         ArrayDeque<Integer> cutDeque = new ArrayDeque<>();

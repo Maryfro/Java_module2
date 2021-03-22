@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         int[] array = {1, 3, 5, 7, 9, 11, 13, 14, 16, 17};
         int index = binarySearch(array, 17);
-         System.out.println(index >= 0 ? "index is " + index : "There is no such number in array");
+        System.out.println(index >= 0 ? "index is " + index : "There is no such number in array");
         displayOddNumbers(12);
         displayEvenNumbers(12);
     }

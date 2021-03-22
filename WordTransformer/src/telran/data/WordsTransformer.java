@@ -13,7 +13,7 @@ public class WordsTransformer {
         return str;
     }
 
-   public static String WordTransformAllActions(String input, WordsChecker[] transformables) {
+    public static String WordTransformAllActions(String input, WordsChecker[] transformables) {
         String[] strings = input.split(" ");
         for (int i = 0; i < transformables.length; i++) {
             for (int j = 0; j < strings.length; j++) {

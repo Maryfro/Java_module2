@@ -49,7 +49,7 @@ public class Book {
     public String toString() {
         return "Title " +
                 title +
-                ", Author " + author  +
+                ", Author " + author +
                 ", year of issue " + yearOfIssue +
                 ", amount of pages " + amountOfPages;
     }

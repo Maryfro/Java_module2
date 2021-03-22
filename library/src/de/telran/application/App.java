@@ -46,10 +46,10 @@ public class App {
 
         MyLibrary myLibrary1 = new MyLibrary();
         Collections.addAll(myLibrary1.getMyLibrary(), myLibrary.getBooks());
-       // System.out.println(myLibrary1.getMyLibrary());
-        for (Book b: myLibrary1.getMyLibrary()) {
-            if(b!=null)
-            System.out.println(b);
+        // System.out.println(myLibrary1.getMyLibrary());
+        for (Book b : myLibrary1.getMyLibrary()) {
+            if (b != null)
+                System.out.println(b);
         }
 
 

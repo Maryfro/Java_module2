@@ -16,14 +16,15 @@ class Exercise_ArrayTest {
     void countRepeatedNumbers_oneNumber() {
         assertEquals(1, arr.countRepeatedNumbers(new int[]{5}));
     }
+
     @Test
     void countRepeatedNumbers_severalNumbers() {
-        assertEquals(1, arr.countRepeatedNumbers(new int[]{5, 1,  5, 1, 1}));
+        assertEquals(1, arr.countRepeatedNumbers(new int[]{5, 1, 5, 1, 1}));
     }
 
     @Test
     void countRepeatedNumbers_severalDiffNumbers() {
-        assertEquals(6, arr.countRepeatedNumbers(new int[]{5, 6,  6, 2, -3}));
+        assertEquals(6, arr.countRepeatedNumbers(new int[]{5, 6, 6, 2, -3}));
     }
 
     @Test

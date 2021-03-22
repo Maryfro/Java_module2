@@ -8,10 +8,10 @@ import java.util.Iterator;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-class OurTreeSetTest extends OurSetTest{
+class OurTreeSetTest extends OurSetTest {
 
     @BeforeEach
-    public void init(){
+    public void init() {
         set = new OurTreeSet<>();
     }
 

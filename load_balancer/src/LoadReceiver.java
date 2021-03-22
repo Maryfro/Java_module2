@@ -6,7 +6,7 @@ import java.net.SocketException;
 public class LoadReceiver implements Runnable {
     private final static int UDP_PORT = 4000;
     private final int PACKET_SIZE = 1024;
-   private String dataFromServer;
+    private String dataFromServer;
 
     public String getDataFromServer() {
         return dataFromServer;
@@ -22,14 +22,14 @@ public class LoadReceiver implements Runnable {
             e.printStackTrace();
         }
         byte[] dataIn = new byte[PACKET_SIZE];
-            DatagramPacket packetIn = new DatagramPacket(dataIn, PACKET_SIZE);
-            while (true) {
-                try {
-                    udpSocket.receive(packetIn);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                int serverPort = packetIn.getPort();
+        DatagramPacket packetIn = new DatagramPacket(dataIn, PACKET_SIZE);
+        while (true) {
+            try {
+                udpSocket.receive(packetIn);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            int serverPort = packetIn.getPort();
             String host = packetIn.getAddress().getHostName();
             String load = new String(dataIn, 0, packetIn.getLength());
             dataFromServer = host + ":" + serverPort + "." + load;

@@ -1,6 +1,6 @@
 package telran.game;
 
-public class DuckHunt implements Command{
+public class DuckHunt implements Command {
     private final int number = 1;
 
     public int getNumber() {

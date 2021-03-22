@@ -1,6 +1,6 @@
 package telran.game;
 
-public class Hockey implements Command{
+public class Hockey implements Command {
     public final int number = 3;
 
     public int getNumber() {

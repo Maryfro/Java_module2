@@ -1,6 +1,6 @@
 package telran.data;
 
-public class SecurityModule implements MonitoringSystem{
+public class SecurityModule implements MonitoringSystem {
     @Override
     public void start() {
         System.out.println("Security Module is starting");

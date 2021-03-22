@@ -1,6 +1,6 @@
 package telran.data;
 
-public class Mushroom extends Extras{
+public class Mushroom extends Extras {
     private final static double PRICE_FOR_MUSHROOMS = 1.5;
 
     public Mushroom(PizzaBase pizzaBase) {

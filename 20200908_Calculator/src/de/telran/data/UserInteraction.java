@@ -7,7 +7,7 @@ public class UserInteraction {
 
     public static double getParameter() {
         System.out.println("Enter a number, please");
-        while(scanner.hasNextDouble()){
+        while (scanner.hasNextDouble()) {
             System.out.println("This is not a number, enter a number please");
             scanner.next();
             scanner.hasNextDouble();
@@ -24,14 +24,16 @@ public class UserInteraction {
         }
         return operation;
     }
-    public static double getRightDivisor(double number){
-        while (number == 0){
+
+    public static double getRightDivisor(double number) {
+        while (number == 0) {
             System.out.println("error! please enter another number");
             number = scanner.nextDouble();
         }
         return number;
     }
-    public static void closeScanner(){
+
+    public static void closeScanner() {
         scanner.close();
     }
 }

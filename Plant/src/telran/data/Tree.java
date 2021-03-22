@@ -20,7 +20,7 @@ public class Tree extends Plant {
 
     @Override
     protected void doFall() {
-        setHeight(getHeight() + TREE_GROWTH_PER_SEASON/2);
+        setHeight(getHeight() + TREE_GROWTH_PER_SEASON / 2);
         System.out.println(getName() + " has grown in Fall up to " + getHeight());
     }
 }

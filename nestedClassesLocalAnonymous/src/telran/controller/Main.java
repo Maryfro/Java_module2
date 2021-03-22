@@ -9,6 +9,7 @@ public class Main {
         person1.personIntroduction();
         Person person2 = new Person("Anna") {
             private int age = 18;
+
             @Override
             public void personIntroduction() {
                 super.personIntroduction();

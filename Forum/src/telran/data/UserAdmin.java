@@ -11,15 +11,15 @@ public class UserAdmin extends User {
     }
 
     public boolean checkPassword(Scanner scanner) {
-                int count = 3;
-                while (count > 0) {
-                    System.out.println("enter password ");
-                    String password = scanner.nextLine();
-                    if (this.password.equals(password))
-                        return true;
-                    else
-                        count--;
-                }
+        int count = 3;
+        while (count > 0) {
+            System.out.println("enter password ");
+            String password = scanner.nextLine();
+            if (this.password.equals(password))
+                return true;
+            else
+                count--;
+        }
         return false;
     }
 }

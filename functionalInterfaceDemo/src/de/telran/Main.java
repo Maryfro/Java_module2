@@ -88,9 +88,9 @@ public class Main {
             }
         };
 
-        Supplier<String> s1 = ()->"Salut";
+        Supplier<String> s1 = () -> "Salut";
         System.out.println(s1.get());
-        Supplier<LocalDate> date = ()->LocalDate.now().minusDays(1);
+        Supplier<LocalDate> date = () -> LocalDate.now().minusDays(1);
         System.out.println(date.get());
 
         BiFunction bi = new BiFunction() {
@@ -102,11 +102,11 @@ public class Main {
         BiFunction<String, Integer, Person> person = Person::new;
         person.apply("Vasya", 10);
 
-        UnaryOperator<Integer> uo = integer -> (int)Math.sqrt(9);
+        UnaryOperator<Integer> uo = integer -> (int) Math.sqrt(9);
         System.out.println(uo.apply(5));
 
-        BinaryOperator<Integer> multiply = (x, y) -> x*y;
-        System.out.println(multiply.apply(2,2));
+        BinaryOperator<Integer> multiply = (x, y) -> x * y;
+        System.out.println(multiply.apply(2, 2));
         System.out.println(multiply.andThen(uo).apply(2, 1));
 
 

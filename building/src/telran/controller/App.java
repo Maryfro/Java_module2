@@ -17,7 +17,7 @@ public class App {
         Office.Address address = office.new Address(" Mehringdamm", 33);
 
         Office office1 = new Office();
-        Office.Address address1 = office.new Address(" Mehringdamm", 22){
+        Office.Address address1 = office.new Address(" Mehringdamm", 22) {
             @Override
             public String toString() {
                 return "office moved";
@@ -25,7 +25,7 @@ public class App {
         };
         System.out.println(address1);
 
-        Hospital clinic = new Hospital("Charite", "Berliner",12 );
+        Hospital clinic = new Hospital("Charite", "Berliner", 12);
         Hospital.AddressContainer addressHospital = clinic.getAddressContainer();
         System.out.println(addressHospital.getHouseNumber());
         System.out.println(addressHospital.getStreet());

@@ -8,7 +8,7 @@ public class GameApp {
         Game game = new Game(8, new ConsoleGameMessenger(), new ConsoleNumberReader());
         game.playNew();
 
-        NumberReader nm = ()->{
+        NumberReader nm = () -> {
             Scanner scanner = new Scanner(System.in);
             return scanner.nextInt();
         };

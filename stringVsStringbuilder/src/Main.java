@@ -11,8 +11,8 @@ public class Main {
 
         ConcatenationTester ct = new ConcatenationTester(new StringBuilder());
         ConcatenationTester ct1 = new ConcatenationTester(new StringConcatenator());
-        ct.test(100, "JAVA");
-        ct1.test(100, "JAVA");
+        ct.test(10000, "JAVA");
+        ct1.test(10000, "JAVA");
     }
 }
 

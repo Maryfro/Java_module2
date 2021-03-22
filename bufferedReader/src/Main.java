@@ -9,10 +9,13 @@ public class Main {
         // List<String> fromFile = readFile("text.txt");
         //System.out.println(fromFile);
 
-       // readFromConsole();
+        // readFromConsole();
 
-        ReaderAndWriter rw = new ReaderAndWriter();
-        rw.readFromConsole();
+        //ReaderAndWriter rw = new ReaderAndWriter();
+        //rw.readFromConsole();
+        ReaderAndWriter rw1 = new ReaderAndWriter();
+        List<String> text = rw1.readFromConsole2();
+        rw1.writeToFile2(text);
     }
 
     public static List<String> readFile(String filename) throws IOException {

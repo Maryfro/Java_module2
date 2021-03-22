@@ -59,17 +59,17 @@ public class WordsTransformerTest {
     }
 
     @Test
-    public void testWordTransformNewLengthOfStringWc1(){
+    public void testWordTransformNewLengthOfStringWc1() {
         assertEquals(input.length(), WordsTransformer.WordTransformNew(input, wc1).length());
     }
 
     @Test
-    public void testWordTransformNewLengthOfStringWc2(){
+    public void testWordTransformNewLengthOfStringWc2() {
         assertEquals(input.length(), WordsTransformer.WordTransformNew(input, wc2).length());
     }
 
     @Test
-    public void testWordTransformNewLengthOfStringWc3(){
+    public void testWordTransformNewLengthOfStringWc3() {
         assertEquals(input.length(), WordsTransformer.WordTransformNew(input, wc3).length());
     }
 

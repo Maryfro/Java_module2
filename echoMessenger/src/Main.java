@@ -9,7 +9,6 @@ public class Main {
         //Thread.currentThread();
 
 
-
         Echo echo = new Echo();
         Thread echoThread = new Thread(echo);
         //forces stop the echo thread when the main thread completes

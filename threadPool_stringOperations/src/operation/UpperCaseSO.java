@@ -3,7 +3,7 @@ package operation;
 import operation.IStringOperation;
 
 public class UpperCaseSO implements IStringOperation {
-private String name;
+    private String name;
 
     public UpperCaseSO() {
         this.name = "upper_case";

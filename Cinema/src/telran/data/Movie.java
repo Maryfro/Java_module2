@@ -71,15 +71,15 @@ public class Movie {
     @Override
     public String toString() {
         return "Movie " +
-                 title +
+                title +
                 ", date " + date +
                 ", genre " + genre +
                 ", cinemas " + Arrays.toString(cinemas) +
                 '}';
     }
-    
-    public void displayCinemas(){
-        for (Cinema c: cinemas) {
+
+    public void displayCinemas() {
+        for (Cinema c : cinemas) {
             System.out.println(c);
         }
     }

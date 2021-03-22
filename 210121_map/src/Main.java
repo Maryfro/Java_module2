@@ -1,7 +1,4 @@
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -14,6 +11,9 @@ public class Main {
         Map<String, String> map1 = new HashMap<>();
 
         TreeMap<Integer, Integer> treeMap = new TreeMap<>();
+        HashSet<Integer> hashSet = new HashSet<>();
+        hashSet.retainAll(new ArrayList<>());
+
     }
 
     static void fillMap(Map<Auto, String> map) {

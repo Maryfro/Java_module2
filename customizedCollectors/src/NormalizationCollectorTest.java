@@ -13,10 +13,16 @@ class NormalizationCollectorTest {
 
     @Test
     public void test_collect_case1() {
-       Stream<Double> numbers = Stream.of(5.0, -3.0, 10.0);
+        Stream<Double> numbers = Stream.of(5.0, -3.0, 10.0);
+        List<Double> res = numbers.collect(nc);
         List<Double> exp = Arrays.asList(0.6153846153846154, 0.0, 1.0);
-        assertEquals(exp, numbers.collect(nc));
+        int i = 0;
+        for (double num : res) {
+            assertEquals(exp.get(i++), num, 0.001);
+        }
+        assertEquals(3, i);
     }
+
     @Test
     public void test_collect_case2() {
         Stream<Double> numbers = Stream.of(5.0, 0.0, 10.0);

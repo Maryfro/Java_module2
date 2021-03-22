@@ -4,7 +4,6 @@ import java.io.InputStreamReader;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.UnknownHostException;
 
 public class Main {
     private final static int UDP_SERVER_PORT = 3000;

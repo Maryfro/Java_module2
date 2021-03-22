@@ -9,7 +9,7 @@ public class Drum implements Playable {
 
     @Override
     public void play() {
-        System.out.println( "Plays " + this.getClass().getSimpleName() + " with these characteristics: size "
+        System.out.println("Plays " + this.getClass().getSimpleName() + " with these characteristics: size "
                 + this.size);
     }
 }

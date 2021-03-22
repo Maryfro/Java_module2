@@ -5,7 +5,7 @@ public class CoffeeImplementation implements Coffee {
 
     @Override
     public int getPrice() {
-        System.out.println("Price for Coffee is: " +  BASIC_COFFEE_PRICE);
+        System.out.println("Price for Coffee is: " + BASIC_COFFEE_PRICE);
         return BASIC_COFFEE_PRICE;
     }
 }

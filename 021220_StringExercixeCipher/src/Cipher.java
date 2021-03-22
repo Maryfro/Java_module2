@@ -4,7 +4,7 @@ public class Cipher {
     //"aaabbcdddd"-> a3b2cd4"
 
     public String toCipher(String input) {
-        if(input.isEmpty()){
+        if (input.isEmpty()) {
             return "";
         }
         int count = 1;

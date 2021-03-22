@@ -277,11 +277,7 @@ public class OurTreeMap<K, V> implements OurMap<K, V> {
     }
 
     class ValueIterator implements Iterator<V> {
-        KeyIterator valIterator;
-
-        public ValueIterator() {
-            valIterator = new KeyIterator();
-        }
+        KeyIterator valIterator = new KeyIterator();
 
         @Override
         public boolean hasNext() {

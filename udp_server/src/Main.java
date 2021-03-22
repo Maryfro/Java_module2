@@ -17,7 +17,7 @@ public class Main {
             String line = new String(dataIn, 0, packetIn.getLength());
 
             String response = "Handled a datagram from the port: " + packetIn.getPort()
-                    +  " received data "+ line;
+                    + " received data " + line;
 
             byte[] dataOUt = response.getBytes();
             DatagramPacket packetOut = new DatagramPacket(

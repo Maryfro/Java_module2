@@ -7,10 +7,11 @@ public class Boeing {
     public Boeing(int manufactureYear) {
         this.manufactureYear = manufactureYear;
     }
-    static class Drawing{
-         static class Author{
-              static String author = "Smith";
-         }
+
+    static class Drawing {
+        static class Author {
+            static String author = "Smith";
+        }
 
         private int id;
 

@@ -27,7 +27,7 @@ public class Exercise2 {
             List<Auto> values = group.get(auto.make);
             if (values == null) {
                 values = new ArrayList<>();
-            group.put(auto.make, values);
+                group.put(auto.make, values);
             }
             values.add(auto);
         }

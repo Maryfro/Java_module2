@@ -10,9 +10,9 @@ public class WaterPipe implements Stateable, Printable {
     public void printState(int n) {
         if (n == OPEN) {
             System.out.println("water is open");
-        }else if(n==CLOSED){
+        } else if (n == CLOSED) {
             System.out.println("water is close");
-        }else {
+        } else {
             System.out.println("status is unclear");
         }
     }

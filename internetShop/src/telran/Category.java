@@ -22,9 +22,9 @@ public class Category {
         }
     }
 
-    public static void displayCategories(String[] categoryNames){
+    public static void displayCategories(String[] categoryNames) {
         System.out.println("Available categories: ");
-        for (String name: categoryNames) {
+        for (String name : categoryNames) {
             System.out.println(name);
         }
     }

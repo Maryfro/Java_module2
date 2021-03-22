@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class PrimeNumberTest {
     PrimeNumber pn = new PrimeNumber();
-        List<Integer> exp = new ArrayList<>();
+    List<Integer> exp = new ArrayList<>();
 
     @Test
     void test_getPrimes_upperBound15() {
@@ -27,7 +27,6 @@ class PrimeNumberTest {
         Collections.addAll(exp, 2, 3, 5, 7, 11, 13, 17, 19, 23, 29);
         assertEquals(exp, pn.getPrimes(30));
     }
-
 
 
 }

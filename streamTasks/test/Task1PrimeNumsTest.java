@@ -14,6 +14,7 @@ class Task1PrimeNumsTest {
     public void testIsPrime_TrueCase_97() {
         assertTrue(pn.isPrime(97));
     }
+
     @Test
     public void testIsPrime_FalseCase_42() {
         assertFalse(pn.isPrime(42));
@@ -27,11 +28,12 @@ class Task1PrimeNumsTest {
     @Test
     public void testIsPrime_FalseCase_1000() {
         assertFalse(pn.isPrime(1000));
-    } @Test
+    }
+
+    @Test
     public void testIsPrime_FalseCase_888() {
         assertFalse(pn.isPrime(888));
     }
-
 
 
 }

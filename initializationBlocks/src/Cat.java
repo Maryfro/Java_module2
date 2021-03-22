@@ -1,6 +1,6 @@
-public class Cat extends Pet{
+public class Cat extends Pet {
 
-    static{
+    static {
         System.out.println("static block in Cat");
     }
 
@@ -16,11 +16,11 @@ public class Cat extends Pet{
         System.out.println("Cat empty constructor");
     }
 
-     static void sayHello(){
+    static void sayHello() {
         System.out.println("Hello");
     }
 
-    void voice(){
+    void voice() {
         System.out.println("miau");
     }
 

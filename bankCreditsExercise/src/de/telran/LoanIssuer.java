@@ -24,13 +24,16 @@ public class LoanIssuer {
     }
 
     public boolean toIssue(LoanConsumer lc) {
-         if (!(isKind || isLazy)) {
-            return lc.getAge() >= 18 && lc.getAge() < 50 && lc.getIncome() >= 20000;
-        } else if (isKind && !isLazy) {
-            return lc.getAge() >= 18 && lc.getAge() < 70 && lc.getIncome() >= 20000;
+        if (!(isKind || isLazy)) {
+            return lc.getAge() >= 18 && lc.getAge() <= 50 && lc.getIncome() >= 20000;
         }
-        return lc.getAge() >= 18 && lc.getIncome() >= 20000;
-
+        if (isKind && !isLazy) {
+            return lc.getAge() >= 18 && lc.getAge() <= 70 && lc.getIncome() >= 20000;
+        }
+        if (isLazy) {
+            return lc.getAge() >= 18 && lc.getIncome() >= 20000;
+        }
+        return false;
     }
 
     public static void main(String[] args) {
@@ -46,17 +49,16 @@ public class LoanIssuer {
         LoanConsumer[] loanConsumers = {lc1, lc2, lc3, lc4};
         for (int i = 0; i < loanConsumers.length; i++) {
             System.out.println("Not lazy and not kind bank employee issues credit to " +
-                    loanConsumers[i].getName() + ", " + loanConsumers[i].getAge() + " years old, income "+
-                    loanConsumers[i].getIncome()+ " : "+ li1.toIssue(loanConsumers[i]));
+                    loanConsumers[i].getName() + ", " + loanConsumers[i].getAge() + " years old, income " +
+                    loanConsumers[i].getIncome() + " : " + li1.toIssue(loanConsumers[i]));
         }
 
         System.out.println("-----------------");
         for (int i = 0; i < loanConsumers.length; i++) {
             System.out.println("lazy and kind bank employee issues credit to " +
-                    loanConsumers[i].getName() + ", " + loanConsumers[i].getAge() + " years old, income "+
-                    loanConsumers[i].getIncome()+ " : "+ li2.toIssue(loanConsumers[i]));
+                    loanConsumers[i].getName() + ", " + loanConsumers[i].getAge() + " years old, income " +
+                    loanConsumers[i].getIncome() + " : " + li2.toIssue(loanConsumers[i]));
         }
-
 
 
     }

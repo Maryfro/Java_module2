@@ -11,8 +11,8 @@ public class Main {
         fo.writeBytes(new byte[]{1, 2, 3}, "output.txt");
         List<String> strings = new ArrayList<>();
         Collections.addAll(strings, "banana", "apple", "orange");
-         fo.writeStrings(strings, "outputStrings.txt");
-         System.out.println(fo.readStrings("inputStrings.txt"));
+        fo.writeStrings(strings, "outputStrings.txt");
+        System.out.println(fo.readStrings("inputStrings.txt"));
         List<Integer> numbers = Arrays.asList(456, 2, 13);
         fo.writeInts(numbers, "outputNumbers.txt");
         System.out.println(fo.readInts("inputNumbers.txt"));

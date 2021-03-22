@@ -21,11 +21,12 @@ class ExerciseMapTest {
 
     @Test
     void findOddNumber_multipleNumbers_oneOccurrence() {
-        assertEquals(3, map.findOddNumber(new int[]{1,3,1,1,1}));
+        assertEquals(3, map.findOddNumber(new int[]{1, 3, 1, 1, 1}));
     }
+
     @Test
     void findOddNumber_multipleNumbers_severalOccurrences() {
-        assertEquals(3, map.findOddNumber(new int[]{1,3,1,3,3}));
+        assertEquals(3, map.findOddNumber(new int[]{1, 3, 1, 3, 3}));
     }
 
     @Test

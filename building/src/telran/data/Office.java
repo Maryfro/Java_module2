@@ -4,7 +4,7 @@ public class Office {
     private String company;
     private Address address;
 
-    public class Address{
+    public class Address {
         private String street;
         private int houseNumber;
 
@@ -15,7 +15,7 @@ public class Office {
 
         @Override
         public String toString() {
-            return  street + houseNumber;
+            return street + houseNumber;
         }
     }
 

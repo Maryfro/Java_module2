@@ -6,6 +6,7 @@ import java.util.*;
 public class StatisticsService {
     /**
      * the method accepts only sorted by time list of statistics
+     *
      * @param listOfStatistics
      */
     public void last10minutesMentions(List<Statistics> listOfStatistics) {

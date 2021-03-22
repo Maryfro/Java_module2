@@ -49,7 +49,7 @@ public class Movie {
         System.out.println("Now it's dark, the movie can go on");
     }
 
-    public void movieStart(){
+    public void movieStart() {
         System.out.println("the movie starts at 15:00");
     }
 }

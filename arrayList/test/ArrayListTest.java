@@ -94,7 +94,7 @@ public class ArrayListTest {
     }
 
     @Test
-    public void testIndexOf(){
+    public void testIndexOf() {
         String[] arr = {"a", "b", "c", "d"};
         ArrayList<String> words = new ArrayList<String>();
         for (String s : arr) {
