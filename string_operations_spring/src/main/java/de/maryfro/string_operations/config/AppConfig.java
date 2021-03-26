@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+@EnableAsync
 @Configuration
 public class AppConfig {
 
@@ -26,12 +27,10 @@ public class AppConfig {
         return new PrintWriter(new FileOutputStream("output.txt"));
     }
 
-    @EnableAsync
-    public static class AsyncConfiguration {
-        @Bean()
-        public Executor asyncExecutor() {
-            return Executors.newFixedThreadPool(17);
-        }
+    @Bean()
+    public Executor asyncExecutor() {
+        return Executors.newFixedThreadPool(17);
     }
+
 
 }
