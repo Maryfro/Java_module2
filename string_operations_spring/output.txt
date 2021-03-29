@@ -1,6 +1,0 @@
-hello
-WORLD
-hello world#opper_case#wrong operation
-java#wrong format
-hello world#lower_case#param#wrong format
-cat##wrong format
