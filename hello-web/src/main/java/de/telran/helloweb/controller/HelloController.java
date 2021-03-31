@@ -2,6 +2,7 @@ package de.telran.helloweb.controller;
 
 import de.telran.helloweb.dto.Auto;
 import de.telran.helloweb.dto.Greeting;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -40,6 +41,7 @@ public class HelloController {
 
     @PostMapping("/auto")
     @ResponseBody
+    @ResponseStatus(HttpStatus.CREATED)
     public String acceptAuto(@RequestBody Auto auto) {
         System.out.println(auto);
         return "the following auto was received "
