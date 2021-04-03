@@ -2,13 +2,14 @@ package de.maryfro.demo.entity;
 
 public class Contact {
 
-    public int id;
-    public String name;
-    public String lastName;
-    public int age;
+    private int id;
+    private String name;
+    private String lastName;
+    private int age;
+    static int staticId = 0;
 
-    public Contact(int id, String name, String lastName, int age) {
-        this.id = id;
+    public Contact(String name, String lastName, int age) {
+        this.id = ++staticId;
         this.name = name;
         this.lastName = lastName;
         this.age = age;
@@ -47,5 +48,9 @@ public class Contact {
 
     public int getAge() {
         return age;
+    }
+
+    public static int getStaticId() {
+        return staticId;
     }
 }

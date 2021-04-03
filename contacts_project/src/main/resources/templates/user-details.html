@@ -16,23 +16,32 @@
     <ul class="list-group">
         <li class="list-group-item list-group-item-light">
             <div class="row">
-                <label>Name:</label>
-
-                <h2 th:text="${id}"></h2>
+                <div class="col">
+                <label><strong>Name:</strong></label>
+            </div>
+                <div class="col">
+                <h4 th:text="${needed_contact.name}"></h4>
+                </div>
             </div>
         </li>
         <li class="list-group-item list-group-item-light">
             <div class="row">
-                <label>Lastname:</label>
-
-                <h2 th:text="${contact.lastname}"></h2>
+                <div class="col">
+                <label><strong>Lastname:</strong> </label>
+                </div>
+                    <div class="col">
+                <h4 th:text="${needed_contact.lastName}"></h4>
+                    </div>
             </div>
         </li>
         <li class="list-group-item list-group-item-light">
             <div class="row">
-                <label>Age:</label>
-
-                <h2 th:text="${contact.age}"></h2>
+                <div class="col">
+                <label><strong>Age:</strong> </label>
+                </div>
+                    <div class="col">
+                <h4  th:text="${needed_contact.age}"></h4>
+                    </div>
             </div>
         </li>
     </ul>
