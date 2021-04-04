@@ -9,32 +9,33 @@
 <body>
 <div class="jumbotron">
     <div class="container">
-    <h2 class="display-4 text-muted">Add user details</h2>
+        <h2 class="display-4 text-muted">Add user details</h2>
     </div>
 </div>
 <div class="container">
-    <form>
+    <form th:action="@{/save-contact}" th:object="${contact}" method="post">
+        <input type="hidden" th:field="*{id}"/>
         <div class="form-group">
             <label for="name">Name</label>
-            <input type="name" class="form-control" id="name" placeholder="Enter your name please">
+            <input type="text" class="form-control" id="name" placeholder="Enter your name please" th:field="*{name}">
         </div>
         <div class="form-group">
             <label for="lastname">Lastname</label>
-            <input type="lastname" class="form-control" id="lastname" placeholder="Enter your lastname please">
+            <input type="text" class="form-control" id="lastname" placeholder="Enter your lastname please" th:field="*{lastName}">
         </div>
         <div class="form-group">
             <label for="age">Age</label>
-            <input type="age" class="form-control" id="age" placeholder="Enter your age please">
+            <input type="number" class="form-control" id="age" placeholder="Enter your age please" th:field="*{age}">
         </div>
-            <div class="form-row">
-                <div class="col">
-                    <a class="btn btn-primary btn-lg" th:href="'/contacts/'" role="button" >Cancel</a>
-                </div>
-                <div class="col">
-                    <a class="btn btn-primary btn-lg" th:href="'/contacts/'" role="button"
-                       >Save</a>
-                </div>
+        <div class="form-row">
+            <div class="col">
+                <a class="btn btn-primary btn-lg" th:href="'/contacts/'" role="button" >Cancel</a>
             </div>
+            <div class="col">
+                <a class="btn btn-primary btn-lg" th:href="'/contacts/'" role="button" type="submit" name="action"
+                >Save</a>
+            </div>
+        </div>
     </form>
 </div>
 

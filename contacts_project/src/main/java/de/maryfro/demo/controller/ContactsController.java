@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 @Controller
@@ -26,6 +27,8 @@ public class ContactsController {
      */
     @GetMapping("/contacts")
     public String contacts(Model model) {
+        List<Contact> res = new ArrayList<>();
+        res.addAll(contacts);
         model.addAttribute("contacts", contacts);
         return "contacts";
     }
@@ -38,7 +41,7 @@ public class ContactsController {
      */
     @GetMapping("/add-contact")
     public String addContact(Model model) {
-        model.addAttribute("contact-for-view", new Contact());
+        model.addAttribute("contact", new Contact());
         return "contact-form";
     }
 
@@ -50,7 +53,12 @@ public class ContactsController {
      * @return
      */
     @GetMapping("/edit-contact/{id}")
-    public String editContact(@PathVariable int id) {
+    public String editContact(@PathVariable int id, Model model) {
+        for (Contact contact : contacts) {
+            if (contact.getId() == id)
+                model.addAttribute("contact", contact);
+            break;
+        }
         return "contact-form";
     }
 
@@ -82,11 +90,11 @@ public class ContactsController {
      */
     @PostMapping("/save-contact")
     public String saveContact(@ModelAttribute Contact contact) {
-            if (contact.getId() <= Contact.getStaticId()) {
-                contacts.set(contact.getId(), contact);
-            } else {
-                contacts.add(contact);
-            }
+        if (contact.getId() <= Contact.getStaticId()) {
+            contacts.set(contact.getId(), contact);
+        } else {
+            contacts.add(contact);
+        }
         return "redirect:/contacts";
     }
 

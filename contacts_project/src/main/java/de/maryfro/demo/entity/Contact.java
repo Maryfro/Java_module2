@@ -2,10 +2,10 @@ package de.maryfro.demo.entity;
 
 public class Contact {
 
-    private int id;
-    private String name;
-    private String lastName;
-    private int age;
+    public int id;
+    public String name;
+    public String lastName;
+    public int age;
     static int staticId = 0;
 
     public Contact(String name, String lastName, int age) {
