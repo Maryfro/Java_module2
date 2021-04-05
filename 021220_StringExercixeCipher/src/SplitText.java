@@ -9,6 +9,8 @@ public class SplitText {
         this.words.addAll(words);
     }
 
+
+
     public List<String> splitTextWithDictionary(String text) {
         int size = words.size();
         List<String> dictList = new ArrayList<>(words);
@@ -63,7 +65,9 @@ public class SplitText {
 
         for (String word : words) {
             if (text.startsWith(word, startIndex)) {
+                System.out.println(word);
                 sequence.addLast(word);
+                System.out.println(sequence);
 
                 boolean isSplit = splitRecursively(text, startIndex + word.length(), sequence);
                 if (isSplit)
@@ -73,6 +77,15 @@ public class SplitText {
             }
         }
         return false;
+    }
+
+   public static void main(String[] args) {
+        Set<String> dictionary = new HashSet<>();
+
+            Collections.addAll(dictionary, "hell", "world", "o");
+        SplitText st = new SplitText(dictionary);
+        st.splitTextSolution("helloworld");
+      // System.out.println(st.splitTextWithDictionary("helloworld"));
     }
 
 

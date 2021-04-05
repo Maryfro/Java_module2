@@ -17,6 +17,14 @@ public class TextPattern {
      * //hello, eo ->true
      */
 
+    public static void main(String[] args) {
+        TextPattern tp = new TextPattern();
+        System.out.println(tp.findPattern("woreld", "world"));
+        System.out.println(tp.findPatternSolution2("woreld", "world"));
+        System.out.println(tp.recursiveSolution("world", "woreld", "world".length()-1, "woreld".length()-1));
+    }
+
+
     boolean findPattern(String text, String pattern) {
         if (pattern.length() == 0) {
             return true;
@@ -25,9 +33,11 @@ public class TextPattern {
             return false;
         }
         if (text.charAt(text.length() - 1) == pattern.charAt(pattern.length() - 1)) {
-            return findPattern(text.substring(0, text.length() - 1), pattern.substring(0, pattern.length() - 1));
+           return findPattern(text.substring(0, text.length() - 1), pattern.substring(0, pattern.length() - 1));
+
         } else {
             return findPattern(text.substring(0, text.length() - 1), pattern);
+
         }
     }
 
