@@ -9,13 +9,14 @@ public class Contact {
     static int staticId = 0;
 
     public Contact(String name, String lastName, int age) {
-        this.id = ++staticId;
+        this.id = staticId++;
         this.name = name;
         this.lastName = lastName;
         this.age = age;
     }
 
     public Contact() {
+       // this.id = staticId++;
     }
 
     public void setId(int id) {
@@ -50,7 +51,13 @@ public class Contact {
         return age;
     }
 
+    public static void setStaticId(int staticId) {
+        Contact.staticId = staticId;
+    }
+
     public static int getStaticId() {
         return staticId;
+
+
     }
 }

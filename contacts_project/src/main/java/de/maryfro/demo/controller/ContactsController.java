@@ -6,14 +6,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 @Controller
 public class ContactsController {
     List<Contact> contacts = new ArrayList<>();
 
-    {
+    public ContactsController() {
         contacts.add(new Contact("Vasya", "Vasin", 21));
         contacts.add(new Contact("Peter", "Peterson", 22));
     }
@@ -27,8 +26,6 @@ public class ContactsController {
      */
     @GetMapping("/contacts")
     public String contacts(Model model) {
-        List<Contact> res = new ArrayList<>();
-        res.addAll(contacts);
         model.addAttribute("contacts", contacts);
         return "contacts";
     }
@@ -41,7 +38,10 @@ public class ContactsController {
      */
     @GetMapping("/add-contact")
     public String addContact(Model model) {
-        model.addAttribute("contact", new Contact());
+        Contact nc = new Contact();
+        int id = Contact.getStaticId();
+        nc.setId(id);
+        model.addAttribute("contact", nc);
         return "contact-form";
     }
 
@@ -57,7 +57,6 @@ public class ContactsController {
         for (Contact contact : contacts) {
             if (contact.getId() == id)
                 model.addAttribute("contact", contact);
-            break;
         }
         return "contact-form";
     }
@@ -90,25 +89,28 @@ public class ContactsController {
      */
     @PostMapping("/save-contact")
     public String saveContact(@ModelAttribute Contact contact) {
-        if (contact.getId() <= Contact.getStaticId()) {
+        if (contact.getId() < Contact.getStaticId()) {
             contacts.set(contact.getId(), contact);
         } else {
-            contacts.add(contact);
+            int staticId = Contact.getStaticId();
+                contacts.add(contact);
+                staticId++;
+                Contact.setStaticId(staticId);
+            }
+            return "redirect:/contacts";
         }
-        return "redirect:/contacts";
-    }
 
 
-    /**
-     * The endpoint removes the contact and returns
-     * the redirect to /contacts page.
-     *
-     * @param id
-     * @return
-     */
-    @GetMapping("/delete-contact/{id}")
-    public String deleteContact(@PathVariable int id) {
-        contacts.remove(id);
-        return "redirect:/contacts";
+        /**
+         * The endpoint removes the contact and returns
+         * the redirect to /contacts page.
+         *
+         * @param id
+         * @return
+         */
+        @GetMapping("/delete-contact/{id}")
+        public String deleteContact ( @PathVariable int id){
+            contacts.remove(id);
+            return "redirect:/contacts";
+        }
     }
-}
