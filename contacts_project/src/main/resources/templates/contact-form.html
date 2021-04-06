@@ -25,11 +25,11 @@
         </div>
         <div class="form-group">
             <label for="age">Age</label>
-            <input type="number" class="form-control" id="age" placeholder="Enter your age please" th:field="*{age}">
+            <input type="number" class="form-control" id="age" placeholder="Enter your age please" th:field="*{age}" min="1" max="120">
         </div>
         <div class="form-row">
             <div class="col">
-                <a class="btn btn-primary btn-lg" th:href="'/contacts/'" role="button" >Cancel</a>
+                <a class="btn btn-primary btn-lg" href="/contacts/" role="button" >Cancel</a>
             </div>
             <div class="col">
                 <input class="btn btn-primary btn-lg"  role="button" type="submit" name="action"

@@ -90,27 +90,34 @@ public class ContactsController {
     @PostMapping("/save-contact")
     public String saveContact(@ModelAttribute Contact contact) {
         if (contact.getId() < Contact.getStaticId()) {
-            contacts.set(contact.getId(), contact);
+            Contact oldContact = contacts.stream()
+                    .filter(c -> c.getId() == contact.getId())
+                    .findFirst()
+                    .orElseThrow();
+
+            oldContact.setName(contact.getName());
+            oldContact.setLastName(contact.getLastName());
+            oldContact.setAge(contact.getAge());
         } else {
             int staticId = Contact.getStaticId();
-                contacts.add(contact);
-                staticId++;
-                Contact.setStaticId(staticId);
-            }
-            return "redirect:/contacts";
+            contacts.add(contact);
+            staticId++;
+            Contact.setStaticId(staticId);
         }
-
-
-        /**
-         * The endpoint removes the contact and returns
-         * the redirect to /contacts page.
-         *
-         * @param id
-         * @return
-         */
-        @GetMapping("/delete-contact/{id}")
-        public String deleteContact ( @PathVariable int id){
-            contacts.remove(id);
-            return "redirect:/contacts";
-        }
+        return "redirect:/contacts";
     }
+
+
+    /**
+     * The endpoint removes the contact and returns
+     * the redirect to /contacts page.
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/delete-contact/{id}")
+    public String deleteContact(@PathVariable int id) {
+        contacts.removeIf(contact -> contact.getId() == id);
+        return "redirect:/contacts";
+    }
+}
