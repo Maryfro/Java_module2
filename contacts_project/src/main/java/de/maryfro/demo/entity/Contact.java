@@ -16,7 +16,7 @@ public class Contact {
     }
 
     public Contact() {
-       // this.id = staticId++;
+        this.id = staticId++;
     }
 
     public void setId(int id) {

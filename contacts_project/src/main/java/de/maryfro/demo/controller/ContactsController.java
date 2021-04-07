@@ -1,22 +1,21 @@
 package de.maryfro.demo.controller;
 
 import de.maryfro.demo.entity.Contact;
+import de.maryfro.demo.service.ContactService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
 public class ContactsController {
-    List<Contact> contacts = new ArrayList<>();
 
-    public ContactsController() {
-        contacts.add(new Contact("Vasya", "Vasin", 21));
-        contacts.add(new Contact("Peter", "Peterson", 22));
+    private final ContactService service;
+
+    public ContactsController(ContactService service) {
+        this.service = service;
     }
-
 
     /**
      * The endpoint should return the page containing
@@ -26,6 +25,7 @@ public class ContactsController {
      */
     @GetMapping("/contacts")
     public String contacts(Model model) {
+        List<Contact> contacts = service.getAll();
         model.addAttribute("contacts", contacts);
         return "contacts";
     }
@@ -38,10 +38,7 @@ public class ContactsController {
      */
     @GetMapping("/add-contact")
     public String addContact(Model model) {
-        Contact nc = new Contact();
-        int id = Contact.getStaticId();
-        nc.setId(id);
-        model.addAttribute("contact", nc);
+        model.addAttribute("contact", new Contact());
         return "contact-form";
     }
 
@@ -54,10 +51,8 @@ public class ContactsController {
      */
     @GetMapping("/edit-contact/{id}")
     public String editContact(@PathVariable int id, Model model) {
-        for (Contact contact : contacts) {
-            if (contact.getId() == id)
-                model.addAttribute("contact", contact);
-        }
+        Contact contact = service.get(id);
+        model.addAttribute("contact", contact);
         return "contact-form";
     }
 
@@ -70,12 +65,8 @@ public class ContactsController {
      */
     @GetMapping("/contacts/{id}")
     public String contact(@PathVariable int id, Model model) {
-        Contact needed = new Contact();
-        for (Contact c : contacts) {
-            if (c.getId() == id)
-                needed = c;
-        }
-        model.addAttribute("needed_contact", needed);
+        Contact contact = service.get(id);
+        model.addAttribute("needed_contact", contact);
         return "user-details";
     }
 
@@ -89,21 +80,7 @@ public class ContactsController {
      */
     @PostMapping("/save-contact")
     public String saveContact(@ModelAttribute Contact contact) {
-        if (contact.getId() < Contact.getStaticId()) {
-            Contact oldContact = contacts.stream()
-                    .filter(c -> c.getId() == contact.getId())
-                    .findFirst()
-                    .orElseThrow();
-
-            oldContact.setName(contact.getName());
-            oldContact.setLastName(contact.getLastName());
-            oldContact.setAge(contact.getAge());
-        } else {
-            int staticId = Contact.getStaticId();
-            contacts.add(contact);
-            staticId++;
-            Contact.setStaticId(staticId);
-        }
+        service.save(contact);
         return "redirect:/contacts";
     }
 
@@ -117,7 +94,13 @@ public class ContactsController {
      */
     @GetMapping("/delete-contact/{id}")
     public String deleteContact(@PathVariable int id) {
-        contacts.removeIf(contact -> contact.getId() == id);
+        service.remove(id);
         return "redirect:/contacts";
     }
+
+    @GetMapping("/")
+    public String mainPage() {
+        return "forward:/contacts";
+    }
+
 }
