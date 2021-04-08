@@ -10,10 +10,16 @@ import java.util.List;
 @Component
 public class MapContactRepo implements IContactRepo {
     HashMap<Integer, Contact> contactById = new HashMap<>();
+    private int id;
 
     @Override
     public void save(Contact contact) {
-        contactById.put(contact.getId(), contact);
+        if (contact.id > 0) {
+            contactById.put(contact.getId(), contact);
+        }
+        id++;
+        contact.setId(id);
+        contactById.put(id, contact);
     }
 
     @Override

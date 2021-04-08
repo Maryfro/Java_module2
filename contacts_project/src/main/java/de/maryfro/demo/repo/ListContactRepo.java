@@ -5,26 +5,25 @@ import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component
 public class ListContactRepo implements IContactRepo {
     ArrayList<Contact> contacts = new ArrayList<>();
-    static int id;
+    private int id;
 
 
     @Override
     public void save(Contact contact) {
         if (contact.getId() > 0) {
             Contact oldContact = find(contact.getId());
-            oldContact.setId(contact.getId());
-            oldContact.setName(contact.getName());
-            oldContact.setLastName(contact.getLastName());
-            oldContact.setAge(contact.getAge());
+           oldContact.setName(contact.getName());
+           oldContact.setLastName(contact.getLastName());
+           oldContact.setAge(contact.getAge());
+           contacts.set(oldContact.getId(), oldContact);
         } else {
-            // int id = Contact.getStaticId();
             contact.setId(id++);
             contacts.add(contact);
-            // Contact.setStaticId(id+1);
         }
     }
 

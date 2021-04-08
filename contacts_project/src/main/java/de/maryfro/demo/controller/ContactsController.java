@@ -66,7 +66,7 @@ public class ContactsController {
     @GetMapping("/contacts/{id}")
     public String contact(@PathVariable int id, Model model) {
         Contact contact = service.get(id);
-        model.addAttribute("needed_contact", contact);
+        model.addAttribute("contact", contact);
         return "user-details";
     }
 

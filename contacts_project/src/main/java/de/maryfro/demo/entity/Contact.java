@@ -1,22 +1,22 @@
 package de.maryfro.demo.entity;
 
+import java.util.Objects;
+
 public class Contact {
 
     public int id;
     public String name;
     public String lastName;
     public int age;
-    static int staticId = 0;
 
-    public Contact(String name, String lastName, int age) {
-        this.id = staticId++;
+    public Contact(int id, String name, String lastName, int age) {
+        this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.age = age;
     }
 
     public Contact() {
-        this.id = staticId++;
     }
 
     public void setId(int id) {
@@ -51,13 +51,17 @@ public class Contact {
         return age;
     }
 
-    public static void setStaticId(int staticId) {
-        Contact.staticId = staticId;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Contact contact = (Contact) o;
+        return id == contact.id && age == contact.age && Objects.equals(name, contact.name) && Objects.equals(lastName, contact.lastName);
     }
 
-    public static int getStaticId() {
-        return staticId;
-
-
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, lastName, age);
     }
 }
