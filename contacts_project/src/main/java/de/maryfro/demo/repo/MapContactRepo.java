@@ -16,10 +16,10 @@ public class MapContactRepo implements IContactRepo {
     public void save(Contact contact) {
         if (contact.id > 0) {
             contactById.put(contact.getId(), contact);
+        } else {
+            contact.setId(++id);
+            contactById.put(id, contact);
         }
-        id++;
-        contact.setId(id);
-        contactById.put(id, contact);
     }
 
     @Override

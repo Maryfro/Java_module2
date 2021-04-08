@@ -11,7 +11,7 @@ import java.util.List;
 public class ContactService {
     IContactRepo contactRepo;
 
-    public ContactService(@Qualifier("listContactRepo") IContactRepo contactRepo) {
+    public ContactService(@Qualifier("mapContactRepo") IContactRepo contactRepo) {
         this.contactRepo = contactRepo;
     }
 

@@ -15,15 +15,12 @@ public class ListContactRepo implements IContactRepo {
 
     @Override
     public void save(Contact contact) {
-        if (contact.getId() > 0) {
-            Contact oldContact = find(contact.getId());
-           oldContact.setName(contact.getName());
-           oldContact.setLastName(contact.getLastName());
-           oldContact.setAge(contact.getAge());
-           contacts.set(oldContact.getId(), oldContact);
-        } else {
-            contact.setId(id++);
+        if (contact.getId() <= 0) {
+            contact.setId(++id);
             contacts.add(contact);
+        } else {
+            int currIdx = getIndex(contact.getId());
+            contacts.set(currIdx, contact);
         }
     }
 
@@ -42,5 +39,14 @@ public class ListContactRepo implements IContactRepo {
     @Override
     public List<Contact> findAll() {
         return contacts;
+    }
+
+    private int getIndex(int id) {
+        for (int i = 0; i < contacts.size(); i++) {
+            Contact contact = contacts.get(i);
+            if (contact.getId() == id)
+                return i;
+        }
+        return -1;
     }
 }
