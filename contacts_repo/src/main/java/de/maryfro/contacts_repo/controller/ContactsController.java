@@ -112,7 +112,7 @@ public class ContactsController {
     @PostMapping("/contacts/search")
     public String searchContacts(@ModelAttribute SearchForm formInput, Model model) {
         Collection<Contact> res = service.findByNameContainingOrLastNameContaining(formInput.searchPattern, formInput.searchPattern);
-        model.addAttribute("sp", res);
+       // model.addAttribute("sp", res);
         model.addAttribute("contacts", res);
         return "contacts";
     }

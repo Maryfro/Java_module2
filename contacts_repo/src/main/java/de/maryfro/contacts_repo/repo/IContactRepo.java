@@ -13,7 +13,7 @@ public interface IContactRepo extends CrudRepository<Contact, Integer> {
 
     Collection<Contact> findByNameLikeOrLastNameLike(String name, String lastName);
 
-    Collection<Contact> findByNameContainingOrLastNameContaining(String name, String lastName);
+    Collection<Contact> findByNameIgnoreCaseContainingOrLastNameIgnoreCaseContaining(String name, String lastName);
 
 }
 

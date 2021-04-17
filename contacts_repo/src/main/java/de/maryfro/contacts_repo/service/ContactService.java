@@ -53,6 +53,6 @@ public class ContactService {
     }
 
     public Collection<Contact> findByNameContainingOrLastNameContaining(String name, String lastName){
-        return contactRepo.findByNameContainingOrLastNameContaining(name, lastName);
+        return contactRepo.findByNameIgnoreCaseContainingOrLastNameIgnoreCaseContaining(name, lastName);
     }
 }
