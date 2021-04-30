@@ -1,6 +1,5 @@
 package de.maryfro.contacts_onepager.entity;
 
-import de.maryfro.contacts_onepager.dto.ContactDto;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

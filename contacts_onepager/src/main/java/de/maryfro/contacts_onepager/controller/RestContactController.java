@@ -3,6 +3,7 @@ package de.maryfro.contacts_onepager.controller;
 import de.maryfro.contacts_onepager.dto.ContactDto;
 import de.maryfro.contacts_onepager.entity.Contact;
 import de.maryfro.contacts_onepager.service.ContactService;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -57,8 +58,9 @@ public class RestContactController {
         service.save(contact);
     }
 
-   @DeleteMapping("/{id}")
-    public void delete(@PathVariable int id){
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@PathVariable int id) {
         service.remove(id);
     }
 

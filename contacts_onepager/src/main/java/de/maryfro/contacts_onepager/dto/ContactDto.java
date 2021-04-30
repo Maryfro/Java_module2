@@ -1,6 +1,5 @@
 package de.maryfro.contacts_onepager.dto;
 
-import de.maryfro.contacts_onepager.entity.Contact;
 
 public class ContactDto {
     public int id;
